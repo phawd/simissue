@@ -1,0 +1,3 @@
+[submodule "GREENWIRE"]
+	path = GREENWIRE
+	url = .\\GREENWIRE\\
