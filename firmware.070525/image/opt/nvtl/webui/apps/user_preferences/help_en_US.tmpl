@@ -1,0 +1,69 @@
+<div id="user_preferences">
+	<h1><tmpl_var _("webui", "preferences_personalization_sub_header_text")></h1>
+	<p>This screen contains many options which allow you to set the behaviour of the device to better meet your needs.
+	</p>
+	<tmpl_if deviceNameShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_device_name_label"),(size(_("webui", "preferences_device_name_label")) - size(":")))></h3>
+		<p>
+			Device Name indicates device network name and URL to access the device local web management UI.
+		</p>
+	</tmpl_if>
+	<tmpl_if showCPERebootEnable>
+                <h3>
+                        <tmpl_var truncate(_("webui", "preferences_cpe_reboot_enable_label"), (size(_("webui", "preferences_cpe_reboot_enable_label")) - size(":")))>
+                </h3>
+                <p>
+                        Enables a periodic reboot feature that allows the device to automatically restart every two weeks. By default, the reboot occurs at 2:00 AM on Sunday.
+                </p>
+        </tmpl_if>
+        <tmpl_if showExternalAntennaEnable>
+                <h3>
+                        <tmpl_var truncate(_("webui", "preferences_external_antenna_enable_label"), (size(_("webui", "preferences_external_antenna_enable_label")) - size(":")))>
+                </h3>
+                <p>
+                        Check the checkbox to activate the external antenna port on your device. <strong>NOTE:</strong> The external antenna port is for an external 3.4-5GHz antenna and will only provide support for mobile frequency bands within this range. Please contact your service provider for available bands at your location.
+                </p>
+        </tmpl_if>
+	<tmpl_if showExternalMHBAntenna>
+		<h3><tmpl_var _("webui", "preferences_external_mhb_antenna_label")></h3>
+		<p>
+			Should be enabled if using an external antenna is connected to the device that supports 1700-2700 MHz. Disable to use internal antennas for 1700-2700 MHz.
+		</p>
+	</tmpl_if>
+	<tmpl_if showExternalUHBAntenna>
+		<h3><tmpl_var _("webui", "preferences_external_uhb_antenna_label")></h3>
+                <p>
+                        Should be enabled if using an external antenna is connected to the device that supports 3300-4200 MHz. Disable to use internal antennas for 3300-4200 MHz.
+                </p>
+	</tmpl_if>
+	<h3>Language</h3>
+	<p>Select the desired language. </p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_date_format_label"), (size(_("webui", "preferences_date_format_label")) - size(":")))></h3>
+	<p>
+		Specify the format in which the date is displayed on this Web-based interface.
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_time_format_label"), (size(_("webui", "preferences_time_format_label")) - size(":")))></h3>
+	<p>
+		Specify the format in which the time is displayed on this Web-based interface.
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_distace_format_label"), (size(_("webui", "preferences_distace_format_label")) - size(":")))></h3>
+	<p>
+		Specify the format in which the distance is displayed on this Web-based interface (feet or meters).
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_numeric_format_label"), (size(_("webui", "preferences_numeric_format_label")) - size(":")))></h3>
+	<p>
+		Specify how decimal numbers are displayed. Period (.) or Comma (,) can be selected for use as the decimal point.
+	</p>
+
+	<tmpl_if showEthernetEnable>
+		<h3><tmpl_var _("webui", "preferences_ethernet_enable_label" )></h3>
+		<p>
+			Ethernet indicator is shown on the status bar when Ethernet port is enabled; hidden otherwise.
+		</p>
+	</tmpl_if>
+
+</div>

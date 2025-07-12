@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Denne skærm indeholder mange indstillinger, der giver dig mulighed for at indstille <tmpl_var _("webui", "webui_product_name")>s adfærd for bedre at imødekomme dine behov.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Hvis denne mulighed er markeret, er LED&#39;en og lydfunktionerne på <tmpl_var _("webui", "webui_product_name")> slukket. <tmpl_var _("webui", "webui_product_name")>s skærm tændes kun, når brugeren tænder den. Startprocessen påvirkes dog ikke af denne indstilling.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Hvis denne indstilling er markeret, forbliver LED&#39;en slukket. Hvis denne indstilling ikke er markeret, blinker LED langsomt som "tegn på liv". Denne indstilling er nedtonet, hvis Stealth-tilstand er aktiveret.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>Hvis dette markeres, tændes skærmen, når der vises en besked. Hvis den ikke er nyttig, kan du slå den fra.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>Hvis markeret vil <tmpl_var _("webui", "webui_product_name")> signalisere opstart, nedlukning og forskellige begivenheder ved hjælp af lydalarmer. Hvis den ikke er markeret, vil <tmpl_var _("webui", "webui_product_name")> fungere lydløst. Denne indstilling er nedtonet, hvis Stealth-tilstand er aktiveret.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Disse indstillinger kan bruges til at specificere, hvilke hændelser der udløser en lydalarm. Hvis lyden er slået fra, er disse indstillinger er nedtonede, enten ved indstillingen Stealth eller ved indstillingen "Tænd for lyden" ovenfor.</p>
+</div>

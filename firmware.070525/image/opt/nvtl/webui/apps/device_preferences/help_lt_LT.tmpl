@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Šiame ekrane yra daug parinkčių, leidžiančių nustatyti tokį <tmpl_var _("webui", "webui_product_name")> veikimo būdą, kuris geriau atitiktų jūsų poreikius.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Šios nuostatos apibrėžia ryšio tipą, kai kompiuteris prijungiamas prie <tmpl_var _("webui", "webui_product_name_with_suffix")> USB C prievado. Pasirinkite norimą parinktį.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Jei pažymėta, aptikus USB ryšį su kompiuteriu, būsite paraginti (<tmpl_var _("webui", "webui_product_name")> ekrane) pasirinkti norimą USB režimą. Pasirinkus pagal šį raginimą, pirmiau pateikta nuostata nepasikeičia – nustatomas tik dabartinio USB seanso režimas.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>Ši nuostata apibrėžia, kaip greitai <tmpl_var _("webui", "webui_product_name_with_suffix")> ekranas išsijungs po tam tikro neaktyvumo laikotarpio. Pasirinkite norimą parinktį.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p>Po neaktyvumo laikotarpio <tmpl_var _("webui", "webui_product_name")> persijungs į budėjimo režimą. Pasirinkite norimą budėjimo režimo įjungimo laikotarpį.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p>Po tam tikro neaktyvumo laikotarpio <tmpl_var _("webui", "webui_product_name")> gali išsijungti. Pasirinkite norimą išjungimo aktyvinimo laikotarpį.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>Naudodamiesi šia funkcija galite iš <tmpl_var _("webui", "webui_product_name_with_suffix")> akumuliatoriaus įkrauti įrenginius, pvz., telefoną arba „Bluetooth“ ausines. Tiesiog prijunkite savo įrenginio USB laidą prie <tmpl_var _("webui", "webui_product_name_with_suffix")> universaliojo įkrovimo prievado.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>Šiame lauke rodoma dabartinė universaliojo įkrovimo funkcijos būsena. Galimos būsenos reikšmės:</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> – išoriniai įrenginiai įkraunami iš <tmpl_var _("webui", "webui_product_name_with_suffix")> akumuliatoriaus.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> – jei prie <tmpl_var _("webui", "webui_product_name_with_suffix")> universaliojo įkrovimo prievado prijungtas išorinis įrenginys, jis bus įkrautas.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> – per žemas <tmpl_var _("webui", "webui_product_name_with_suffix")> akumuliatoriaus įkrovos lygis kitiems įrenginiams įkrauti.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Jei ĮJUNGTA, galimas nuostatas galima pakeisti <tmpl_var _("webui", "webui_product_name_with_suffix")> ekrane. Šios nuostatos apima gamyklinių nuostatų atkūrimo operaciją, kuri iš naujo nustato gamyklines numatytąsias visų nuostatų vertes.</p>
+		<p>Jei IŠJUNGTA, nuostatų keisti <tmpl_var _("webui", "webui_product_name_with_suffix")> ekrane negalima.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Jei ĮJUNGTA, <tmpl_var _("webui", "webui_product_name")> skirtas nustatymo iš naujo mygtukas veikia įprastai – visos nuostatos pakeičiamos į gamyklines numatytąsias vertes.</p>
+	<p>JEI IŠJUNGTA, nustatymo iš naujo mygtukas neveikia. Dėl to naudotojas, atlikdamas nustatymo iš naujo veiksmą, negalės keisti nuostatų.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Eterneto indikatorius rodomas būsenos juostoje, kai įjungtas eterneto prievadas; priešingu atveju jis būna paslėptas.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

@@ -1,0 +1,29 @@
+<!-- MAC Filter -->
+<div id="macfilter">
+	<h1><tmpl_var _("webui", "adv_macfilter_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>The MAC filter allows only selected devices to access the <tmpl_var _("webui", "webui_product_name")> network through DHCP. By default, MAC filter is turned off. Use this tab to turn the MAC Filter on and specify device access.
+	</p>
+
+	<h2><tmpl_var _("webui", "adv_macfilter_menu_text")></h2>	
+	<p>To use the MAC filter, select the device(s) from the device list that you want to be allowed to connect to the network through DHCP and move the <b>MAC Filter ON/OFF</b> slider to <b>ON</b>. Click <b>Save Changes</b>.
+	</p>
+	
+	<p>
+		<strong>Caution!</strong> Turning on MAC filtering immediately disconnects all devices that are not included in the filter from the network. 
+	</p>
+
+	<p>This list includes all devices currently connected to this device.</p>
+		
+	<h3><tmpl_var _("webui", "adv_macfilter_add_device_button")></h3>
+	<p>
+		Use this button to add a device to the device list, then enter the device name, MAC address, and choose whether to select the MAC Address Filter checkbox.
+	</p>
+
+	<h3>Delete a device</h3>
+	<p>To delete a device from the list, select its <b>Delete</b> checkbox and click <b>Save Changes</b>.</p>
+
+	<h3><tmpl_var _("webui", "adv_macfilter_refresh_button")></h3>
+	<p>To discard any unsaved changes and refresh the list, click <b>Refresh List</b> and <b>Confirm</b>.</p>
+ </div>
+<!--  macfilter  -->

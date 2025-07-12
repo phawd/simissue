@@ -1,0 +1,84 @@
+<div id="user_preferences">
+	<h1><tmpl_var _("webui", "preferences_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Puede utilizar esta pestaña para apagar la luz LED, habilitar el reinicio periódico y activar el puerto de antena externa de su dispositivo. También puede cambiar cómo se muestran las fechas, la hora, la distancia y los números en la interfaz web. <strong>NOTA:</strong> Estas preferencias afectan los paquetes enviados a servidores remotos. Por ejemplo, si selecciona un formato de 24 horas, la interfaz de usuario web del administrador y cualquier paquete que informe la hora en otro lugar mostrarán la hora en formato de 24 horas.
+	</p>
+
+	<tmpl_if deviceNameShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_device_name_label"),(size(_("webui", "preferences_device_name_label")) - size(":")))></h3>
+		<p>Para cambiar cómo aparece el dispositivo cuando se conecta otros, ingrese un nombre diferente.</p>
+	</tmpl_if>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Marque la casilla para apagar la luz LED de la pantalla del dispositivo.</p>
+
+	<tmpl_if showCPERebootEnable>
+		<h3>
+			<tmpl_var truncate(_("webui", "preferences_cpe_reboot_enable_label"), (size(_("webui", "preferences_cpe_reboot_enable_label")) - size(":")))>
+		</h3>
+		<p>
+			Activa una característica de reinicio periódico que permite que el dispositivo se reinicie automáticamente cada dos semanas. <strong>NOTA:</strong> De manera predeterminada, el reinicio se produce el domingo a las 2:00 a. m. Puede cambiar el horario en los ajustes de preferencias de Inseego Connect.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if showExternalAntennaEnable>
+		<h3>
+			<tmpl_var truncate(_("webui", "preferences_external_antenna_enable_label"), (size(_("webui", "preferences_external_antenna_enable_label")) - size(":")))>
+		</h3>
+		<p>
+			Check the checkbox to activate the external antenna port on your device.<br /><strong>NOTE:</strong> The external antenna port is for an external 3.4-5GHz antenna and will only provide support for mobile frequency bands within this range. Please contact your service provider for available bands at your location.
+		</p>
+	</tmpl_if>
+	
+	<tmpl_if showExternalMHBAntenna>
+		<h3><tmpl_var _("webui", "preferences_external_mhb_antenna_label")></h3>
+		<p>
+			Marque la casilla para activar el puerto de antena externa en su dispositivo a fin de que admita bandas de frecuencia móvil dentro del intervalo de 1700 a 2700 MHz. <strong>NOTA:</strong> Póngase en contacto con su proveedor de servicios para conocer las bandas disponibles en su ubicación.
+		</p>
+	</tmpl_if>
+	
+	<tmpl_if showExternalUHBAntenna>
+		<h3><tmpl_var _("webui", "preferences_external_uhb_antenna_label")></h3>
+		<p>
+			Marque la casilla para activar el puerto de antena externa en su dispositivo a fin de que admita bandas de frecuencia móvil dentro del intervalo de 3300 a 4200 MHz. <strong>NOTA:</strong> Póngase en contacto con su proveedor de servicios para conocer las bandas disponibles en su ubicación.
+		</p>
+	</tmpl_if>
+
+
+	<p>
+		<strong>NOTA:</strong> Los siguientes ajustes afectan los paquetes enviados a servidores remotos. Por ejemplo, si selecciona un formato de 24 horas, la interfaz de usuario web del administrador y cualquier paquete que informe la hora en otro lugar mostrarán la hora en formato de 24 horas.
+	</p>
+
+	<h3>Idioma</h3>
+	<p>Seleccione un idioma para la Interfaz de usuario web del administrador.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_date_format_label"), (size(_("webui", "preferences_date_format_label")) - size(":")))></h3>
+	<p>
+		Seleccione el formato de fecha que se utilizará en toda la Interfaz de usuario web (mm/dd/aaaa o dd/mm/aaaa).
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_time_format_label"), (size(_("webui", "preferences_time_format_label")) - size(":")))></h3>
+	<p>
+		Seleccione el formato de hora que se utilizará en toda la interfaz de usuario web (12 o 24 horas).
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_distace_format_label"), (size(_("webui", "preferences_distace_format_label")) - size(":")))></h3>
+	<p>
+		Seleccione el formato de distancia que se mostrará en la interfaz de usuario web (pies o metros).
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_numeric_format_label"), (size(_("webui", "preferences_numeric_format_label")) - size(":")))></h3>
+	<p>
+		Elija el formato para los números decimales que se muestran en la interfaz de usuario web (utilizando un punto o una coma como separador de decimales).
+	</p>
+
+	<tmpl_if showEthernetEnable>
+		<h3><tmpl_var _("webui", "preferences_ethernet_enable_label" )></h3>
+		<p>
+			El indicador de Ethernet se muestra en la barra de estado cuando el puerto Ethernet está habilitado; de lo contrario permanece oculto.
+		</p>
+	</tmpl_if>
+
+	<p>Realice sus selecciones y haga clic en <b>Guardar cambios</b> para actualizar los ajustes.</p>
+</div>

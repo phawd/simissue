@@ -1,0 +1,21 @@
+<!-- Manual DNS -->
+<div id="manual_dns">
+	<h1><tmpl_var _("webui", "adv_manual_dns_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Este dispositivo selecciona automáticamente un servidor de nombre de dominio (DNS). Esta página le permite asignar manualmente hasta dos direcciones IP de DNS.
+	</p>
+	
+	<h2>Ajustes</h2>
+	<h3><tmpl_var truncate(_("webui", "adv_manual_dns_enable_label"), (size(_("webui", "adv_manual_dns_enable_label")) - size(":")))></h3>
+	<p>Marque esta casilla para seleccionar un DNS manualmente.</p>
+
+	<h3><tmpl_var truncate(_("webui", "adv_manual_dns_address1_label"), (size(_("webui", "adv_manual_dns_address1_label")) - size(":")))></h3>
+	<p>Ingrese la dirección IP del DNS principal. Esta dirección es obligatoria para utilizar la función de DNS manual.</p>
+
+	<h3><tmpl_var truncate(_("webui", "adv_manual_dns_address2_label"), (size(_("webui", "adv_manual_dns_address2_label")) - size(":")))></h3>
+	<p>Ingrese la dirección IP del DNS secundario (copia de seguridad). Esta dirección es opcional y puede quedar en blanco si se desea.</p>
+	
+	<p>Haga clic en <b>Guardar cambios. </b></p>	
+</div>
+<!-- id="manual_dns" -->

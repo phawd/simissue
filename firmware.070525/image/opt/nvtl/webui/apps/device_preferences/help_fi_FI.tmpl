@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Tämä näyttö sisältää monia vaihtoehtoja, joiden avulla voit asettaa <tmpl_var _("webui", "webui_product_name")>-laitteen toimimaan paremmin tarpeidesi mukaisesti.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Tämä asetus määrittää yhteyden tyypin, kun <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen USB-C-porttiin on liitetty tietokone. Valitse haluttu vaihtoehto.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Jos tämä on valittu, sinua kehotetaan (<tmpl_var _("webui", "webui_product_name")>-laitteen näytössä) valitsemaan haluamasi USB-tila, kun USB-liitäntä tietokoneeseen havaitaan. Valinnan tekeminen tästä kehotteesta ei muuta yllä olevaa asetusta, vaan asettaa vain nykyisen USB-istunnon tilan.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>Tämä asetus määrittää, kuinka nopeasti <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen näyttö kytkeytyy pois päältä, kun laite on ollut jonkin aikaa käyttämättömänä. Valitse haluttu vaihtoehto.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> siirtyy lepotilaan oltuaan jonkin aikaa käyttämättömänä. Valitse haluamasi aika, jonka jälkeen se siirtyy lepotilaan.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")>-laitteen virta voidaan katkaista, kun laite on ollut jonkin aikaa käyttämättömänä. Valitse haluamasi ajanjakso, jonka jälkeen virta katkaistaan.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>Tämän ominaisuuden avulla voit ladata laitteita, kuten puhelinta tai Bluetooth-kuulokkeita, <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen akusta. Liitä vain laitteesi USB-kaapeli <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen yleislatausporttiin.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>Tässä kentässä näkyy yleislatausominaisuuden nykyinen tila. Tilan mahdolliset arvot ovat seuraavat:</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> - <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen akusta ladataan ulkoisia laitteita.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> - Jos <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen yleislatausporttiin on liitetty ulkoinen laite, sitä ladataan.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> - <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen akku on liian tyhjä muiden laitteiden lataamiseen.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Jos tämä on kytketty PÄÄLLE, käytettävissä olevia asetuksia voidaan muuttaa <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen näytöstä. Näihin asetuksiin sisältyy tehdasasetusten nollaustoiminto, joka palauttaa kaikki asetukset tehtaan oletusarvoihin.</p>
+		<p>Jos tämä on kytketty POIS PÄÄLTÄ, asetusten muuttaminen <tmpl_var _("webui", "webui_product_name_with_suffix")>-laitteen näytöstä ei ole mahdollista.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Jos tämä on kytketty PÄÄLLE, <tmpl_var _("webui", "webui_product_name")>-laitteen alustassa oleva nollauspainike toimii normaalisti ja muuttaa kaikki asetukset tehtaan oletusarvoihin.</p>
+	<p>Jos tämä on kytketty POIS PÄÄLTÄ, nollauspainike ei toimi. Tämä estää käyttäjää muuttamasta asetuksia nollaus suorittamalla.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Ethernet-ilmaisin näkyy tilapalkissa, kun Ethernet-portti on käytössä; muutoin se on piilotettu.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

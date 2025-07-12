@@ -1,0 +1,61 @@
+<!-- APN Profiles -->
+<div id="apn_profiles">
+	<h1><tmpl_var _("webui", "connection_profiles_header_text")></h1>
+	<h2>Descripción general</h2>	
+	<p>
+		En la mayoría de las configuraciones, su dispositivo se utiliza con una IP y una SIM dinámicas, y el Nombre de punto de acceso (APN) está disponible en la red, por ejemplo: Internet. Sin embargo, si está en una red privada, es posible que deba configurar los perfiles de conexión de su APN en esta pestaña para que la red se comunique con su dispositivo.
+	</p>
+
+	<h3>
+        	<tmpl_var truncate(_("webui", "connection_profiles_sim_selection_label"), (size(_("webui", "connection_profiles_sim_selection_label")) - size(":")))>
+    	</h3>
+	<p>Use el menú desplegable para seleccionar la tarjeta SIM en la que desea configurar el APN.</p>
+
+    	<h2><tmpl_var _("webui", "connection_profiles_header_text")></h2>
+   	<h3><tmpl_var _("webui", "connection_profiles_active_label")></h3>
+    	<p>Seleccione el perfil de conexión que desea que esté activo.</p>
+
+        <h3><tmpl_var _("webui", "connection_profiles_profile_name_label")></h3>
+        <p>El nombre que identifica el perfil de conexión.</p>
+
+	<h3><tmpl_var _("webui", "connection_profiles_apn_name_label")></h3>
+	<p>El nombre del punto de acceso.</p>
+
+	<h3><tmpl_var _("webui", "connection_profiles_authentication_label")></h3>
+	<p>El método de autenticación para el perfil de conexión.</p>
+
+	<h3><tmpl_var _("webui", "connection_profiles_ip_connection_type_label")></h3>
+	<p>El tipo de conexión IP para el perfil de conexión.</p>
+
+	<p>Haga clic<b><tmpl_var _("webui", "connection_profiles_edit_button_text")></b>para editar un perfil.</p>
+	<p>Haga clic<b><tmpl_var _("webui", "connection_profiles_reset_button_text")></b>para restablecer un perfil a los valores predeterminados.</p>
+	<p>Haga clic en <b><tmpl_var _("webui", "connection_profiles_add_new_profile_button_text")></b> para agregar un perfil de conexión APN adicional.<p>
+
+	<h2><tmpl_var _("webui", "connection_profiles_add_new_profile_header_text")></h2>
+	<h3><tmpl_var truncate(_("webui", "connection_profiles_new_profile_name_label"), (size(_("webui", "connection_profiles_new_profile_name_label")) - size(":")))></h3>
+	<p>Ingrese un nombre para identificar este perfil de conexión.</p>
+	<h3><tmpl_var _("webui", "connection_profiles_apn_name_label")></h3>
+	<p>
+		Seleccione un APN que le haya brindado su proveedor de servicios en el menú desplegable o seleccione <b><tmpl_var _("webui", "connection_profiles_add_apn_option")></b> e introduzca el APN de su red privada en el cuadro de texto que aparece a continuación.
+	</p>
+	<p>
+		<strong style="color: red">¡PRECAUCIÓN! </strong> Si cambia el APN, puede perder la conectividad de datos. 
+	<p>
+	<p class="note">
+		<strong>NOTA:</strong> La información ingresada en los siguientes campos debe provenir de su proveedor de servicios según los requisitos de la red. 
+	</p>
+
+	<h3><tmpl_var _("webui", "connection_profiles_authentication_label")></h3>
+	<p>Seleccione el método de autenticación para su red privada en el menú desplegable (PAP, CHAP, PAP y CHAP, o Ninguno).</p>
+
+	<h3><tmpl_var truncate(_("webui", "connection_profiles_username_label"), (size(_("webui", "connection_profiles_username_label")) - size(":")))></h3>
+	<p>Ingrese el nombre de usuario para su red privada. <strong>NOTA:</strong> Esta opción no está visible cuando la configuración de Autenticación sea Ninguna.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "connection_profiles_password_label"), (size(_("webui", "connection_profiles_password_label")) - size(":")))></h3>
+	<p>Ingrese la contraseña para su red privada. <strong>NOTA:</strong> Esta opción no está visible cuando la configuración de Autenticación sea Ninguna.</p>
+
+	<h3><tmpl_var _("webui", "connection_profiles_ip_connection_type_label")></h3>
+	<p>Seleccione un tipo de conexión IP en el menú desplegable (IPv4, IPv6 o IPv4/IPv6).</p>
+	
+	<p>Haga clic <b><tmpl_var _("webui", "connection_profiles_save_changes_button_text")></b>.</p>
+</div>

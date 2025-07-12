@@ -1,0 +1,32 @@
+<!-- Internet  Sessions -->
+<div id="session_log_info">
+	<h1><tmpl_var _("webui", "session_log_info_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>Use the Internet Sessions tab to export and view internet session data.</p>
+
+	<h2><tmpl_var _("webui", "session_log_info_headding_text")></h2>
+	<p>Click the <b>Export</b> button to export internet session data.</p>
+
+	<h2><tmpl_var _("webui", "session_log_info_menu_text")></h2>
+	<p><strong>NOTE:</strong> Internet sessions are presented in date order.</p>
+		
+	<p><b>Date & Time:</b> The date and time the Internet session began.</p>
+	
+	<p><b>Duration:</b> The total amount of time for the Internet session.</p>
+	
+	<p><b>Received Data:</b> The amount of data received for the Internet session. This counter starts at zero when the connection is established.</p>
+	
+	<p><b>Transmitted Data:</b> The amount of data transmitted for the Internet session. This counter starts at zero when the connection is established.</p>
+	
+	<p><b>Total Data:</b>The total amount of data for the Internet session. This is the sum of Received Data and Transmitted Data.</p>
+	
+	<tmpl_if RoamingStatusShow>
+		<p>- Roaming (Roaming / Partial / blank) Blank = home network</p>
+	</tmpl_if>
+	
+	<p><b>IPv4 Address:</b> The IP address for the session.</p>
+	
+	<p>
+		<b>IPv6 Address:</b> The global IPv6 address for the session (blank if IPv6 is turned off or is not supported by the current network connection or service provider).
+	</p>
+</div>

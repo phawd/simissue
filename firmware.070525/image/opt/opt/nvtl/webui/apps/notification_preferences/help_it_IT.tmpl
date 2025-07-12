@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Questa schermata contiene numerose opzioni che consentono di impostare il comportamento di <tmpl_var _("webui", "webui_product_name")> per soddisfare al meglio le tue esigenze.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Se questa opzione è selezionata, il LED e le funzionalità audio di <tmpl_var _("webui", "webui_product_name")> sono disattivati. Lo schermo di <tmpl_var _("webui", "webui_product_name")> si accenderà solo su azione dell’utente. Tuttavia, questa impostazione non influisce sul processo di avvio.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Se questa impostazione è selezionata, il LED rimarrà spento. Se questa impostazione non è selezionata, il LED lampeggerà lentamente per indicare che il dispositivo è acceso. Questa impostazione non è disponibile se la modalità invisibile è attiva.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>Se selezionata, lo schermo si accenderà quando viene visualizzato un messaggio di avviso. Se ciò non è utile, puoi disattivarlo.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>Se selezionato, il <tmpl_var _("webui", "webui_product_name")> segnalerà l&#39;avvio, l&#39;arresto e altri eventi utilizzando avvisi audio. Se non selezionato, il <tmpl_var _("webui", "webui_product_name")> funzionerà in modo silenzioso. Questa impostazione non è disponibile se la modalità invisibile è attiva.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Queste impostazioni possono essere utilizzate per specificare quali eventi attivano un avviso audio. Queste impostazioni non sono disponibili se l&#39;audio è stato disattivato, sia mediante l’impostazione Invisibile che l&#39;impostazione "Attiva audio" in alto.</p>
+</div>

@@ -1,0 +1,60 @@
+<!-- WiFi Advanced -->
+<div id="wifi_advanced">
+	<h1>Wi-Fi</h1>
+	<h2>Descripción general</h2>
+	<p>Puede usar los valores predeterminados tal como aparecen en esta pestaña o puede ajustarlos para el entorno.</p>
+	
+	<h2>Control de encendido/apagado de Wi-Fi</h2>
+	<p>
+		Utilice el control deslizante de <strong>Permitir que los dispositivos Wi-Fi se conecten</strong> para activar o desactivar el Wi-Fi. Esta selección afecta la red principal y la red para invitados. <strong>NOTA:</strong> Si el Wi-Fi está desactivado, la única forma de conectar otros dispositivos a este es con un cable Ethernet o un USB.
+	</p>
+
+	<h3>Permitir que se hagan cambios de parámetros de Wi-Fi desde la pantalla de Dispositivo</h3>
+	<p>
+		Use este control para activar o desactivar el Wi-Fi según corresponda. Si está desactivado, la red de Wi-Fi no estará disponible, de modo que la única manera de conectarse será usar un cable USB.
+	</p>
+
+	<h3><tmpl_var _("webui", "wifi_advanced_max_connections_label")></h3>
+	<p>
+		Seleccione Cambiar el límite de conexión para cambiar el número máximo de dispositivos que pueden conectarse al dispositivo. Seleccione un número y haga clic en Guardar cambios. El número máximo de dispositivos conectados es <tmpl_var maxConnectionValue>.
+	</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_profile_title")></h2>
+	<p>Se puede acceder a cada red a través de dos bandas: 2.4 GHz y 5 GHz:</p>
+	<ul>
+		<li>
+			La banda de 2.4 GHz es compatible con todos los dispositivos que tienen Wi-Fi y la deben utilizar los dispositivos que tengan algunos años de antigüedad o más. Esta banda atraviesa mejor las paredes y se propaga a distancias más extensas, por lo que puede tener un rango más largo.
+		</li>
+		<li>
+			La banda de 5 GHz es mejor para dispositivos más nuevos. Ofrece mejor rendimiento, menor interferencia y velocidades de datos más rápidas, pero no atraviesa paredes tan bien como la banda de 2.4 GHz.
+		</li>
+	</ul>
+	
+	<p><strong>NOTA:</strong>La red para invitados debe tener asignada al menos una banda para que se pueda activar.</p>
+
+	<h2><tmpl_var _("webui", "wifi_advanced_two_point_four_g_band_options_title")></h2>
+	<p>
+		Esta sección muestra el modo 802.11 en uso cuando la banda de 2.4 GHz está activa y le permite seleccionar un canal.
+	</p>
+	<p>
+		<strong>NOTA:</strong> Deje el canal ajustado en <strong>Automático</strong>, a menos que necesite elegir un canal en particular para el entorno.
+	</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_five_g_options_title")></h2>
+	<p>
+		Esta sección muestra el modo 802.11 en uso cuando la banda de 5 GHz está activa y le permite seleccionar un ancho de banda y un canal.
+	</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_five_g_bandwidth_label")></h2>
+	<p>
+		Deje el ancho de banda en el ajuste predeterminado, a menos que experimente interferencias con otros dispositivos Wi-Fi. Si experimenta interferencias, intente bajar el ajuste para reducirlas.
+	</p>
+	<p>
+		<strong>NOTA:</strong> Deje el canal ajustado en <strong>Automático</strong>, a menos que necesite elegir un canal en particular para el entorno.
+	</p>
+	
+	<p>Seleccione <strong>Guardar cambios</strong> para almacenar nuevos ajustes.</p>
+</div>
+
+<!-- id="wifi_advanced" -->
+

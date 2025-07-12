@@ -1,0 +1,45 @@
+<!-- Vpn -->
+<div id="vpn">
+	<h1><tmpl_var _("webui", "vpn_menu_text")></h1>        
+	<h2>Overview</h2>
+        <p>Use this page to establish secure connections to remote networks over a public network using OpenVPN.</p>
+	<p>
+		<strong>NOTE: </strong>When an Open VPN connection is established, Port Filtering and Port Forwarding settings are not effective, as traffic from all connected devices goes through the Open VPN tunnel. 
+        </p>
+       	
+	<h2><tmpl_var _("webui", "vpn_connection_sub_head_text")></h2> 
+	<h3><tmpl_var truncate(_("webui", "vpn_setup_files_label"), (size(_("webui", "vpn_setup_files_label")) - size(":")))></h3>
+        <p>Drag and Drop the OpenVPN configuration files from your OpenVPN provider in the file upload area.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_username_label"), (size(_("webui", "vpn_username_label")) - size(":")))></h3>
+        <p>Enter your OpenVPN connection username here.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_password_label"), (size(_("webui", "vpn_password_label")) - size(":")))></h3>
+        <p>Enter your OpenVPN connection password here.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_auto_connect_label"), (size(_("webui", "vpn_auto_connect_label")) - size(":")))></h3>
+        <p>
+ 		When the ON/OFF slider is ON, the VPN tunnel will automatically be established whenever an internet connection is made. When OFF, the VPN connection must be established manually.
+        </p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_clear_all_settings_button_text"), (size(_("webui", "vpn_clear_all_settings_button_text")) - size(":")))></h3>
+        <p>This button deletes all VPN files, logs, and resets all VPN settings.</p>
+	
+	<p>Click <b>Save Changes and Connect</b> to save your configurations and connect to the VPN server.</p>
+
+	<h2><tmpl_var _("webui", "vpn_connection_sub_heading_text")></h2>
+	<p>This section is visible once you have configured your device for OpenVPN.</p>
+
+        <h3><tmpl_var truncate(_("webui", "vpn_connection_status_label"), (size(_("webui", "vpn_connection_status_label")) - size(":")))></h3>
+        <p>Indicates the status of the OpenVPN connection.</p>
+
+        <h3><tmpl_var truncate(_("webui", "vpn_connection_time_label"), (size(_("webui", "vpn_connection_time_label")) - size(":")))></h3>
+        <p>The duration of the current OpenVPN connection.</p>
+
+        <h3><tmpl_var _("webui", "vpn_connect_button_text")></h3>
+        <p>Use this button to connect the OpenVPN.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_view_log_button_text"), (size(_("webui", "vpn_view_log_button_text")) - size(":")))></h3>
+        <p>Use this button to view OpenVPN log files.</p>
+</div>
+ <!-- id="Vpn" -->

@@ -1,0 +1,86 @@
+<div id="wan_failover">
+	<h1><tmpl_var _("webui", "wan_failover_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Utilice esta pestaña para seleccionar una interfaz WAN activa, establecer las prioridades de la WAN y configurar keep-alive. Keep-alive permite una conexión WAN constante.
+	</p>
+
+	<h3>Cambio automático a WAN</h3>
+	<p>
+		El cambio automático a WAN está activado por defecto. Si lo desactiva, las secciones de esta página relacionadas con el cambio automático WAN no podrán visualizarse. Cuando el cambio automático a WAN está desactivado, su FX3000 utiliza la conexión celular y ambos puertos Ethernet se configuran para pertenecer al mismo subconjunto LAN.
+	</p>
+
+	<h3>Habilite WAN Keep Alive</h3>
+	<p>
+		Si está activado, keepalive verifica las direcciones de búsqueda para comprobar la conectividad a Internet en la conexión WAN. NOTA: Keepalive de WAN permite una conexión WAN persistente.
+	</p>
+
+	<h3>Dirección de búsqueda 1</h3>
+	<p>Ingrese la primera dirección IP de DNS para verificar la conexión WAN. </p>
+
+	<h3>Dirección de búsqueda 2 </h3>
+	<p>Ingrese la segunda dirección IP de DNS para verificar (si la dirección de búsqueda 1 no responde con reconocimiento de estado activo [ACK]).</p>
+
+	<h3>Dirección de búsqueda 3</h3>
+	<p>Ingrese la tercera dirección IP de DNS para verificar (si la dirección de búsqueda 2 no responde con keepalive ACK).</p>
+
+	<h3>Intervalo de Keep Alive</h3>
+	<p>Ingrese la cantidad deseada de minutos sin recibir un paquete válido antes de que se produzca la primera verificación de keepalive.</p>
+
+	<h3>Cantidad de intentos</h3>
+	<p>Ingrese la cantidad de veces que desea volver a intentarlo después de un error de verificación para las tres direcciones de búsqueda.</p>
+
+	<h3>Intervalo de reintento</h3>
+	<p>Ingrese la cantidad de segundos entre reintentos de verificación.</p>
+
+	<tmpl_if showWanFailBack>
+	<h3>WAN failback interval </h3>
+		<p>
+			El intervalo utilizado para volver a activar la interfaz WAN prioritaria después de que el dispositivo se haya conmutado por error a una interfaz WAN de reserva. Por ejemplo, si la WAN celular es su interfaz WAN prioritaria, este intervalo permite que el dispositivo reanude el uso de una conexión WAN celular después de que se haya conmutado por error a una interfaz WAN Ethernet. El intervalo comienza cuando la interfaz WAN activa se haya conmutado por error a una interfaz WAN de reserva. Una vez transcurrido el intervalo, el dispositivo restablece la interfaz WAN prioritaria como conexión activa. El intervalo por defecto es 15 minutos.
+		</p>
+	</tmpl_if>
+
+	<h2>Reglas de cambio a WAN </h2>
+	<h3>Pruebas de conectividad</h3>
+	<p>
+		Cuando el cambio automático de WAN está activado, el cambio de WAN se determina mediante pruebas de conectividad. Para desactivar las pruebas de conectividad, desmarque la casilla Activar.
+	</p>
+
+	<h2>Interfaz WAN </h2>
+	<p>El tipo de interfaz (celular, Ethernet1 o Ethernet2).</p>
+
+	<h3>WAN</h3>
+	<p>La interfaz WAN.</p>
+
+	<h3>WAN/LAN</h3>
+	<p>
+		Utilice el menú desplegable a fin de elegir WAN o LAN para las interfaces Ethernet. <strong>NOTA:</strong> Aunque los puertos Ethernet están etiquetados como WAN o LAN en el dispositivo, puede configurarlos para que sean WAN o LAN.
+	</p>
+
+	<h3>Estado</h3>
+	<p>El estado actual de la interfaz WAN (Conectada, En línea o Fuera de línea).</p>
+
+	<h3>Prioridad</h3>
+	<p>Utilice el menú desplegable para establecer una prioridad para cada interfaz WAN.</p>
+
+	<tmpl_if ShowDataUsageColumns>
+		<h3>Medido</h3>
+		<p>
+			Utilice la casilla de verificación para indicar si se mide el uso de datos en la interfaz. NOTA: Si esta casilla no está marcada, el Límite de datos y la Advertencia de datos aparecen en gris.
+		</p>
+
+		<h3>Límite de datos</h3>
+		<p>Ingrese el límite de datos para la interfaz (1-99 GB).</p>
+
+		<h3>Fecha de inicio del ciclo</h3>
+		<p>Utilice el menú desplegable para especificar un día del mes para restablecer el uso de datos a cero.</p>
+
+		<h3>Advertencia de datos</h3>
+		<p>Ingrese un porcentaje de uso de datos en que se muestre una notificación de advertencia en la interfaz web.</p>
+	</tmpl_if>
+
+	<p>
+		Haga clic en <b>Guardar cambios</b> para guardar los nuevos ajustes. Aparecerá una ventana emergente para informarle que su dispositivo se reiniciará.
+	</p>
+	<p>Haga clic en <b>Aceptar</b> para reiniciar el dispositivo.</p>
+</div>

@@ -1,0 +1,32 @@
+<!-- Change Admin Password  -->
+<div id="set_passcode">
+	<h1>Mot de passe administrateur</h1>
+	<h2>Vue d’ensemble</h2>
+	<p>Le mot de passe administrateur est utilisé pour se connecter au site Web de l’administrateur de ce <tmpl_var _("webui", "webui_product_name")>. La page <em>Mot de passe administrateur</em> vous permet de modifier le mot de passe administrateur et de définir certaines options de sécurité relatives au mot de passe administrateur.</p>
+
+
+	<h2>Modifier le mot de passe administrateur <tmpl_var _("webui", "webui_product_name")></h2>
+	<p>Pour modifier le mot de passe administrateur actuel, vous devez d’abord saisir le mot de passe administrateur actuel dans le champ ci-dessous. L’écran se met alors à jour et offre la possibilité de définir un nouveau mot de passe administrateur et une question de sécurité à utiliser en cas de perte de ce dernier.</p>
+
+	<h3>Mot de passe administrateur <tmpl_var _("webui", "webui_product_name")> actuel</h3>
+	<p>Saisissez le mot de passe administrateur actuel <tmpl_var _("webui", "webui_product_name")> dans ce champ. Veuillez noter que si vous saisissez une valeur incorrecte trop souvent, votre accès à ce site Web de l’administrateur <tmpl_var _("webui", "webui_product_name")> sera bloqué. Pour déverrouiller, redémarrez le <tmpl_var _("webui", "webui_product_name")>.</p>
+	<tmpl_if showDisplayPascode>
+		<h2>Afficher le mot de passe administrateur <tmpl_var _("webui", "webui_product_name")></h2>
+		<p>Si ce paramètre est activé, alors ********* s’affiche. Si ce paramètre est désactivé, alors le mot de passe administrateur s’affiche à l’écran du Jetpack.</p>
+	</tmpl_if>
+
+	<h2>Modifier le mot de passe administrateur <tmpl_var _("webui", "webui_product_name")></h2>
+	<h3>Nouveau mot de passe administrateur</h3>
+	<p>Saisissez le nouveau mot de passe administrateur en utilisant uniquement des lettres, des chiffres et des symboles de ponctuation standard. Le mot de passe doit comporter au moins 6 caractères.</p>
+
+	<h3><tmpl_var truncate(_("webui", "set_passcode_confirm_passcode_label"), (size(_("webui", "set_passcode_confirm_passcode_label")) - size(":")))></h3>
+	<p>Saisissez à nouveau le nouveau mot de passe administrateur dans ce champ.</p>
+
+	<h3><tmpl_var truncate(_("webui", "set_passcode_security_question_label"), (size(_("webui", "set_passcode_security_question_label")) - size(":")))></h3>
+	<p>Cette question de sécurité est utilisée en cas de perte du mot de passe administrateur et lorsque l’option « J’ai oublié le mot de passe administrateur » est utilisée. Sélectionnez la question souhaitée et fournissez une réponse dans le champ ci-dessous.</p>
+
+	<h3><tmpl_var truncate(_("webui", "set_passcode_security_answer_label"), (size(_("webui", "set_passcode_security_answer_label")) - size(":")))></h3>
+	<p>Fournissez une réponse à la question de sécurité sélectionnée ci-dessus. Veuillez noter que les réponses sont sensibles à la casse.</p>
+
+</div>
+<!-- id="set_passcode" -->

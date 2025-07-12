@@ -1,0 +1,61 @@
+<!-- Data Usage -->
+<div id="data_usage">
+	<h1><tmpl_var _("webui", "data_usage_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>Use the Data Usage page to view details and manage your device's data usage.</p>
+	<p>NOTE: Your device provides only a rough estimate of data usage. Always check with your service provider for exact usage.</p>
+	
+	<tmpl_if multipleSIMEnabled>
+		<h3>SIM information being displayed</h3>
+		<p>Use the drop-down to change the SIM on which data usage is displayed.</p>
+	</tmpl_if>
+	
+	<h3>Estimated Data Usage</h3>
+	<p>The data usage graph displays vary according to plan, but generally include:</p>
+	
+	<div class="blockgroup">
+		<ul>
+		<li>Estimated percentage of data remaining for the current billing cycle</li>
+		<li>Number of days left in the billing cycle</li>
+		<li>Data limit on your plan</li>
+		<li>Estimated amount of data used in the current billing cycle</li>
+		<li>Estimated amount of data remaining for the current billing cycle</li>
+		<li>Date the billing cycle ends</li>
+		</ul>
+	</div>
+	
+	<p>You can configure settings to reflect your monthly data plan.</p>
+	<p>Use the <b>Reset data counter now button</b> to restart the data usage shown on this page to zero.</p>
+	
+	<h3>Reset data counter on this day of the month</h3>
+	<p>Use the drop-down to select a day of the month for the counter displayed on this page to reset.</p>
+	
+	<h3>Metered Connection</h3>
+	<p>Check this box if there is a data limit on your plan.</p>
+	
+	<h3>Maximum data limit</h3>
+	<p>Enter a maximum data limit, if desired.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_connection_start_time_label"), (size(_("webui", "data_usage_connection_start_time_label")) - size(":")))></h3>
+	<p>The date and time the current internet session began.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_connection_time_label"), (size(_("webui", "data_usage_connection_time_label")) - size(":")))></h3>
+	<p>The amount of time that has elapsed since the connection for the current internet session was established.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_received_label"), (size(_("webui", "data_usage_received_label")) - size(":")))></h3>
+	<p>The amount of data received for the current internet session. This counter starts at zero when the connection is established.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_transmitted_label"), (size(_("webui", "data_usage_transmitted_label")) - size(":")))></h3>
+	<p>The amount of data transmitted for the current internet session. This counter starts at zero when the connection is established.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_rx_label"), (size(_("webui", "data_usage_rx_label")) - size(":")))></h3>
+	<p>The amount of data received for the current billing cycle.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_tx_label"), (size(_("webui", "data_usage_tx_label")) - size(":")))></h3>
+	<p>The amount of data transmitted for the current billing cycle.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "data_usage_total_usage_label"), (size(_("webui", "data_usage_total_usage_label")) - size(":")))></h3>
+	<p>The total amount of data for the current billing cycle.</p>
+	<p>Select <b>Save Changes</b> to enact changes.</p>
+</div>
+

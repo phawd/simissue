@@ -1,0 +1,19 @@
+<!-- ZTP -->
+<div id="ztp">
+        <h1><tmpl_var _("webui", "ztp_menu_text")></h1>
+        <p>Utilice esta pestaña para consultar el estado de activación del dispositivo para el aprovisionamiento sin intervención manual (ZTP) y las configuraciones ZTP al incorporar dispositivos a Inseego 5G SD EDGE<sup>TM</sup> Manager.</p>
+        <p>Inseego SD EDGE es un sistema de gestión basado en la nube que proporciona supervisión remota y seguridad integral de la red en el lugar de trabajo. Proporciona a los equipos informáticos visibilidad, control y gestión en tiempo real de la infraestructura de red crítica de forma segura con autenticación, autorización y cifrado avanzados. Para obtener más información sobre la oferta SD Edge de Inseego, visite <a href="<tmpl_udf GET_EXTERNAL_URI('provider_ztp_cloud_management')>" target="_blank"><tmpl_var _("webui", "ztp_cloud_management_url_text")></a></p>
+        <p>Al registrar o configurar un dispositivo con SD EDGE, recibirá un correo electrónico de activación con instrucciones y un URL de activación. Conéctelo a la red del dispositivo y haga clic en el enlace de activación proporcionado para comenzar el proceso de activación. La página ZTP muestra los parámetros de configuración y el progreso de la activación.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_server_label_text"), (size(_("webui", "ztp_server_label_text")) - size(":")))></h3>
+        <p>El URL del servidor SD EDGE.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_keep_alive_label_text"), (size(_("webui", "ztp_keep_alive_label_text")) - size(":")))></h3>
+        <p>El último tiempo desde el último protocolo de enlace wireguard con SD EDGE. Se utiliza para depuración.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_cpe_name_label_text"), (size(_("webui", "ztp_cpe_name_label_text")) - size(":")))></h3>
+        <p>El nombre del dispositivo.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_tenant_name_label_text"), (size(_("webui", "ztp_tenant_name_label_text")) - size(":")))></h3>
+        <p>El nombre del abonado a quien está registrado el dispositivo.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_mac_address_label_text"), (size(_("webui", "ztp_mac_address_label_text")) - size(":")))></h3>
+        <p>La dirección del controlador de acceso al medio (MAC) para la interfaz del puente.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_status_label_text"), (size(_("webui", "ztp_status_label_text")) - size(":")))></h3>
+        <p>El proceso de activación se muestra en ocho pasos. Cuando un paso esté en progreso, el próximo paso se mostrará en azul con efecto de transición y marca de tiempo. Cuando se complete un paso con éxito, el efecto se detendrá y el texto se volverá azul intenso. Cuando el Paso 8 se muestre en verde, la activación se habrá completado.</p>
+</div>

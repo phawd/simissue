@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Šajā ekrānā ir daudzas opcijas, kas ļauj iestatīt <tmpl_var _("webui", "webui_product_name")> darbību, lai tā labāk atbilstu jūsu vajadzībām.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Šie iestatījumi nosaka savienojuma veidu, kad dators ir pievienots <tmpl_var _("webui", "webui_product_name_with_suffix")> USB C portam. Atlasiet vajadzīgo opciju.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Ja šī opcija ir atzīmēta, kad tiek noteikts USB savienojums ar datoru, (<tmpl_var _("webui", "webui_product_name")> ekrānā) tiek parādīta uzvedne ar aicinājumu atlasīt vajadzīgo USB režīmu. Atlasot šo uzvedni, iepriekš norādītais iestatījums netiek mainīts, bet tikai tiek iestatīts pašreizējās USB sesijas režīms.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>Šis iestatījums nosaka, cik ātri <tmpl_var _("webui", "webui_product_name_with_suffix")> ekrāns izslēgsies pēc neaktivitātes perioda. Atlasiet vajadzīgo opciju.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> pāries miega režīmā pēc neaktivitātes perioda. Atlasiet vajadzīgo laika periodu, lai pārietu miega režīmā.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> var izslēgties pēc neaktivitātes perioda. Atlasiet vajadzīgo laika periodu, lai sāktu izslēgšanu.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>Šī funkcija ļauj uzlādēt ierīces, piemēram, tālruni vai Bluetooth austiņas, no <tmpl_var _("webui", "webui_product_name_with_suffix")> akumulatora. Vienkārši pievienojiet ierīces USB vadu pie <tmpl_var _("webui", "webui_product_name_with_suffix")> universālās uzlādes pieslēgvietas.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>Šajā laukā ir redzams universālās uzlādes funkcijas pašreizējais statuss. Iespējamās statusa vērtības ir šādas:</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> - ārējas ierīces tiek uzlādētas no <tmpl_var _("webui", "webui_product_name_with_suffix")> akumulatora;</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> - ja <tmpl_var _("webui", "webui_product_name_with_suffix")> universālajai uzlādes pieslēgvietai ir pievienota ārēja ierīce, tā tiks uzlādēta;</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> - <tmpl_var _("webui", "webui_product_name_with_suffix")> akumulatora uzlādes līmenis ir pārāk zems, lai uzlādētu citas ierīces.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Ja ieslēgts, pieejamos iestatījumus var mainīt, izmantojot <tmpl_var _("webui", "webui_product_name_with_suffix")> ekrānu. Šie iestatījumi ietver rūpnīcas iestatījumu atiestatīšanu, kas atiestata visus iestatījumus rūpnīcas noklusējuma vērtībās.</p>
+		<p>Ja opcija ir izslēgta, iestatījumu maiņa <tmpl_var _("webui", "webui_product_name_with_suffix")> ekrānā nav iespējama.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Ja opcija ir ieslēgta, atiestatīšanas poga uz <tmpl_var _("webui", "webui_product_name")> funkciju bāzes darbojas normāli, mainot visus iestatījumus rūpnīcas noklusējuma vērtībās.</p>
+	<p>Ja tā ir izslēgta, atiestatīšanas poga nedarbojas. Tas neļauj lietotājam mainīt iestatījumus, veicot atiestatīšanu.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Ja Ethernet ports ir iespējots, statusa joslā tiek rādīts Ethernet indikators; pretējā gadījumā tas tiek paslēpts.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

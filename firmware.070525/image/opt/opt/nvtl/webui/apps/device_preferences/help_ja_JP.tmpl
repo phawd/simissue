@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>この画面には、ユーザーのニーズに応えるため、<tmpl_var _("webui", "webui_product_name")> の動作を設定できる多数のオプションが含まれています。</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>この設定は、コンピューターが <tmpl_var _("webui", "webui_product_name_with_suffix")> USB Cポートに接続されているときの接続タイプを決定します。 必要なオプションを選択します。</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>オンにすると、（ <tmpl_var _("webui", "webui_product_name")>の画面）を使用して、コンピューターへのUSB接続が検出されたときに目的のUSBモードを選択するようにプロンプトが表示されます。 このプロンプトで選択を行っても、上記の設定は変更されず、現在のUSBセッションのモードが設定されるだけです。</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>この設定は、非活動状態が一定時間続いた後、<tmpl_var _("webui", "webui_product_name_with_suffix")> 画面がオフになるまでの時間を決定します。 必要なオプションを選択します。</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> は非活動期間が過ぎると、スリープモードになります。 希望の時間を選択して、スリープモードに入ります。</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> は非活動期間が過ぎると、シャットダウンできます。 希望の時間を選択して、シャットダウンをトリガーします。</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>この機能により、携帯電話やBluetoothヘッドセットなどのデバイスを <tmpl_var _("webui", "webui_product_name_with_suffix")> バッテリーから充電することができます。 デバイスのUSBケーブルを <tmpl_var _("webui", "webui_product_name_with_suffix")> ユニバーサル充電ポートに接続するだけです。</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>このフィールドには、ユニバーサル充電機能の現在のステータスが表示されます。 可能なステータス値は次のとおりです。</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> -外部デバイスが <tmpl_var _("webui", "webui_product_name_with_suffix")> バッテリーから充電されています。</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> -外部デバイスは <tmpl_var _("webui", "webui_product_name_with_suffix")> ユニバーサル充電ポートに接続されている場合、充電されます。</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> -<tmpl_var _("webui", "webui_product_name_with_suffix")> バッテリー残量が他のデバイスを充電するには少なすぎます。</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>オンの場合、使用可能な設定は、 <tmpl_var _("webui", "webui_product_name_with_suffix")> 画面を使用して変更できます。 これらの設定には、すべての設定を工場出荷時デフォルト設定にリセットする工場出荷時リセット操作が含まれます。</p>
+		<p>オフの場合は、 <tmpl_var _("webui", "webui_product_name_with_suffix")> 画面を使用する設定の変更はできません。</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>オンの場合、<tmpl_var _("webui", "webui_product_name")> のベースのリセットボタンは正常に機能し、すべての設定を工場出荷時のデフォルト値に変更します。</p>
+	<p>オフの場合、リセットボタンは機能しません。 これにより、ユーザーはリセットを実行して設定を変更できなくなります。</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>イーサネットポートが有効になると、ステータスバーにイーサネットインジケータが表示されます。それ以外の場合は非表示になります。</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

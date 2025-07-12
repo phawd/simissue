@@ -1,0 +1,48 @@
+<div id="wwan_settings">
+	<h1><tmpl_var _("webui", "wwan_settings_menu_text")></h1>
+	<h2>Descripción general</h2>
+	<p>Utilice esta pestaña para configurar las opciones de la red celular.</p>
+
+	<h2><tmpl_var _("webui", "wwan_settings_cellular_data_label")></h2>
+
+	<tmpl_if NetworksCellularDataEnableShow>
+                <h3><tmpl_var truncate(_("webui", "wwan_settings_cellular_data_text"), (size(_("webui", "wwan_settings_cellular_data_text")) - size(":")))></h3>
+                <p>
+			Utilice el control deslizante de ENCENDIDO/APAGADO cuando sea necesario para desactivar los datos móviles y evitar el acceso a la red móvil. Esto impide que los dispositivos conectados se conecten a Internet y utilicen el plan de datos móviles del dispositivo. Para un funcionamiento normal, este ajuste debe permanecer activado.
+		</p>
+        </tmpl_if>
+
+	<tmpl_if showRoamSetting>
+                <h3><tmpl_var truncate(_("webui", "wwan_settings_international_data_roaming_text"), (size(_("webui", "wwan_settings_international_data_roaming_text")) - size(":")))></h3>
+                <p>
+                        Utilice el control deslizante de ENCENDIDO/APAGADO para desactivar los datos móviles y evitar el acceso a la red móvil en itinerancia.
+                </p>
+        </tmpl_if>
+
+	<tmpl_if showNetworkTechOptions>
+                <h3><tmpl_var truncate(_("webui", "wwan_settings_preferred_technology_selection_label"), (size(_("webui", "wwan_settings_preferred_technology_selection_label")) - size(":")))></h3>
+                <p>
+			Su dispositivo está configurado por defecto en Automático (4G LTE/5G), que da prioridad a 5G, pero permite utilizar 4G y otras tecnologías que no sean 5G. Si selecciona 4G LTE o 5G del menú desplegable, su dispositivo tendrá restringida la conexión a redes que no utilicen esa tecnología, por ejemplo: si selecciona 4G LTE, el dispositivo no podrá conectarse a redes 5G.
+                </p>
+        </tmpl_if>
+
+	<tmpl_if Show5GNetwork>
+                <h3><tmpl_var truncate(_("webui", "wwan_settings_5G_network_mode_label"), (size(_("webui", "wwan_settings_5G_network_mode_label")) - size(":")))></h3>
+                <p>
+                	Su dispositivo está configurado en Automático (NSA/SA) de manera predeterminada, lo que le permite usar 5G independiente y 5G no independiente, que utiliza bandas de anclaje 4G. Puede usar el menú desplegable para seleccionar los modos de red 5G no independiente (NSA) o independiente (SA).
+		</p>
+        </tmpl_if>
+
+	<tmpl_if NetworksPreferredTechnologyShow>
+                <h3><tmpl_var truncate(_("webui", "wwan_settings_preferred_technology_label"), (size(_("webui", "wwan_settings_preferred_technology_label")) - size(":")))></h3>
+                <p>
+                	Cuando el control deslizante de ENCENDIDO/APAGADO está <b>ENCENDIDO</b>, el dispositivo selecciona automáticamente la mejor red 5G disponible, y no puede usar el botón <b>Seleccionar red manualmente</b>.
+		</p>
+        </tmpl_if>
+
+	<h3><tmpl_var _("webui", "wwan_settings_mns_button")></h3>
+        <p>
+        	Es posible que desee utilizar esta opción si hay varias redes disponibles y tiene una preferencia. Haga clic en el botón para buscar redes disponibles, luego elija la red preferida. <strong>NOTA:</strong> Esta opción está disponible solo si <b>Habilitar la selección de red automática</b> está desactivada.
+	</p>
+	<p>Haga clic en <b>Guardar cambios</b>.</p>
+</div>

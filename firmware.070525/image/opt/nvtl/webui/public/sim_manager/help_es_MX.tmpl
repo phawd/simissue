@@ -1,0 +1,50 @@
+<!-- SIM Lock -->
+<div id="adv_sim_manager">
+        <h1><tmpl_var _("webui", "adv_sim_manager_menu_text")></h1>
+        <h2>Descripción general</h2>
+        <p>
+		La tarjeta SIM que está dentro de su <tmpl_var _("webui", "webui_product_name")> puede bloquearse usando un PIN. Si se bloquea la tarjeta SIM, debe ingresar un PIN antes de conectarse a la red móvil. Una vez ingresado, el PIN es recordado hasta el siguiente apagado.
+	</p>
+
+	<p>Use esta página para desbloquear su SIM o ingresar un PIN de SIM.</p>
+
+	<h2><tmpl_var _("webui", "adv_sim_subheader_text")></h2>
+	<b>Activa:</b>Seleccione la tarjeta SIM que desea que esté activa. <strong>NOTA:</strong> El cambio entrará en vigor inmediatamente.
+
+	<p><b>Ranura SIM:</b> número de la ranura SIM.</p>
+
+	<p>
+		<b>IMSI:</b> Identidad Internacional del Abonado Móvil (IMSI) para su dispositivo. Se trata de un número único, generalmente de quince dígitos, que identifica a un abonado del Sistema Global para Comunicaciones Móviles (GSM).
+	</p>
+	
+	<p><b>Operador:</b> El operador de telefonía móvil asociado a la tarjeta SIM.</p>
+
+	<p><b>Estado de la conexión:</b> El estado actual de la tarjeta SIM.</p>
+
+	<p>
+		<b><tmpl_var truncate(_("webui", "adv_sim_manager_pin_lock_feature_label"), (size(_("webui", "adv_sim_manager_pin_lock_feature_label")) - size(":")))>:</b>El campo indica si la función de bloqueo con PIN está en uso o no. Si está "Encendido", se ha activado el bloqueo con PIN y se debe ingresar el PIN de la tarjeta PIN para conectarse a la red móvil. Si está en "Apagado", la función de bloqueo con PIN no está activada y no se requiere el PIN de la tarjeta SIM.
+	</p>
+
+	<p><b>Prioridad:</b> indica si la SIM tiene prioridad Normal o Preferida.</p>
+
+    	<h2>Operaciones con la tarjeta SIM</h2>
+	<h3><tmpl_var truncate(_("webui", "adv_sim_manager_pin_lock_feature_label"), (size(_("webui", "adv_sim_manager_pin_lock_feature_label")) - size(":")))></h3>
+	<p>Las acciones disponibles dependen del estado de la SIM. Las posibles operaciones incluyen:</p>
+	
+	<h3><tmpl_var _("webui", "adv_sim_manager_enable_pin_lock_option")></h3>
+	<p>
+		Configura la tarjeta SIM de tal forma que se requiere el ingreso de un PIN en el arranque para conectarse con la red móvil. Para realizar esta operación, debe ingresar el PIN actual.
+	</p>
+
+	<h3><tmpl_var _("webui", "adv_sim_manager_disable_pin_option")></h3>
+	<p>
+		Desactiva un bloqueo con PIN que se activó anteriormente para que ya no sea necesario ingresar un PIN a fin de conectarse a la red móvil. Para realizar esta operación, debe ingresar el PIN actual.
+	</p>
+
+	<h3><tmpl_var _("webui", "adv_sim_manager_change_pin_option")></h3>
+	<p>
+		Le permite cambiar el PIN de la SIM. Debe ingresar el PIN actual, luego ingresar el nuevo PIN y confirmarlo. NOTA: Puede obtener el PIN de la SIM predeterminado de su proveedor de servicios.
+	</p>
+</div>
+<!-- id="adv_sim_manager" -->
+

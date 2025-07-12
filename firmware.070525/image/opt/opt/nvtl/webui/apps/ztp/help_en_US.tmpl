@@ -1,0 +1,19 @@
+<!-- ZTP -->
+<div id="ztp">
+        <h1><tmpl_var _("webui", "ztp_menu_text")></h1>
+        <p>Use this tab to view Zero Touch Provisioning (ZTP) device activation status and ZTP configurations) when onboarding devices to Inseego 5G SD EDGE<sup>TM</sup> Manager.</p>
+        <p>Inseego SD EDGE is a cloud-based management system that provides remote monitoring and comprehensive worksite network security. It provides IT teams with real-time visibility, control, and management of critical network infrastructure in a secure manner with advanced authentication, authorization, and encryption. To learn more about Inseego’s SD EDGE offering go to <a href="<tmpl_udf GET_EXTERNAL_URI('provider_ztp_cloud_management')>" target="_blank"><tmpl_var _("webui", "ztp_cloud_management_url_text")></a></p>
+        <p>When registering or configuring a device with SD EDGE, you will receive an activation email with instructions and an activation URL. Connect to the device network and open the provided URL to begin the activation process. The ZTP page tracks the progress of the activation, displaying the timestamp for the completion of each step.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_server_label_text"), (size(_("webui", "ztp_server_label_text")) - size(":")))></h3>
+        <p>The URL of the SD EDGE server.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_keep_alive_label_text"), (size(_("webui", "ztp_keep_alive_label_text")) - size(":")))></h3>
+        <p>The last amount of time since that last wireguard tunnel handshake with SD EDGE. This is used for debugging.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_cpe_name_label_text"), (size(_("webui", "ztp_cpe_name_label_text")) - size(":")))></h3>
+        <p>The name of the device.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_tenant_name_label_text"), (size(_("webui", "ztp_tenant_name_label_text")) - size(":")))></h3>
+        <p>The name of the tenant on which the device is registered.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_mac_address_label_text"), (size(_("webui", "ztp_mac_address_label_text")) - size(":")))></h3>
+        <p>The Media Access Controller (MAC) address for the Wi-Fi interface on the device. The MAC address is a unique network identifier assigned when a network device is manufactured.</p>
+        <h3><tmpl_var truncate(_("webui", "ztp_status_label_text"), (size(_("webui", "ztp_status_label_text")) - size(":")))></h3>
+        <p>The activation process displays in eight steps. When a step is successful, the text displays as blue and a timestamp is added. When Step 8 displays as green, the activation is complete.</p>
+</div>

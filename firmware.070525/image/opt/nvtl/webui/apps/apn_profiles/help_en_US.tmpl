@@ -1,0 +1,59 @@
+<!-- APN Profiles -->
+<div id="apn_profiles">
+    <p>
+        In most configurations, your MiFi is used with a dynamic IP and SIM and the Access Point Name (APN) is available from the network, for example: internet. However, if you are on a private network, you may need to configure connection profiles for your APN on this tab for the network to communicate with the MiFi.
+    </p>
+    <h2><tmpl_var _("webui", "connection_profiles_header_text")></h2>
+    <p class="note">
+        <strong>NOTE:</strong> Initially, the default APN profile for the active SIM is displayed. You cannot delete this profile, but you can either edit this profile, or add additional profiles for the SIM.
+    </p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_active_label")></h3>
+    <p>Select the connection profile you want to be active.</p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_profile_name_label")></h3>
+    <p>The name that identifies the connection profile.</p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_apn_name_label")></h3>
+    <p>The access point name.</p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_authentication_label")></h3>
+    <p>The authentication method for your private network.</p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_ip_connection_type_label")></h3>
+    <p>The IP connection type for your private network.</p>
+
+    <p>Click <strong><tmpl_var _("webui", "connection_profiles_edit_button_text")></strong> to edit a profile.</p>
+    <p>Click <strong><tmpl_var _("webui", "connection_profiles_reset_button_text")></strong> to reset a profile to default values.</p>
+    <p>Click the <strong><tmpl_var _("webui", "connection_profiles_add_new_profile_button_text")></strong> button to add an additional APN connection profile for this SIM.</p>
+
+    <h2><tmpl_var _("webui", "connection_profiles_add_new_profile_header_text")></h2>
+    <h3><tmpl_var truncate(_("webui", "connection_profiles_new_profile_name_label"), (size(_("webui", "connection_profiles_new_profile_name_label")) - size(":")))></h3>
+    <p>Enter a name to identify this connection profile.</p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_apn_name_label")></h3>
+    <p>Select an APN supplied by your service provider from the drop-down, or select <strong><tmpl_var _("webui", "connection_profiles_add_apn_option")></strong> and enter the APN for your private network
+
+    <p>
+        <strong style="color: red">CAUTION!</strong> Changing the APN may cause a loss of data connectivity.
+    </p>
+
+    <p class="note">
+        <strong>NOTE:</strong> Information entered in the following fields should come from your service provider based on network requirements.
+    </p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_authentication_label")></h3>
+    <p>Select the authentication method for your private network from the drop-down (PAP, CHAP, PAP and CHAP, or None).</p>
+
+    <h3><tmpl_var truncate(_("webui", "connection_profiles_username_label"), (size(_("webui", "connection_profiles_username_label")) - size(":")))></h3>
+    <p>Enter the user name for your private network.</p>
+
+    <h3><tmpl_var truncate(_("webui", "connection_profiles_password_label"), (size(_("webui", "connection_profiles_password_label")) - size(":")))></h3>
+    <p>Enter the password for your private network.</p>
+
+    <h3><tmpl_var _("webui", "connection_profiles_ip_connection_type_label")></h3>
+    <p>Select an IP connection type from the drop-down (IPv4, IPv6, or IPv4/IPv6).</p>
+
+    <p>Click <strong><tmpl_var _("webui", "connection_profiles_save_changes_button_text")></strong>.</p>
+</div>
+ <!-- id="apn_profiles" -->

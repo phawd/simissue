@@ -1,0 +1,73 @@
+<div id="user_preferences">
+	<h1><tmpl_var _("webui", "preferences_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>
+		You can use this tab to turn off the LED light, enable periodic reboot, and activate the external antenna port on your device. You can also change how dates, time, distance, and numbers are displayed on the web UI. <strong>NOTE:</strong> These preferences affect packets sent to remote servers. For example, if you select a 24-hour time format, the Admin web UI, and any packets reporting time somewhere else, will display time in 24-hour format.
+	</p>
+	
+	<tmpl_if deviceNameShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_device_name_label"),(size(_("webui", "preferences_device_name_label")) - size(":")))></h3>
+		<p>To change how the device appears when connecting other devices, enter a different name.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+        <p>Check the checkbox to turn off the LED display light on your device.</p>
+	
+	<tmpl_if showCPERebootEnable>
+		<h3>
+			<tmpl_var truncate(_("webui", "preferences_cpe_reboot_enable_label"), (size(_("webui", "preferences_cpe_reboot_enable_label")) - size(":")))>
+		</h3>
+		<p>
+			Enables a periodic reboot feature that allows the device to automatically restart every two weeks. NOTE: By default, the reboot occurs at 2:00 AM on Sunday. You can change the schedule in Inseego Connect preference settings.
+		</p>
+	</tmpl_if>
+	
+	<tmpl_if showExternalAntennaEnable>
+		<h3>
+			<tmpl_var truncate(_("webui", "preferences_external_antenna_enable_label"), (size(_("webui", "preferences_external_antenna_enable_label")) - size(":")))>
+		</h3>
+		<p>
+			Check the checkbox to activate the external antenna port on your device.<br /><strong>NOTE:</strong> The external antenna port is for an external 3.4-5GHz antenna and will only provide support for mobile frequency bands within this range. Please contact your service provider for available bands at your location.
+		</p>
+	</tmpl_if>
+	
+	<tmpl_if showExternalMHBAntenna>
+		<h3><tmpl_var _("webui", "preferences_external_mhb_antenna_label")></h3>
+		<p>
+			Check the checkbox to activate the external antenna port on your device to support mobile frequency bands within the 1700-2700 MHz range. <strong>NOTE:</strong> Please contact your service provider for available bands at your location.
+		</p>
+	</tmpl_if>
+	
+	<tmpl_if showExternalUHBAntenna>
+		<h3><tmpl_var _("webui", "preferences_external_uhb_antenna_label")></h3>
+		<p>
+			Check the checkbox to activate the external antenna port on your device to support mobile frequency bands within the 3300-4200 MHz range. <strong>NOTE:</strong> Please contact your service provider for available bands at your location.
+		</p>
+	</tmpl_if>
+	
+	<p>
+		<strong>NOTE:</strong> The following settings affect packets sent to remote servers. For example, if you select a 24-hour time format, the Admin web UI, and any packets reporting time somewhere else, will display time in 24-hour format.
+	</p>
+	
+	<h3>Language</h3>
+	<p>Select a language for the Admin web UI.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_date_format_label"), (size(_("webui", "preferences_date_format_label")) - size(":")))></h3>
+	<p>Select the date format to be used throughout the web UI (mm/dd/yyyy or dd/mm/yyyy).</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_time_format_label"), (size(_("webui", "preferences_time_format_label")) - size(":")))></h3>
+	<p>Select the time format to be used throughout the web UI (12 or 24 hour).</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_distace_format_label"), (size(_("webui", "preferences_distace_format_label")) - size(":")))></h3>
+	<p>Select the format for distance displayed in the web UI (feet or meters).</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_numeric_format_label"), (size(_("webui", "preferences_numeric_format_label")) - size(":")))></h3>
+	<p>Choose the format for decimal numbers displayed in the web UI (using a period or comma as the decimal point).</p>
+
+	<tmpl_if showEthernetEnable>
+		<h3><tmpl_var _("webui", "preferences_ethernet_enable_label" )></h3>
+		<p>Ethernet indicator is shown on the status bar when Ethernet port is enabled; hidden otherwise.</p>
+	</tmpl_if>
+
+	<p>Make your selections and click <b>Save Changes</b> to update settings.</p>
+</div>

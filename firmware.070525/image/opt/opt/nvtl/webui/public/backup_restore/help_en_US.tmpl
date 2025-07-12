@@ -1,0 +1,50 @@
+<!-- Backup and Restore -->
+<div id="backup_restore">
+	<h1><tmpl_var _("webui", "backup_restore_menu_text")></h1>
+
+	<h2>Overview</h2>
+        <p>
+		Use this tab to back up current device settings to a file on your computer, restore (upload) a previously saved configuration file, reset the device to factory defaults, or restart the device.
+	</p> 
+
+	<h2><tmpl_var _("webui", "backup_restore_the_backup_sub_header_text")></h2>
+        <h3>Admin Password</h3>
+	<p>To back up current device settings to a file on your computer, enter your <b>Admin password</b> in the Admin password field.</p>
+	<p>
+		The default Admin password is printed on the bottom of the device. If you have changed the Admin password and don’t remember it, select <b>Sign In</b> in the top-right corner, click <b>Forgot Admin Password</b>, and answer the displayed security question. The current Admin password is displayed.
+	</p>
+	<p>
+		<strong>NOTE:</strong> If you enter an incorrect password five times in a row, you will be locked out of the Admin web UI. To unlock it, restart your device.
+	</p>
+
+	<h3><tmpl_var _("webui", "backup_restore_backup_now_button")></h3>
+	<p>
+		Click the <b>Download</b> button. The file is automatically downloaded to the default Downloads folder on the device connected to the Admin web UI. This configuration file contains all settings for your device.
+	</p>
+	<p class="note">
+		<strong>Note:</strong> The backup file cannot be edited or viewed on the downloaded system or on any other device. This file can only be restored for this model of <tmpl_var _("webui", "webui_product_name")>, and settings can only be viewed or changed using the Web UI.
+	</p>
+
+	<h2><tmpl_var _("webui", "backup_restore_the_restore_sub_header_text")></h2>
+	<p>
+		<strong>CAUTION!</strong>  Restoring settings (uploading a configuration file) changes ALL the existing settings to match the configuration file. This may change the current Wi-Fi settings, breaking all existing connections to the device and disconnecting you from the Admin web UI.
+	</p>
+
+	<p>To restore system settings from a backup settings file, enter your Admin password in the <b>Admin password</b> field.</p>
+
+	<p>Click <b>Browse</b> and choose a backup settings file to restore.</p>
+
+	<p><strong>NOTE:</strong> You can only restore a file that was created for this model of device.</p>
+
+	<p>Click the <b>Restore now</b> button.</p>
+	
+	<h2><tmpl_var _("webui", "backup_restore_factory_restore_sub_header_text")></h2>
+	<p>This button resets all settings to their factory default values.</p>
+	<p>
+		<strong>CAUTION!</strong>  This initiates a restart and may change the current Wi-Fi settings, breaking all existing connections to your device and disconnecting you from the Admin web UI.	
+	</p>
+         
+	<h2>Restart Device</h2>
+        <p>This button turns your <tmpl_var _("webui", "webui_product_name")> off and on again.</p>
+</div>
+ <!-- id="backup_restore" -->

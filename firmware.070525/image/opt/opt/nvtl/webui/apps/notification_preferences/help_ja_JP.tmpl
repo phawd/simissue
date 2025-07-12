@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>この画面には、ユーザーのニーズに応えるため、<tmpl_var _("webui", "webui_product_name")> の動作を設定できる多数のオプションが含まれています。</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>このオプションがオンになっている場合、<tmpl_var _("webui", "webui_product_name")>のLEDと音声機能がオフになっています。 <tmpl_var _("webui", "webui_product_name")>の画面は、ユーザーがオンにしたときにのみオンになります。 ただし、起動プロセスはこの設定の影響を受けません。</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>この設定をオンにすると、LEDは消灯したままになります。 この設定がオフの場合、LEDは「電源表示」としてゆっくり点滅します。 ステルスモードがオンの場合、この設定はグレー表示されます。</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>オンにすると、警告メッセージが表示されたときに画面がオンになります。 役に立たない場合は、オフにできます。</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>チェックした場合、 <tmpl_var _("webui", "webui_product_name")>は音声アラートを使用して、起動、シャットダウン、さまざまなイベントを通知します。 チェックされていない場合、<tmpl_var _("webui", "webui_product_name")> は静かに動作します。 ステルスモードがオンの場合、この設定はグレー表示されます。</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>これらの設定を使用して、音声アラートをトリガーするイベントを指定できます。 これらの設定は、ステルス設定または上記の「音声をオンにする」設定のいずれかによって音声がオフになっている場合はグレー表示されます。</p>
+</div>

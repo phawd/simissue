@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Den här skärmen innehåller många alternativ som låter dig ställa in hur<tmpl_var _("webui", "webui_product_name")> ska bete sig för att bättre tillgodose dina behov.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Om det här alternativet är markerat så stängs lysdiods- och ljudfunktionerna för <tmpl_var _("webui", "webui_product_name")> av. <tmpl_var _("webui", "webui_product_name")>-skärmen bara att sättas på när användaren sätter på den. Startprocessen påverkas dock inte av den här inställningen.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Om den här inställningen är markerad förblir lysdioden släckt. Om den här inställningen är omarkerad kommer lysdioden att blinka långsamt som ett ”livstecken”. Den här inställningen gråmarkeras om smygläget är på.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>Om den är markerad kommer skärmen att sättas på när ett aviseringsmeddelande visas. Om detta inte är till hjälp kan du stänga av det.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>Om detta är markerat så kommer <tmpl_var _("webui", "webui_product_name")> att signalera start, avstängning och olika händelser med hjälp av ljudaviseringar. Om detta inte är markerat kommer <tmpl_var _("webui", "webui_product_name")> att arbeta tyst. Den här inställningen gråmarkeras om smygläget är på.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Dessa inställningar kan användas för att specificera vilka händelser som utlöser en ljudavisering. Dessa inställningar är gråmarkerade om ljudet är avstängt, antingen genom smyginställningen eller genom inställningen ”Slå på ljud” ovan.</p>
+</div>

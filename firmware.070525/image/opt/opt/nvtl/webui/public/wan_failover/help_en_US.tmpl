@@ -1,0 +1,82 @@
+<div id="wan_failover">
+	<h1><tmpl_var _("webui", "wan_failover_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>Use this tab to select an active WAN interface, set WAN priorities, and configure keep alive. Keepalive allows for a persistent WAN connection.</p>
+
+	<h3>WAN Automatic switch</h3>
+	<p>Automatic WAN switching is enabled by default. If you disable it, the sections on this page related to WAN switching are not visible. When WAN switching is disabled, your device uses the cellular connection and both Ethernet ports are configured to belong to the same LAN subset.</p>
+
+	<h3>Enable WAN keep alive </h3>
+	<p>
+		If ON, keepalive verifies lookup addresses to check the Internet connectivity on the WAN connection. NOTE WAN keep alive allows for a persistent WAN connection.
+	</p>
+
+	<h3>Lookup address 1 </h3>
+	<p>Enter the first DNS IP address to verify the WAN connection. </p>
+
+	<h3>Lookup address 2 </h3>
+	<p>Enter the second DNS IP address to verify (if lookup address 1 does not respond with keepalive acknowledgement (ACK)).</p>
+
+	<h3>Lookup address 3 </h3>
+	<p>Enter the third DNS IP address to verify (if lookup address 2 does not respond with keepalive ACK).</p>
+
+	<h3>Keep alive interval </h3>
+	<p>Enter the desired number of minutes without receiving a valid packet before the first keepalive verification occurs.</p>
+
+	<h3>Number of attempts </h3>
+	<p>Enter the number of times to retry after verification failure for all three lookup addresses.</p>
+
+	<h3>Retry interval </h3>
+	<p>Enter the number of seconds between verification retries.</p>
+
+	<tmpl_if showWanFailBack>
+		<h3>WAN failback interval </h3>
+		<p>
+			The interval used to re-activate the priority WAN interface after the device has failed over to a backup WAN interface. For example, if cellular WAN is your priority WAN interface, this interval allows the device to resume use of a cellular WAN connection after it has failed over to an Ethernet WAN interface. The interval begins when the active WAN interface has failed over to a backup WAN interface. Once the interval expires, the device re-establishes the priority WAN interface as the active connection. The default interval is 15 minutes.
+		</p>
+	</tmpl_if>
+
+	<h2>WAN Switching Rules</h2>
+
+	<h3>Connectivity Testing </h3>
+	<p>
+		When WAN automatic switching is enabled, WAN switching is determined by connectivity testing. To turn connectivity testing off, uncheck the Active box.
+	</p>
+
+	<h2>WAN Interfaces</h2>
+
+	<p>This table allows you to prioritize your WAN interfaces and configure data usage.</p>
+
+	<h3>WAN </h3> 
+	<p>The type of interface (Cellular, Ethernet1, or Ethernet2).</p>
+
+	<h3>WAN/LAN </h3>
+	<p>
+		Use the drop-down to select WAN or LAN for your Ethernet interfaces. NOTE: Although Ethernet ports are labelled as WAN or LAN on the device, you can configure them to be either WAN or LAN.
+	</p>
+
+	<h3>Status </h3>
+	<p>The current status of the WAN interface (Connected, Online, or Offline).</p>
+
+	<h3>Priority </h3>
+	<p>Use the drop-down to set a priority for each WAN interface.</p>
+
+	<tmpl_if ShowDataUsageColumns>
+		<h3>Metered </h3>
+		<p>Use the checkbox to indicate if data usage is metered on the interface. <strong>NOTE </strong>If this box is not checked, Data Limit and Data Warning are grayed out.</p>
+
+		<h3>Data Limit </h3>
+		<p>Enter the data limit for the interface (1–99 GB).</p>
+
+		<h3>Cycle Start Day </h3>
+		<p>Use the drop-down to specify a day of the month to restart data usage at zero.</p>
+
+		<h3>Data Warning </h3>
+		<p>Enter a percentage of data usage at which a warning notification displays in the web UI.</p>
+	</tmpl_if>
+
+	<p>
+		Click <b>Save changes</b> to save new settings. A pop-up appears alerting you that your device will reboot.
+	</p>
+	<p>Click <b>OK</b> to restart the device.</p>
+</div>

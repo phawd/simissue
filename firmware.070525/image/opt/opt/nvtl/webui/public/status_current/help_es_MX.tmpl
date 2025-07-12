@@ -1,0 +1,43 @@
+<!-- Internet  Status -->
+<div id="status_current">
+	<h1><tmpl_var _("webui", "status_current_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>Utilice la pestaña Estado de Internet para ver información general sobre la conexión a Internet y el sistema.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "status_current_connection_status_label"), (size(_("webui", "status_current_connection_status_label")) - size(":")))></h3>
+	<p>El estado actual de la conexión.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_network_name_label"), (size(_("webui", "status_current_network_name_label")) - size(":")))></h3>
+	<p>El nombre de la red para la sesión de Internet actual.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_technology_label"), (size(_("webui", "status_current_technology_label")) - size(":")))></h3>
+	<p>Indica la conexión actual de datos de telefonía móvil, por ejemplo, 5G.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_connection_time_label"), (size(_("webui", "status_current_connection_time_label")) - size(":")))></h3>
+	<p>La cantidad de tiempo que transcurrió desde que se estableció la conexión para la sesión de Internet actual.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_received_label"), (size(_("webui", "status_current_received_label")) - size(":")))></h3>
+	<p>La cantidad de datos recibidos para la sesión de Internet actual. Este contador comienza de cero cuando se establece la conexión.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_transmitted_label"), (size(_("webui", "status_current_transmitted_label")) - size(":")))></h3>
+	<p>La cantidad de datos transmitidos para la sesión de Internet actual. Este contador comienza de cero cuando se establece la conexión.</p>
+
+	<h2><tmpl_var _("webui", "status_current_sub_header_ipv4_text")></h2>
+	<h3><tmpl_var truncate(_("webui", "status_current_ipv4_label"), (size(_("webui", "status_current_ipv4_label")) - size(":")))></h3>
+	<p>La dirección IP de Internet asignada a este dispositivo.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_ipv4mask_label"), (size(_("webui", "status_current_ipv4mask_label")) - size(":")))></h3>
+	<p>La máscara de red asociada con la dirección IPv4 que se indica.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_ipv4gateway_label"), (size(_("webui", "status_current_ipv4gateway_label")) - size(":")))></h3>
+	<p>La dirección IP de la puerta de enlace asociada con la dirección IPv4 que se indica.</p>
+
+	<h3><tmpl_var truncate(_("webui", "status_current_ipv4dns_label"), (size(_("webui", "status_current_ipv4dns_label")) - size(":")))></h3>
+	<p>El servidor del nombre de dominio usado actualmente por este dispositivo.</p>
+
+	<h2><tmpl_var _("webui", "status_current_sub_header_ipv6_text")></h2>
+	<h3><tmpl_var truncate(_("webui", "status_current_ipv6global_label"), (size(_("webui", "status_current_ipv6global_label")) - size(":")))></h3>
+	<p>La dirección IPv6 global para el dispositivo (en blanco si IPv6 está desactivado o no es compatible con la conexión de red actual o el operador).</p>
+</div> 
+<!-- id="status_internet" -->
+

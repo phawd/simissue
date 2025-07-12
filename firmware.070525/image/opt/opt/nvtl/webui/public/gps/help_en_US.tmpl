@@ -1,0 +1,58 @@
+<div id="gps_status">
+	<h1><tmpl_var _("webui", "gps_status_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>
+		This device incorporates a GPS receiver. The GPS receiver can determine your current location. Use this tab to enable GPS, view current location information, and to enable GPS streaming to devices with the GPS over Wi-Fi feature.
+	</p>
+
+	<h2><tmpl_var _("webui", "gps_status_gps_settings_sub_heading_text")></h2>
+
+	<tmpl_if GPSEnableShow>
+		<h3><tmpl_var _("webui", "gps_status_enable_label")></h3>
+		<p>
+			This setting enables or disables the GPS radio on your device. When the ON/OFF slider is <b>ON</b>, the device acquires GPS and makes GPS location data available on this page. A GPS Agreement appears, click <b>Confirm</b> to proceed. When <b>OFF</b>, no GPS data is available.
+		</p>
+		
+		<h3><tmpl_udf GET_PO_TEXT("gps_status_startup_state_label", gProductName)></h3>
+		<p>
+			This setting determines when the GPS receiver will turn off, once it is on. When the ON/OFF slider is <b>ON</b>, the GPS receiver turns off when the device is shut down. You will need to turn it on again the next time the GPS receiver is needed.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if GPSOverWiFiEnableShow>
+		<tmpl_if GPSPortNumberShow>		
+			<h2><tmpl_var _("webui", "gps_status_enable_sub_header_text")></h2>
+		
+			<h3><tmpl_var truncate(_("webui", "gps_status_gps_over_wifi_label"), (size(_("webui", "gps_status_gps_over_wifi_label")) - size(":")))></h3>
+			<p>
+				GPS over Wi-Fi allows you to share location information with connected devices. Raw GPS data is provided in the form of a National Marine Electronics Association (NMEA) text stream. You can use third-party applications to utilize or forward the GPS data to a remote server. When the <b>ON/OFF</b> slider is <b>ON</b>, location information is <b>NOT</b> shared.
+			</p>	
+			
+			<h3><tmpl_var truncate(_("webui", "gps_status_port_number_label"), (size(_("webui", "gps_status_port_number_label")) - size(":")))></h3>
+			<p>
+				The TCP port number used to establish a connection to the device and obtain raw GPS data for the GPS over Wi-Fi feature. Unless there is a good reason to do so, you should not change the port number. Acceptable port values are between 1024 and 65535.
+			</p>
+		</tmpl_if>
+	</tmpl_if>
+
+	<tmpl_if GPSDownloadDriversShow>
+		<h3><tmpl_var _("webui", "gps_status_wifi_driver_download_link")></h3>
+		<p>
+			For the GPS over Wi-Fi feature, if you want to access the GPS data stream from a virtual COM port instead of the TCP port (above), use the Download Driver button to download and install a GPS driver for your Windows platform. This driver creates a virtual NMEA port, obtains GPS data from the device, and makes this GPS data available to NMEA-aware third-party applications.
+		</p>
+	</tmpl_if>
+
+	<h2><tmpl_var _("webui", "gps_status_map_section_header_text")></h2>
+	<h3><tmpl_var truncate(_("webui", "gps_status_latitude_label"), (size(_("webui", "gps_status_latitude_label")) - size(":")))></h3>
+	<p>The Latitude for the last location fix.</p>
+
+	<h3><tmpl_var truncate(_("webui", "gps_status_longitude_label"), (size(_("webui", "gps_status_longitude_label")) - size(":")))></h3>
+	<p>The Longitude for the last location fix.</p>
+
+	<h3><tmpl_var truncate(_("webui", "gps_status_altitude_label"), (size(_("webui", "gps_status_altitude_label")) - size(":")))></h3>
+	<p>The Altitude for the last location fix.</p>
+
+	<h3><tmpl_var truncate(_("webui", "gps_status_accuracy_label"), (size(_("webui", "gps_status_accuracy_label")) - size(":")))></h3>
+	<p>This is a measure of the accuracy of the horizontal position obtained by the GPS receiver.</p>
+</div>
+

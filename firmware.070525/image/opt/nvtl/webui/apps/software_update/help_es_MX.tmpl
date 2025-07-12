@@ -1,0 +1,90 @@
+<!-- Software Update -->
+<div id="software_update">
+
+	<h1><tmpl_var _("webui", "software_update_menu_text")></h1>
+
+	<h2>Descripción general</h2>
+
+		<p>
+			Las actualizaciones de software se envían automáticamente a través de la red móvil. Esta página le permite controlar estas actualizaciones.
+		</p>
+
+	<h2><tmpl_var _("webui", "software_update_current_software_sub_header_text")></h2>
+	<h3><tmpl_var _("webui", "software_update_current_software_modem_version_label")></h3>
+        <p>
+               La version de software del modem instalada actualmente.
+        </p>
+        <h3><tmpl_var _("webui", "software_update_current_software_kernel_version_label")></h3>
+        <p>
+                La version del sistema operativo y sus componentes.
+        </p>
+	<tmpl_if showAppVersion>
+		<h3><tmpl_var _("webui", "software_update_current_software_app_version_label")></h3>
+		<p>
+			Version de la aplicacion instalada actualmente.
+		</p>
+	</tmpl_if>
+        <h3><tmpl_var _("webui", "software_update_current_software_cute_version_label")></h3>
+        <p>
+                La version cute del software instalado en el dispositivo actualmente.
+        </p>
+        <h3><tmpl_var _("webui", "software_update_current_software_pri_version_label")></h3>
+        <p>
+                La version de configuracion actualmente utilizada en su dispositivo.
+        </p>
+	
+	<p>
+		Este campo indica la versión del software actualmente instalada en este dispositivo.
+	</p>
+
+	<tmpl_if SuOptOutButtonShow>
+		<h2><tmpl_var _("webui", "software_update_opt_out_update_sub_header_text")></h2>
+		<p>
+			De forma predeterminada, las actualizaciones de software se envían automáticamente a su dispositivo. Estos ajustes le permite optar por no recibir actualizaciones automáticas de software. Si no desea recibir actualizaciones de software automáticamente, mueva el control deslizante ENCENDIDO/APAGADO a la posición APAGADO.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if SoftwareUpdateCheckShow>
+		<tmpl_if ConfigurationVersionShow>
+			<h3><tmpl_var _("webui", "software_update_current_software_configuration_version_label")></h3>
+			
+				<p>
+					<tmpl_var _("webui", "software_update_current_software_configuration_version_help_label")>
+				</p>
+		</tmpl_if>
+	
+		<h2><tmpl_var _("webui", "software_update_check_for_update_sub_header_text")></h2>
+
+		<h3><tmpl_var truncate(_("webui", "software_update_check_for_update_time_label"), (size(_("webui", "software_update_check_for_update_time_label")) - size(":")))></h3>
+
+		<p>
+			Este campo indica cuando el <tmpl_var _("webui", "webui_product_name")> consultó por última vez para ver si hay una actualización disponible. Puede buscar manualmente una actualización mediante el botón “Buscar actualizaciones”.
+		</p>
+
+		<h3>Botón Buscar actualizaciones</h3>
+		<p>
+			Puede utilizarlo para comprobar si hay una actualización disponible para su <tmpl_var _("webui", "webui_product_name")>. Normalmente, esto no es necesario, ya que las actualizaciones se envían automáticamente al <tmpl_var _("webui", "webui_product_name")>. Si realiza esta verificación y hay una actualización disponible, se descargará automáticamente.
+				
+		</p>
+	</tmpl_if>
+
+	<h3><tmpl_var truncate(_("webui", "software_update_check_for_update_status_label"), (size(_("webui", "software_update_check_for_update_status_label")) - size(":")))></h3>
+
+		<p>
+			Normalmente, estará en blanco, pero si busca una actualización, el resultado de esa verificación se muestra aquí.
+			Además, si se está descargando una actualización, aquí se muestra el progreso de la descarga.
+		</p>
+	
+	<h2><tmpl_var _("webui", "software_update_last_update_sub_header_text")></h2>
+		
+		<p>
+			Este panel muestra detalles de la última actualización de software.
+		</p>
+	
+	<h2><tmpl_var _("webui", "software_update_history_sub_header_show_text")></h2>
+	
+		<p>
+			Este panel se puede abrir haciendo clic en el enlace/encabezado. El historial de actualizaciones del sistema contiene detalles de las últimas <tmpl_var SoftwareUpdateHistoryCount> actualizaciones que se han descargado e instalado en este dispositivo. Si no se han instalado actualizaciones, este panel mostrará la versión actual del software.
+		</p>
+</div>
+<!-- end Software Update -->

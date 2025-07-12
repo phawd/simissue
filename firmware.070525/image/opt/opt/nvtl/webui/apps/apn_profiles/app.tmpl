@@ -1,0 +1,645 @@
+<tmpl_if isHidden>
+   <div class="notification app error">
+       <tmpl_var _("webui", "webui_app_hidden_text")>
+   </div>
+<tmpl_else>
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		var simSelected = -1;
+		var ApnDropdownValues = new Array();
+		var maxProfilesToAdd = "<tmpl_var maxProfilesToAdd>";
+		var errorCount = "<tmpl_var errorCount>";
+		var currentIndex = "<tmpl_var currentIndex>";
+		var selectedSim = "<tmpl_var selectedSim>";
+		var profileApn = "<tmpl_var ProfileApn>";
+		var addProfileApn = "<tmpl_var AddProfileApn>";
+		var activeValue = "<tmpl_var activeValue>";
+		var defaultValue = "<tmpl_var defaultValue>";
+
+		$(function() {
+			<tmpl_if multipleSIMEnabled>
+				simSelected = $('select[name=apnSIMInformation] option').filter(':selected').val();
+				$("#selectedSimForSubmit").val(simSelected);
+			</tmpl_if>
+
+			if (errorCount) {
+				$("#profileIndex").val(currentIndex);
+				$("#active").val(activeValue);
+				$("#default").val(defaultValue);
+				<tmpl_if multipleSIMEnabled>
+					$("#selectedSimForSubmit").val(selectedSim);
+					$("#apnSIMInformation").val(selectedSim).change();
+					simSelected = selectedSim;
+				</tmpl_if>
+				if(currentIndex != "0") {
+					$("#ConnectionProfileHeader").html('<tmpl_var _("webui", "connection_profiles_edit_profile_header_text")>');
+				}
+				getCurrentSimProfiles();
+			}
+
+			//Count the SIM Profiles and hide the Add New Connection Profile Button if there is more than 5.
+			if ($("tr.simProfileInformationRow").length >= maxProfilesToAdd) {
+				$("#addConnectionProfile").hide();
+			} else {
+				$("#addConnectionProfile").show();
+			}
+	
+			$("#addConnectionProfile").on("click", function() {
+				$("#ConnectionProfileHeader").html('<tmpl_var _("webui", "connection_profiles_add_new_profile_header_text")>');
+				$("#profileIndex").val(0);
+				$("#active").val(0);
+				$("#default").val(0);
+				$("#addConnectionProfile").prop("disabled", true);
+				$("#apn_profiles_form").show();
+			});
+
+			$("#cancelProfile").on("click", function() {
+				$(".notification, .inline_error, #ApnProfileUsernameRow, #ApnProfilePasswordRow").hide();
+				document.getElementById("apn_profiles_form").reset();
+				$("#ApnProfileAuthentication").val(0).change();
+				$("#ProfileApn").change();
+				$("#ConnectionProfileName").val("");
+				$("#connectionProfileLsit .error").removeClass("error");
+				$("#apn_profiles_form").hide();
+				$("#addConnectionProfile").prop("disabled", false);
+			});
+
+			<!--Actions to be taken on the click event of save button-->
+			$("#profileSavechanges").on("click", function() {
+				$("#profileSavechanges").prop("disabled", true);
+				$("#apn_profiles_form").submit();
+			});
+
+			<tmpl_if multipleSIMEnabled>
+				$('#apnSIMInformation').on('change', function() {
+					$(".notification, .inline_error, #ApnProfileUsernameRow, #ApnProfilePasswordRow").hide();
+					simSelected = $('select[name=apnSIMInformation] option').filter(':selected').val();
+					$("#selectedSimForSubmit").val(simSelected);
+					getCurrentSimProfiles();
+					document.getElementById("apn_profiles_form").reset();
+					$("#ApnProfileAuthentication").val(0).change();
+					$("#ProfileApn").change();
+					$("#ConnectionProfileName").val("");
+					$("#connectionProfileLsit .error").removeClass("error");
+					$("#apn_profiles_form").hide();
+					$("#addConnectionProfile").prop("disabled", false);
+				});
+			</tmpl_if>
+
+			<tmpl_if showApnDropdown>
+				if("<tmpl_var AddNetworksFourGLTEAPNError>" == "Invalid APN"){
+					AddNewApn.style.display="inline-block";
+					inputAddNewApn.style.display="inline-block";
+				}
+				else{
+					<tmpl_foreach APNDropdownOptions as option>
+						ApnDropdownValues.push("<tmpl_var option.val>");
+					</tmpl_foreach>
+
+					var isPreDefinedAPN = false;
+					for(i = 0; i < ApnDropdownValues.length; i++) {
+						if(ApnDropdownValues[i] =="<tmpl_var ProfileApn>") 
+						{	
+							isPreDefinedAPN = true;
+							break;
+						}
+					}
+					if(isPreDefinedAPN) {
+						AddNewApn.style.display="none";
+						inputAddNewApn.style.display="none";
+					}
+				}
+			</tmpl_if>
+
+			<tmpl_if ProfileApnShow>
+				<tmpl_unless ProfileApnLocked>
+					$("#ProfileApn").attr('disabled','disabled');
+					$("#ApnProfileAuthentication").attr('disabled','disabled');
+					$("#ApnProfileUsername").attr('disabled', 'disabled');
+					$("#ApnProfilePassword").attr('disabled','disabled');
+
+					<tmpl_if IN_SET(simStatusValue, SIMSTATUS_NOT_FOUND)>
+						$("#ProfileApn").val("");
+						<tmpl_if showApnAuthentication>
+							$("#ApnProfileAuthentication").val(0).uniform();
+							$("#ApnProfileUsername").val("");
+							$("#ApnProfilePassword").val("");
+						</tmpl_if>
+					</tmpl_if>						
+				</tmpl_unless>
+			</tmpl_if>
+
+			<tmpl_if showApnAuthentication>
+				toggleAuthenticationOptions("<tmpl_var ApnProfileAuthentication>");
+
+				$("#ApnProfileAuthentication").on("change", function() {
+					toggleAuthenticationOptions(this.value);
+				});
+
+            	$(".input span.toggle-password").click(function () {
+                    $(this).toggleClass("eye eye-slash");
+
+                    if( $("input[id=ApnProfilePassword]").attr("type") == "password") {
+                            $("input[id=ApnProfilePassword]").attr("type", "text");
+                    } else {
+                            $("input[id=ApnProfilePassword]").attr("type", "password");
+                    }
+                });
+			</tmpl_if>
+		});
+
+		function editIndex(indexNumber, isActive, isDefault, profileName, apnName, apnAuthId, username, password, pdpType) {
+			$(".notification, .inline_error, #ApnProfileUsernameRow, #ApnProfilePasswordRow").hide();
+			$("#addConnectionProfile").prop("disabled", true);
+			$("#connectionProfileLsit .error").removeClass("error");
+			$("#apn_profiles_form").show();
+			$("#ConnectionProfileHeader").html('<tmpl_var _("webui", "connection_profiles_edit_profile_header_text")>');
+
+			$("#profileIndex").val(indexNumber);
+			$("#active").val(isActive);
+			$("#default").val(isDefault);
+			$("#ConnectionProfileName").val(profileName);
+
+			var matchFound = 0;
+			$("#ProfileApn > option").each(function() {
+			    console.log(this.text + ' ' + this.value);
+			    if(this.value != "Add APN" && this.value == apnName) {
+			    	matchFound = 1;
+			    }
+			});
+
+			if(matchFound) {
+				$("#ProfileApn").val(apnName).change();
+			} else {
+				$("#ProfileApn").val("Add APN").change();
+				$("#AddProfileApn").val(apnName);
+			}
+
+			$("#ApnProfileAuthentication").val(apnAuthId).change();
+			if(apnAuthId != 0) {
+				$("#ApnProfileUsername").val(username);
+				$("#ApnProfilePassword").val(password);
+			}
+			$("#IPType").val(pdpType).change();
+		}
+
+		function deleteIndex(indexNumber) {
+			$.ajax({
+				url: '<tmpl_udf GET_URI("delete_profile_index")>',
+				type: "POST",
+				data: {
+					gSecureToken: "<tmpl_var gSecureToken>",
+					profileIndex: indexNumber
+				},
+				dataType: "json",
+				complete: function () {
+					getCurrentSimProfiles();
+				}
+			});
+		}
+
+		function resetIndex(indexNumber) {
+			$.ajax({
+				url: '<tmpl_udf GET_URI("reset_profile_index")>',
+				type: "POST",
+				data: {
+					gSecureToken: "<tmpl_var gSecureToken>",
+					profileIndex: indexNumber
+				},
+				dataType: "json",
+				complete: function () {
+					getCurrentSimProfiles();
+				}
+			});
+		}
+
+		function getCurrentSimProfiles() 
+		{
+			url = "<tmpl_udf GET_URI('sim_one_apn_profiles_info')>";
+
+			if(simSelected == 2)
+			url = "<tmpl_udf GET_URI('sim_two_apn_profiles_info')>";
+
+			$.ajax({
+    			url : url,
+    			type : "GET",
+    			dataType : "json",
+				success : function(data) {
+					
+					$("#apnProfilesTable").empty();
+					var title = '<thead><tr>';
+					title += '<th class="activeState"><tmpl_var _("webui", "connection_profiles_active_label")></th>';
+					title += '<th class="profileName"><tmpl_var _("webui", "connection_profiles_profile_name_label")></th>';
+					title += '<th class="apnName"><tmpl_var _("webui", "connection_profiles_apn_name_label")></th>';
+					title += '<th class="authentication"><tmpl_var _("webui", "connection_profiles_authentication_label")></th>';
+					title += '<th class="connType"><tmpl_var _("webui", "connection_profiles_ip_connection_type_label")></th>';
+					title += '<th class="edit"></th>';
+					title += '<th class="deleteandreset"></th>';
+					title += '</tr></thead>';
+					$("#apnProfilesTable").append(title);
+
+					if(data["simProfilesList"].length > 0){						
+						$.each(data.simProfilesList, function(idx,item) {
+						    var index=idx+1;
+						    var activeId = "activeSlot" + index;
+						    var row = '<tbody><tr class="simProfileInformationRow">';
+						    row += '<td class="activeState">';
+						    if(item.isActive == 1) {
+						        row += '<div class="radio" id="uniform-activeSlot1"><span class="checked"><input type="radio" name="activeSlot" id="' + activeId + '" checked="checked" onchange=\"activateProfile('+item.profileId+')\"></span></div>';
+						    } else {
+						        row += '<div class="radio" id="uniform-activeSlot1"><span><input type="radio" name="activeSlot" id="' + activeId + '" onchange=\"activateProfile('+item.profileId+')\"></span></div>';
+						    }
+						    row += '</td>';
+						    if(item.isDefault == 1) {
+						    	row += '<td><p class="profileName">' + item.profileName + ' <tmpl_var _("webui", "connection_profiles_default_text")>' + '</p></td>';
+						    } else {
+						    	row += '<td><p class="profileName">' + item.profileName + '</p></td>';
+						    }
+						    row += '<td><p class="apnName">' + item.apnName + '</p></td>';
+						    row += '<td><p class="authentication">' + item.profileAuth + '</p></td>';
+						    row += '<td><p class="connType">' + item.profileType + '</p></td>';
+						    row += '<td><p class="edit" onclick=\"editIndex(' + item.profileId +', '+ item.isActive +', '+ item.isDefault +', \'' + item.profileName +'\', \'' + item.apnName +'\', ' + item.profileAuthId +', \'' + item.profileUsername +'\', \'' + item.profilePassword +'\', \'' + item.profileType +'\')\"><tmpl_var _("webui", "connection_profiles_edit_button_text")></p></td>';
+						    if(item.isDefault == 1) {
+						        row += '<td><p class="deleteandreset" onclick=\"resetIndex('+item.profileId+')\"><tmpl_var _("webui", "connection_profiles_reset_button_text")></p></td>';
+						    } else {
+						        row += '<td><p class="deleteandreset" onclick=\"deleteIndex('+item.profileId+')\"><tmpl_var _("webui", "connection_profiles_delete_button_text")></p></td>';
+						    }
+						    row += '</tr></tbody>';
+						    
+						    $("#apnProfilesTable").append(row);
+						    $("#selectedSimForSubmit").val(simSelected);
+
+						    if ($("tr.simProfileInformationRow").length >= maxProfilesToAdd) {
+						    	$("#addConnectionProfile").hide();
+						    } else {
+						    	$("#addConnectionProfile").show();
+						    }
+						});
+					}
+
+					if(data["APNDropdownOptions"].length > 0){
+						$("#ProfileApn").empty();
+						$.each(data.APNDropdownOptions, function(idx,item) {
+							$("#ProfileApn").append('<option value="' + item.val + '">' + item.val + '</option>');
+						});
+						$("#ProfileApn").append('<option value="Add APN"><tmpl_var _("webui", "connection_profiles_add_apn_option")></option>');
+						$.uniform.update();
+
+						if(errorCount == "") {
+							$("#AddProfileApn").val("");
+							$("#AddNewApn, #inputAddNewApn").hide();
+						} else {
+							$("#ProfileApn").val(profileApn).change();
+							if(profileApn == "Add APN") {
+								$("#AddProfileApn").val(addProfileApn);
+							} else {
+								$("#AddProfileApn").val("");
+							}
+							errorCount = ""; <tmpl_comment> this value will be non-empty when the validation fails.</tmpl_comment>
+						}
+					}
+
+				},
+				error : function(xhr, textStatus, errorThrown) {
+				},
+				complete : function(xhr, textStatus) {						
+				}
+			});
+		}
+
+		function activateProfile(indexNumber) {			
+			$.ajax({
+				url: '<tmpl_udf GET_URI("activate_profile_index")>',
+				type: "POST",
+				data: {
+					gSecureToken: "<tmpl_var gSecureToken>",
+					profileIndex: indexNumber
+				},
+				dataType: "json",
+				complete: function () {
+					getCurrentSimProfiles();
+				}
+			});
+		}
+
+		<tmpl_if showApnAuthentication>
+			function toggleAuthenticationOptions(state) {
+				if(state == 0) {
+                        $("#ApnProfileUsernameRow").hide();
+                        $("#ApnProfilePasswordRow").hide();
+                } else {
+                        $("#ApnProfileUsernameRow").show();
+                        $("#ApnProfilePasswordRow").show();
+                }
+			}
+		</tmpl_if>
+
+		function APNChange(){	
+			var apnDropValue=document.getElementById("ProfileApn").value;
+			if(apnDropValue=="Add APN"){
+				AddNewApn.style.display="inline-block";
+				inputAddNewApn.style.display="inline-block";
+			} else {
+				AddNewApn.style.display="none";
+				inputAddNewApn.style.display="none";
+			}
+		}
+		
+	</script>
+
+	<tmpl_if isLocked>
+	    <div class="notification app error">
+		<tmpl_var _("webui", "webui_app_locked_text")>
+	    </div>
+	</tmpl_if>
+
+	<tmpl_if errorCount>
+		<div class="notification app error">
+			<div class="notification_inner">
+				<p>
+					<tmpl_var _("webui", "webui_save_code_failed_text")>
+				</p>
+			</div>
+		</div>
+	</tmpl_if>
+
+	<tmpl_if gPostSuccess>
+		<div class="notification app success">
+			<div class="notification_inner">
+				<p>
+					<tmpl_var _("webui", "webui_save_code_success_text")>
+				</p>
+			</div>
+		</div>
+	</tmpl_if>
+
+	<tmpl_if numSims>
+		<tmpl_if multipleSIMEnabled>
+			<fieldset id="simInformation" class="first">
+				<div class="table">
+					<div class="form-group">
+						<div class="label">
+							<tmpl_if showToolTip>
+								<label>
+									<div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'connection_profiles_sim_selection_help_text')>">
+										<tmpl_var _("webui", "webui_inline_help_icon")>
+									</div>
+									<tmpl_var _("webui", "connection_profiles_sim_selection_label")>
+								</label>
+							<tmpl_else>
+								<label> <tmpl_var _("webui", "connection_profiles_sim_selection_label")></label>
+							</tmpl_if>
+						</div>
+						<div class="input">
+							<select name="apnSIMInformation" id="apnSIMInformation">
+								<tmpl_foreach dropdownSIMInformation as option>
+								    <option value="<tmpl_var option.val>" <tmpl_if IN_SET(simSelected, option.val)> selected="selected"</tmpl_if>>
+								        <tmpl_var option.simInfo>
+								    </option>
+								</tmpl_foreach>
+							</select>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</tmpl_if>
+
+		<h2 class="sectionHead"><tmpl_var _("webui", "connection_profiles_header_text")></h2>
+
+		<fieldset class="first">
+			<table id="apnProfilesTable" class="responsive_table">
+				<colgroup>
+					<col class="activeState" />
+                	<col class="profileName" />
+                	<col class="apnName" />
+                	<col class="authentication" />
+                	<col class="connType" />
+                	<col class="edit" />
+                	<col class="deleteandreset" />
+    			</colgroup>
+        		<thead>
+            		<tr>
+            			<th><tmpl_var _("webui", "connection_profiles_active_label")></th>
+            			<th><tmpl_var _("webui", "connection_profiles_profile_name_label")></th>
+            			<th><tmpl_var _("webui", "connection_profiles_apn_name_label")></th>
+            			<th><tmpl_var _("webui", "connection_profiles_authentication_label")></th>
+            			<th><tmpl_var _("webui", "connection_profiles_ip_connection_type_label")></th>
+            		</tr>
+        		</thead>
+        		<tbody>
+        			<tmpl_foreach simProfilesList as item>
+	            		<tr class="simProfileInformationRow responsive_tabel_row">
+							<td class="activeState">
+								<label class="labelName" style="display:none">
+									<tmpl_var _("webui", "connection_profiles_active_label")>
+								</label>
+								<div class="labelValue">
+	            					<input type="radio" name="activeSlot" id="activeSlot<tmpl_var (item.__index__ + 1)>"  <tmpl_if IN_SET(item.isActive, "on", 1)> checked="checked"</tmpl_if>  onchange="activateProfile('<tmpl_var item.profileId>')" />
+								</div>
+	            			</td>
+	            			<td>
+								<label class="labelName" style="display:none">
+									<tmpl_var _("webui", "connection_profiles_profile_name_label")>
+								</label>
+								<div class="labelValue">
+									<p class="profileName"><tmpl_var item.profileName><tmpl_if IN_SET(item.isDefault, "on", 1)> <tmpl_var _("webui", "connection_profiles_default_text")> </tmpl_if></p>
+								</div>
+							</td>
+							<td>
+								<label class="labelName" style="display:none">
+									<tmpl_var _("webui", "connection_profiles_apn_name_label")>
+								</label>
+								<div class="labelValue">
+									<p class="apnName"><tmpl_var item.apnName></p>
+								</div>
+							</td>
+							<td>
+								<label class="labelName" style="display:none">
+									<tmpl_var _("webui", "connection_profiles_authentication_label")>
+								</label>
+								<div class="labelValue">
+									<p class="authentication"><tmpl_var item.profileAuth></p>
+								</div>
+							</td>
+							<td>
+								<label class="labelName" style="display:none">
+									<tmpl_var _("webui", "connection_profiles_ip_connection_type_label")>
+								</label>
+								<div class="labelValue">
+									<p class="connType"><tmpl_var item.profileType></p>
+								</div>
+							</td>
+							<td>
+							<u>
+								<label class="labelAction">
+									<p class="edit" onclick="editIndex(<tmpl_var item.profileId>, <tmpl_var item.isActive>, <tmpl_var item.isDefault>,'<tmpl_var item.profileName>', '<tmpl_var item.apnName>', <tmpl_var item.profileAuthId>, '<tmpl_var item.profileUsername>', '<tmpl_var item.profilePassword>', '<tmpl_var item.profileType>')"><tmpl_var _("webui", "connection_profiles_edit_button_text")></p>
+								</label>		
+							</u>
+							</td>
+	            			<tmpl_if IN_SET(item.isDefault, "on", 1)>
+	            				<td>
+						<u>
+									<label class="labelAction">
+										<p class="deleteandreset" onclick="resetIndex('<tmpl_var item.profileId>')"><tmpl_var _("webui", "connection_profiles_reset_button_text")></p>
+									</label>
+								</u>
+								</td>
+	            			<tmpl_else>
+	            				<td>
+						<u>
+									<label class="labelAction">
+										<p class="deleteandreset" onclick="deleteIndex('<tmpl_var item.profileId>')"><tmpl_var _("webui", "connection_profiles_delete_button_text")></p>
+									</label>
+								</u>
+								</td>
+	            			</tmpl_if>
+	            		</tr>
+            		</tmpl_foreach>
+        		</tbody>
+			</table>
+			<br />
+		</fieldset>
+
+		<div class="button_container">
+			<button type="button" id="addConnectionProfile" <tmpl_if IN_SET(verificationFailed, 1)> disabled="disabled" </tmpl_if> class="secondary">
+				<tmpl_var _("webui", "connection_profiles_add_new_profile_button_text")>
+			</button>
+		</div>
+	<tmpl_else>
+		<div>
+		    <tmpl_var _("webui", "connection_profiles_sims_warning_text1")> <tmpl_if multipleSIMEnabled> <a href="<tmpl_udf GET_URI("sim_manager")>"> <tmpl_else> <a href="<tmpl_udf GET_URI("sim")>"> </tmpl_if><tmpl_var _("webui", "connection_profiles_sim_app_link_text")></a> <tmpl_var _("webui", "connection_profiles_sims_warning_text2")>
+		</div>
+	</tmpl_if>
+	
+	<form id="apn_profiles_form" <tmpl_unless IN_SET(verificationFailed, 1)> style="display:none;" </tmpl_unless> method="POST" action="<tmpl_udf GET_URI('apn_profiles')>">
+		<input type="hidden" name="gSecureToken" id="gSecureToken" value="<tmpl_var gSecureToken>" />
+		<input type="hidden" name="selectedSimForSubmit" id="selectedSimForSubmit" value="" />
+		<input type="hidden" name="profileIndex" id="profileIndex" value="0"/>
+		<input type="hidden" name="active" id="active" value="0"/>
+		<input type="hidden" name="default" id="default" value="0"/>
+
+		<div id="connectionProfileLsit">
+			<h2 id="ConnectionProfileHeader" class="sectionHead"><tmpl_var _("webui", "connection_profiles_add_new_profile_header_text")></h2>
+			<p class="note"><tmpl_var _("webui", "connection_profiles_add_new_profile_note_text")></p>
+			<div class="form-group" id="ConnectionProfileNameRow">
+				<div class="label">
+					<label for="ConnectionProfileName"> <tmpl_var _("webui", "connection_profiles_new_profile_name_label")></label>
+				</div>
+				<div class="input">
+					<input type="text" name="ConnectionProfileName" id="ConnectionProfileName" maxlength="64" value="<tmpl_var ConnectionProfileName>" <tmpl_if ConnectionProfileNameError> class="error"</tmpl_if>/>	
+				</div>
+				<tmpl_if ConnectionProfileNameError>
+					<div class="inline_error">
+						<tmpl_var ConnectionProfileNameError>
+					</div>
+				</tmpl_if>
+			</div>
+			<div class="form-group">
+				<div id="apnNameLabel" class="label">
+					<label for="ProfileApn"> <tmpl_var _("webui", "connection_profiles_new_apn_name_label")></label>
+				</div>
+				<tmpl_if showApnDropdown>
+					<div class="input">
+						<select name="ProfileApn" id="ProfileApn" onchange="APNChange()" <tmpl_if ProfileApnLocked> disabled="disabled"</tmpl_if><tmpl_if isLocked> disabled="disabled"</tmpl_if>>	
+						<tmpl_include "apn_dropdown_options.tmpl">
+						</select>
+						<tmpl_if ProfileApnError>
+							<div class="inline_error">
+								<tmpl_var ProfileApnError>
+							</div>
+						</tmpl_if>
+					</div>
+
+					
+				<tmpl_else>					
+					<div class="input">
+						<input type="text" name="ProfileApn" id="ProfileApn" <tmpl_if ProfileApnLocked>disabled="disabled"</tmpl_if><tmpl_if isLocked>disabled="disabled"</tmpl_if> maxlength="62" value="<tmpl_var ProfileApn>" />
+					</div>
+					<div class="inline_error">
+						<tmpl_if ProfileApnError>
+							<tmpl_var ProfileApnError>
+						</tmpl_if>
+					</div>   
+				</tmpl_if>                 
+			</div>
+			<tmpl_if showApnDropdown>
+				<div class="form-group">
+					<div class="label" id="AddNewApn" >
+						<label for="addNewApn"><tmpl_var _("webui", "connection_profiles_new_add_apn_label")></label>
+					</div>
+					<div class="input" id="inputAddNewApn">
+						<input type="text" name="AddProfileApn" id="AddProfileApn" <tmpl_if ProfileApnLocked> disabled="disabled"</tmpl_if> <tmpl_if isLocked> disabled="disabled"</tmpl_if> maxlength="62" value="<tmpl_var AddProfileApn>"<tmpl_if AddProfileApnError> class="error"</tmpl_if> />
+						<tmpl_if AddProfileApnError>
+							<div class="inline_error">  
+								<tmpl_var AddProfileApnError>
+							</div>
+						</tmpl_if>
+					</div>
+				</div>
+			</tmpl_if> 
+			<tmpl_if showApnAuthentication>
+				<div class="form-group">
+					<div class="label">
+						<label for="ApnProfileAuthentication" > <tmpl_var _("webui", "connection_profiles_new_authentication_label")></label>
+					</div>
+					<div class="input">
+						<div id="ApnProfileAuthenticationOptionsHolder">
+							<select name="ApnProfileAuthentication" id="ApnProfileAuthentication">
+								<tmpl_include "authentication_options.tmpl">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" id="ApnProfileUsernameRow">
+					<div class="label">
+						<label for="ApnProfileUsername"> <tmpl_var _("webui", "connection_profiles_username_label")></label>
+					</div>
+					<div class="input">
+						<input type="text" name="ApnProfileUsername" id="ApnProfileUsername" maxlength="32" value="<tmpl_var ApnProfileUsername>" <tmpl_if ApnProfileUsernameError> class="error"</tmpl_if>/>	
+					</div>
+					<tmpl_if ApnProfileUsernameError>
+						<div class="inline_error">
+							<tmpl_var ApnProfileUsernameError>
+						</div>
+					</tmpl_if>
+				</div>					
+				<div class="form-group" id="ApnProfilePasswordRow">
+					<div class="label">
+						<label for="ApnProfilePassword"> <tmpl_var _("webui", "connection_profiles_password_label")></label>
+					</div>
+					<div class="input">
+						<input type="password" name="ApnProfilePassword" id="ApnProfilePassword" maxlength="32"value="<tmpl_var ApnProfilePassword>" <tmpl_if ApnProfilePasswordError> class="error"</tmpl_if> />
+						<span toggle='#ApnProfilePassword' class='btn eye toggle-password'></span>
+					</div>
+					<tmpl_if ApnProfilePasswordError>
+						<div class="inline_error">
+							<tmpl_var ApnProfilePasswordError>
+						</div>
+					</tmpl_if>
+				</div>
+			</tmpl_if>
+
+			<tmpl_if showPdpType>
+				<div class="form-group">
+					<div id="ipLabel" class="label">
+						<label for="ipType"><tmpl_var _("webui", "connection_profiles_new_ip_connection_type_label")></label>
+					</div>
+					<div class="input">						
+						<select name="IPType" id="IPType">
+							<option value="IPV4" <tmpl_if IN_SET(PDPType, "IPV4" )>selected="selected"</tmpl_if>>IPV4</option>
+							<option value="IPV6" <tmpl_if IN_SET(PDPType, "IPV6" )>selected="selected"</tmpl_if> >IPV6</option>
+							<option value="IPV4&#x2F;IPV6" <tmpl_if IN_SET(PDPType, "IPV4&#x2F;IPV6" )>selected="selected"</tmpl_if>>IPV4/IPV6</option>									
+						</select> 								
+					</div>
+				</div>
+			</tmpl_if>
+		</div>
+
+		<br />
+		
+		<div id="profileButtonsPanel" class="button_container clearfix">	
+			<button type="submit" id="profileSavechanges" class="primary"<tmpl_if isLocked> disabled="disabled"</tmpl_if>><tmpl_var _("webui", "webui_save_button")></button>
+			<button type="button" id="cancelProfile" class="secondary" <tmpl_if isLocked> disabled="disabled"</tmpl_if>><tmpl_var _("webui", "connection_profiles_cancel_button_text")></button>	
+		</div>
+	</form>
+</tmpl_if>

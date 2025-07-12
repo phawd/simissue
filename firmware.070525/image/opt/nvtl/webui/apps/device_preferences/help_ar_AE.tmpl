@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>تحتوي هذه الشاشة على العديد من الخيارات التي تسمح لك بضبط تشغيل <tmpl_var _("webui", "webui_product_name")> لتلبية احتياجاتك بشكل أفضل.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>تحدد هذه الإعدادات نوع الاتصال عندما يكون الكمبيوتر متصلاً بمنفذ USB C للجهاز <tmpl_var _("webui", "webui_product_name_with_suffix")>. حدد الخيار المطلوب.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>إذا تم تحديده، فستُطالَب (على <tmpl_var _("webui", "webui_product_name")>شاشة) بتحديد وضع USB المطلوب عند اكتشاف اتصال USB بجهاز كمبيوتر. لا يؤدي تحديد هذا الموجه إلى تغيير الإعداد أعلاه، ولكنه يحدد فقط وضع جلسة USB الحالية.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>يحدد هذا الإعداد مدى سرعة <tmpl_var _("webui", "webui_product_name_with_suffix")> سيتم إيقاف تشغيل الشاشة، بعد فترة من عدم النشاط. حدد الخيار المطلوب.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p>سيدخل <tmpl_var _("webui", "webui_product_name")> في وضع السكون بعد فترة من عدم النشاط. حدد الفترة الزمنية المطلوبة للدخول في وضع السكون.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p>قد يتم إيقاف تشغيل <tmpl_var _("webui", "webui_product_name")> بعد فترة من عدم النشاط. حدد الفترة الزمنية المطلوبة لتطبيق إيقاف التشغيل.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>تسمح لك هذه الميزة بشحن الأجهزة مثل هاتفك أو سماعة Bluetooth من بطارية <tmpl_var _("webui", "webui_product_name_with_suffix")>. ببساطة قم بتوصيل كابل USB بجهازك <tmpl_var _("webui", "webui_product_name_with_suffix")> منفذ شحن عالمي.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>يعرض هذا الحقل الحالة الحالية لميزة الشحن العام. قيم الحالات المحتملة هي:</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> - يتم شحن الأجهزة الخارجية من بطارية <tmpl_var _("webui", "webui_product_name_with_suffix")>.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> - إذا تم توصيل جهاز خارجي بمنفذ الشحن العام لـ<tmpl_var _("webui", "webui_product_name_with_suffix")>، فسيتم شحنه.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> مستوى شحن بطارية <tmpl_var _("webui", "webui_product_name_with_suffix")> منخفض جدًا بحيث لا يسمح بشحن أجهزة أخرى.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>إذا كان هذا الخيار ممكنًا، فسيمكن تغيير الإعدادات المتاحة باستخدام شاشة <tmpl_var _("webui", "webui_product_name_with_suffix")>. تتضمن هذه الإعدادات عملية إعادة تعيين إعدادات المصنع، التي تعيد ضبط جميع الإعدادات على القيم الافتراضية للمصنع.</p>
+		<p>إذا كان هذا الخيار معطلاً، فلن يُمكن تغيير الإعدادات باستخدام شاشة <tmpl_var _("webui", "webui_product_name_with_suffix")>.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>إذا كان هذا الخيار ممكنًا، فسيعمل زر إعادة الضبط على قاعدة <tmpl_var _("webui", "webui_product_name")> بشكل طبيعي، بحيث يسمح بتغيير جميع الإعدادات إلى القيم الافتراضية للمصنع.</p>
+	<p>إذا كان الخيار معطلاً، فلن يعمل زر إعادة الضبط. يمنع هذا المستخدم من تغيير الإعدادات عن طريق إجراء إعادة ضبط.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>يظهر مؤشر Ethernet على شريط الحالة عند تمكين منفذ Ethernet؛ ويكون مخفيًا في الحالات الأخرى.</p>
+	</tmpl_if>
+	
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

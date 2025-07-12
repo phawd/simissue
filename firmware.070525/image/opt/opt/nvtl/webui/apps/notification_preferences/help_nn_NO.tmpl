@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Denne skjermen inneholder mange alternativer som lar deg angi virkemåten til <tmpl_var _("webui", "webui_product_name")> for bedre å dekke dine behov.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Hvis dette alternativet er avkrysset, vil LED- og lydfunksjonene til <tmpl_var _("webui", "webui_product_name")> slås av. <tmpl_var _("webui", "webui_product_name")>-Skjermen slås på først når brukeren slår den på. Oppstartsprosessen påvirkes imidlertid ikke av denne innstillingen.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Hvis denne innstillingen er avkrysset, vil lysdioden forbli avslått. Hvis denne innstillingen ikke er avkrysset, blinker LED sakte som et «tegn på liv». Denne innstillingen er nedtonet hvis stillemodus er på.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>Hvis avkrysset, vil skjermen slå seg på når en varselmelding vises. Hvis dette ikke er til hjelp, kan du slå dette av.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>Hvis avkrysset, så <tmpl_var _("webui", "webui_product_name")> vil signalisere oppstart, avslutning og forskjellige hendelser ved bruk av lydvarsler. Hvis ikke avkrysset, vil <tmpl_var _("webui", "webui_product_name")> fungere lydløst. Denne innstillingen er nedtonet hvis stillemodus er på.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Disse innstillingene kan brukes til å spesifisere hvilke hendelser som utløser et lydvarsel. Disse innstillingene er nedtonet hvis lyden er slått av, enten ved stillemodusinnstillingen eller med «Slå på lyd»-innstillingen ovenfor.</p>
+</div>

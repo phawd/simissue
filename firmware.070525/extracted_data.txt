@@ -1,0 +1,256 @@
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+static uint8
+				/* 0x000184B3 7277160170         */ IL_0053: ldstr "$cat /dev/smd7 & echo -e \"at+cgmi\\r\" > /dev/smd7" /* 70011677 */
+				/* 0x0001D239 72FC330170         */ IL_0011: ldstr "cat /dev/smd7 & echo -e \"at+cgmi\\r\" > /dev/smd7\r" /* 700133FC */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands 10 2 5 25 41 48 66 70 71 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255");
+		/* 0x00016551 7295010170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands 10 2 5 25 41 48 66 70 71 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255" /* 70010195 */
+		// 	WooCommerceService.ExecuteADBBandsCommand("set_enabled_nr5g_nsa_bands 11 2 5 25 41 48 66 70 71 77 78");
+		/* 0x0001655D 729A070170         */ IL_0000: ldstr "set_enabled_nr5g_nsa_bands 11 2 5 25 41 48 66 70 71 77 78" /* 7001079A */
+		// 	WooCommerceService.ExecuteADBBandsCommand("set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261");
+		/* 0x00016568 720E080170         */ IL_000b: ldstr "set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261" /* 7001080E */
+		// 	WooCommerceService.ExecuteADBBandsCommand("set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71");
+		/* 0x00016573 7299080170         */ IL_0016: ldstr "set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71" /* 70010899 */
+		// 	WooCommerceService.ExecuteADBBandsCommand($"/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands {value4} {value}");
+		/* 0x000165B9 72040A0170         */ IL_002d: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands " /* 70010A04 */
+		// 	WooCommerceService.ExecuteADBBandsCommand($"/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands {value4} {value2}");
+		/* 0x000165F9 726E0A0170         */ IL_006d: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands " /* 70010A6E */
+		// 	WooCommerceService.ExecuteADBBandsCommand($"/opt/nvtl/bin/modem2_cli set_enabled_lte_bands {value4} {value3}");
+		/* 0x00016639 72D60A0170         */ IL_00ad: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands " /* 70010AD6 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261");
+		/* 0x00016675 72360B0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261" /* 70010B36 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71");
+		/* 0x00016686 72F30B0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71" /* 70010BF3 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands 10 2 5 25 41 48 66 70 71 77 78");
+		/* 0x00016697 72B20C0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands 10 2 5 25 41 48 66 70 71 77 78" /* 70010CB2 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261");
+		/* 0x000166A8 72360B0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261" /* 70010B36 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71");
+		/* 0x000166B9 72F30B0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71" /* 70010BF3 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands 10 2 5 25 41 48 66 70 71 77 78");
+		/* 0x000166CA 72B20C0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_nsa_bands 10 2 5 25 41 48 66 70 71 77 78" /* 70010CB2 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261");
+		/* 0x000166DB 72360B0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_nr5g_sa_bands 13 2 5 25 41 48 66 70 71 77 78 258 260 261" /* 70010B36 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71");
+		/* 0x000166EC 72F30B0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_lte_bands 16 2 4 5 12 13 14 17 25 26 29 30 41 46 48 66 71" /* 70010BF3 */
+		// 	return WooCommerceService.ExecuteADBBandCommand("shell", "/opt/nvtl/bin/modem2_cli set_enabled_sdx65_bands 37 2 4 5 7 12 13 14 17 25 26 29 30 41 48 66 70 71 77 78 257 258 259 260 261 262 263 264 265 266 268 503 504 505 656 666 667");
+		/* 0x000166FD 72590D0170         */ IL_0005: ldstr "/opt/nvtl/bin/modem2_cli set_enabled_sdx65_bands 37 2 4 5 7 12 13 14 17 25 26 29 30 41 48 66 70 71 77 78 257 258 259 260 261 262 263 264 265 266 268 503 504 505 656 666 667" /* 70010D59 */
+			// 	transform = aes.CreateDecryptor(aes.Key, aes.IV);
+			/* 0x0000774A 6F8F01000A         */ IL_0062: callvirt instance class [System.Security.Cryptography]System.Security.Cryptography.ICryptoTransform [System.Security.Cryptography]System.Security.Cryptography.SymmetricAlgorithm::CreateDecryptor(uint8[], uint8[]) /* 0A00018F */
+			// 	transform = aes.CreateEncryptor(aes.Key, aes.IV);
+			/* 0x0000784E 6F9401000A         */ IL_0062: callvirt instance class [System.Security.Cryptography]System.Security.Cryptography.ICryptoTransform [System.Security.Cryptography]System.Security.Cryptography.SymmetricAlgorithm::CreateEncryptor(uint8[], uint8[]) /* 0A000194 */
+			// 	transform = aes.CreateEncryptor(aes.Key, aes.IV);
+			/* 0x00007B06 6F9401000A         */ IL_002a: callvirt instance class [System.Security.Cryptography]System.Security.Cryptography.ICryptoTransform [System.Security.Cryptography]System.Security.Cryptography.SymmetricAlgorithm::CreateEncryptor(uint8[], uint8[]) /* 0A000194 */
+				// 		a = Form1.EncryptString(key: Form1.GetOsDriveSerialNumber().Replace(" ", ""), text: "9z1" + Form1.GetCpuSerialNumber());
+				/* 0x0001B64E 28D3000006         */ IL_0646: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				// 			a = Form1.EncryptString(key: Form1.GetOsDriveSerialNumber().Replace(" ", ""), text: "9z1" + Form1.GetCpuSerialNumber());
+				/* 0x0001DD75 28D3000006         */ IL_004d: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				// 			a = Form1.EncryptString(key: Form1.GetOsDriveSerialNumber().Replace(" ", ""), text: "9z1" + Form1.GetCpuSerialNumber());
+				/* 0x0001ED5E 28D3000006         */ IL_03a2: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+		.field /* 04000516 */ private string '<encryptedKey>5__4'
+				// 			this.<encryptedKey>5__4 = Form1.EncryptString(string.Concat("9z1", "9z1" + Form1.GetCpuSerialNumber()), this.<activationKey_2>5__3);
+				/* 0x0001F24B 28D3000006         */ IL_008f: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				/* 0x0001F250 7D16050004         */ IL_0094: stfld string Mifi_8800L_Tool.Form1/'<button4_Click>d__135'::'<encryptedKey>5__4' /* 04000516 */
+				// 			if (!string.IsNullOrEmpty(this.<activationKey>5__2) && string.Equals(this.<encryptedKey>5__4, this.<activationKey>5__2))
+				/* 0x0001F263 7B16050004         */ IL_00a7: ldfld string Mifi_8800L_Tool.Form1/'<button4_Click>d__135'::'<encryptedKey>5__4' /* 04000516 */
+				// 				if (string.IsNullOrEmpty(this.<activationKey>5__2) || !string.Equals(this.<encryptedKey>5__4, this.<activationKey>5__2))
+				/* 0x0001F81A 7B16050004         */ IL_065e: ldfld string Mifi_8800L_Tool.Form1/'<button4_Click>d__135'::'<encryptedKey>5__4' /* 04000516 */
+				// 		this.<encryptedKey>5__4 = null;
+				/* 0x0001FF49 7D16050004         */ IL_0d8d: stfld string Mifi_8800L_Tool.Form1/'<button4_Click>d__135'::'<encryptedKey>5__4' /* 04000516 */
+			// 	this.<encryptedKey>5__4 = null;
+			/* 0x0001FF75 7D16050004         */ IL_0db9: stfld string Mifi_8800L_Tool.Form1/'<button4_Click>d__135'::'<encryptedKey>5__4' /* 04000516 */
+				// 		a = Form1.EncryptString(key: Form1.GetOsDriveSerialNumber().Replace(" ", ""), text: "9z1" + Form1.GetCpuSerialNumber());
+				/* 0x0002006F 28D3000006         */ IL_003b: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				// 		a = Form1.EncryptString(text, text2);
+				/* 0x0002010A 28D3000006         */ IL_00d6: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+		.field /* 0400055F */ private string '<encryptedKey>5__4'
+				// 			this.<encryptedKey>5__4 = Form1.EncryptString("9z1" + Form1.GetCpuSerialNumber(), this.<activationKey_2>5__3);
+				/* 0x0002177D 28D3000006         */ IL_0089: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				/* 0x00021782 7D5F050004         */ IL_008e: stfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem1_Click>d__203'::'<encryptedKey>5__4' /* 0400055F */
+				// 			if (!string.IsNullOrEmpty(this.<activationKey>5__2) && string.Equals(this.<encryptedKey>5__4, this.<activationKey>5__2))
+				/* 0x0002179B 7B5F050004         */ IL_00a7: ldfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem1_Click>d__203'::'<encryptedKey>5__4' /* 0400055F */
+				// 			if (string.IsNullOrEmpty(this.<activationKey>5__2) || !string.Equals(this.<encryptedKey>5__4, this.<activationKey>5__2))
+				/* 0x00021B80 7B5F050004         */ IL_048c: ldfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem1_Click>d__203'::'<encryptedKey>5__4' /* 0400055F */
+				// 		this.<encryptedKey>5__4 = null;
+				/* 0x00021F77 7D5F050004         */ IL_0883: stfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem1_Click>d__203'::'<encryptedKey>5__4' /* 0400055F */
+			// 	this.<encryptedKey>5__4 = null;
+			/* 0x00021FAA 7D5F050004         */ IL_08b6: stfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem1_Click>d__203'::'<encryptedKey>5__4' /* 0400055F */
+		.field /* 04000574 */ private string '<encryptedKey>5__4'
+				// 			this.<encryptedKey>5__4 = Form1.EncryptString(text, this.<activationKey_2>5__3);
+				/* 0x0002216B 28D3000006         */ IL_008b: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				/* 0x00022170 7D74050004         */ IL_0090: stfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem2_Click_1>d__223'::'<encryptedKey>5__4' /* 04000574 */
+				// 			if (!string.IsNullOrEmpty(this.<activationKey>5__2) && string.Equals(this.<encryptedKey>5__4, this.<activationKey>5__2))
+				/* 0x000221D2 7B74050004         */ IL_00f2: ldfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem2_Click_1>d__223'::'<encryptedKey>5__4' /* 04000574 */
+				// 			if (string.IsNullOrEmpty(text2) || string.Equals(Form1.EncryptString(text, this.<activationKey_2>5__3), text2))
+				/* 0x0002224D 28D3000006         */ IL_016d: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+				// 			if (string.IsNullOrEmpty(this.<activationKey>5__2) || !string.Equals(this.<encryptedKey>5__4, this.<activationKey>5__2))
+				/* 0x0002242C 7B74050004         */ IL_034c: ldfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem2_Click_1>d__223'::'<encryptedKey>5__4' /* 04000574 */
+				// 		this.<encryptedKey>5__4 = null;
+				/* 0x00022812 7D74050004         */ IL_0732: stfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem2_Click_1>d__223'::'<encryptedKey>5__4' /* 04000574 */
+			// 	this.<encryptedKey>5__4 = null;
+			/* 0x00022845 7D74050004         */ IL_0765: stfld string Mifi_8800L_Tool.Form1/'<toolStripMenuItem2_Click_1>d__223'::'<encryptedKey>5__4' /* 04000574 */
+		string DecryptString (
+			string encryptedText,
+			// 	transform = aes.CreateDecryptor(aes.Key, aes.IV);
+			/* 0x0000774A 6F8F01000A         */ IL_0062: callvirt instance class [System.Security.Cryptography]System.Security.Cryptography.ICryptoTransform [System.Security.Cryptography]System.Security.Cryptography.SymmetricAlgorithm::CreateDecryptor(uint8[], uint8[]) /* 0A00018F */
+			// 	using MemoryStream stream = new MemoryStream(Convert.FromBase64String(encryptedText));
+	} // end of method Form1::DecryptString
+		string EncryptString (
+			// 	transform = aes.CreateEncryptor(aes.Key, aes.IV);
+			/* 0x0000784E 6F9401000A         */ IL_0062: callvirt instance class [System.Security.Cryptography]System.Security.Cryptography.ICryptoTransform [System.Security.Cryptography]System.Security.Cryptography.SymmetricAlgorithm::CreateEncryptor(uint8[], uint8[]) /* 0A000194 */
+	} // end of method Form1::EncryptString
+		instance string EncryptKey (
+			// 	transform = aes.CreateEncryptor(aes.Key, aes.IV);
+			/* 0x00007B06 6F9401000A         */ IL_002a: callvirt instance class [System.Security.Cryptography]System.Security.Cryptography.ICryptoTransform [System.Security.Cryptography]System.Security.Cryptography.SymmetricAlgorithm::CreateEncryptor(uint8[], uint8[]) /* 0A000194 */
+	} // end of method Form1::EncryptKey
+		// 	a = Form1.EncryptString(key: Form1.GetOsDriveSerialNumber(), text: "9z1" + Form1.GetCpuSerialNumber());
+		/* 0x0000B840 28D3000006         */ IL_001c: call string Mifi_8800L_Tool.Form1::EncryptString(string, string) /* 060000D3 */
+		// 	Form1.DecryptString(Form1.GetOsDriveSerialNumber(), text);
+		/* 0x0000BB38 28D2000006         */ IL_000c: call string Mifi_8800L_Tool.Form1::DecryptString(string, string) /* 060000D2 */
+			[2] string encryptedInput,
+		// 		encryptedInput = (string)registryKey.GetValue("Password");
+		// 		text3 = new WooCommerceService().DecryptString(encryptedInput);
+		/* 0x00011EBA 6F43020006         */ IL_0052: callvirt instance string Mifi_8800L_Tool.WooCommerceService::DecryptString(string) /* 06000243 */
+		// 	value = wooCommerceService.EncryptString(text2);
+		/* 0x00011F2F 6F42020006         */ IL_002b: callvirt instance string Mifi_8800L_Tool.WooCommerceService::EncryptString(string) /* 06000242 */
+		// 	wooCommerceService.DecryptString(wooCommerceService.EncryptString("This is a secret message"));
+		/* 0x00011F3F 6F42020006         */ IL_003b: callvirt instance string Mifi_8800L_Tool.WooCommerceService::EncryptString(string) /* 06000242 */
+		/* 0x00011F48 6F43020006         */ IL_0044: callvirt instance string Mifi_8800L_Tool.WooCommerceService::DecryptString(string) /* 06000243 */
+	.field /* 04000119 */ private static uint8[] encryptionKey
+		instance string EncryptString (
+		// 	return Convert.ToBase64String(ProtectedData.Protect(Encoding.UTF8.GetBytes(input), WooCommerceService.encryptionKey, DataProtectionScope.CurrentUser));
+		/* 0x00013E8E 7E19010004         */ IL_000b: ldsfld uint8[] Mifi_8800L_Tool.WooCommerceService::encryptionKey /* 04000119 */
+	} // end of method WooCommerceService::EncryptString
+		instance string DecryptString (
+			string encryptedInput
+		// 	bytes = ProtectedData.Unprotect(Convert.FromBase64String(encryptedInput), WooCommerceService.encryptionKey, DataProtectionScope.CurrentUser);
+		/* 0x00013EB2 7E19010004         */ IL_0006: ldsfld uint8[] Mifi_8800L_Tool.WooCommerceService::encryptionKey /* 04000119 */
+	} // end of method WooCommerceService::DecryptString
+		// 	WooCommerceService.encryptionKey = Encoding.UTF8.GetBytes("M1les@bbyClara!!");
+		/* 0x000169F0 8019010004         */ IL_001b: stsfld uint8[] Mifi_8800L_Tool.WooCommerceService::encryptionKey /* 04000119 */

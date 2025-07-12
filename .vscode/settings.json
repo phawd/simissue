@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "./GREENWIRE/greenwire/core"
+    ],
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.pythonProjects": []
+}

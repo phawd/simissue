@@ -1,0 +1,4 @@
+<option value="<tmpl_var authTypeNone>"<tmpl_if IN_SET(ApnProfileAuthentication, authTypeNone)> selected="selected"</tmpl_if>><tmpl_var _("webui", "connection_profiles_authentication_none_text")></option>
+<option value="<tmpl_var authTypePAP>"<tmpl_if IN_SET(ApnProfileAuthentication, authTypePAP)> selected="selected"</tmpl_if>><tmpl_var _("webui", "connection_profiles_authentication_pap_text")></option>
+<option value="<tmpl_var authTypeCHAP>"<tmpl_if IN_SET(ApnProfileAuthentication, authTypeCHAP)> selected="selected"</tmpl_if>><tmpl_var _("webui", "connection_profiles_authentication_chap_text")></option>
+<option value="<tmpl_var authTypePAPOrCHAP>"<tmpl_if IN_SET(ApnProfileAuthentication, authTypePAPOrCHAP)> selected="selected"</tmpl_if>><tmpl_var _("webui", "connection_profiles_authentication_pap_chap_text")></option>

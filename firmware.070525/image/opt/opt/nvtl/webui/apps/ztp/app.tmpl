@@ -1,0 +1,241 @@
+<script type="text/javascript">
+/* <![CDATA[ */
+
+	var pollingRate   = 5000; // Polling time for ZTP status
+	var retrievalTime = 10000; // Polling time for connection parameters. 
+
+	var callConnParams = true;
+
+	$(function()
+	{
+		getZTPStatus();
+
+		if(! <tmpl_var ztpProcessStarted>) {
+			$("#ztpDefault").show();
+			$("#ztpProgress").hide();
+		} else {
+			$("#ztpDefault").hide();
+			$("#ztpProgress").show();
+
+			if(callConnParams) {
+				callConnParams = false;
+				getZTPConnectionParams();
+			}
+		}
+	});
+
+	function getZTPConnectionParams() {
+		$.ajax({
+			url : "<tmpl_udf GET_URI('ztp_get_conn_params')>",
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				$("#serverURL").html(data.serverURL);
+				$("#keepAliveInterval").html(data.keepAliveInterval);
+				$("#cpeName").html(data.cpeName);
+				$("#tenantName").html(data.tenantName);
+				$("#macAddress").html(data.macAddress);
+			}, error : function(xhr, textStatus, errorThrown) {
+
+			}, complete : function() {
+				setTimeout(getZTPConnectionParams, retrievalTime);
+			}
+		});
+	}
+
+	function getZTPStatus() {
+		$.ajax({
+			url : "<tmpl_udf GET_URI('ztp_status_retrieve')>",
+			type : "GET",
+			dataType : "json",
+			success : function(data) {
+				if (data) {
+					if(!data.ztpProcessStarted) {
+						$("#ztpDefault").show();
+						$("#ztpProgress").hide();
+					} else {
+						$("#ztpDefault").hide();
+						$("#ztpProgress").show();
+					
+						if(callConnParams) {
+							callConnParams = false;
+							getZTPConnectionParams();
+						}
+	
+						$.each(data.ztpStatusList, function(idx,item) {
+							if((item.ztpError != 1)) {
+								updateProgress(item.ztpState, item.ztpError, item.ztpErrorStr, item.ztpErrExtStr, item.localTime);
+							}
+						});
+					}
+				}
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				//something went wrong with the trigger, simply revert to proper message
+			},
+			complete : function() {
+				    setTimeout(getZTPStatus, pollingRate);
+			}
+		});
+	}
+
+	function updateProgress(status, error, errorStr, errorExtStr, localTime) 
+	{
+		var currStep = 0;
+		
+		const elem  = document.querySelectorAll('#statusElements li');
+		elem.forEach(function(el, i) {
+			var idx = i+1;
+			if(status == el.dataset.state) {
+				$(el).prevAll().removeClass('active');
+                                $(el).prevAll().removeClass('blink');
+                                $(el).prevAll().addClass('prev');
+					
+				if((error == 0) || (error == 2)) {
+					if(localTime != 0) {
+						var localTimeStr = "(" + localTime + ")";
+						$("#localTime"+idx).html(localTimeStr);
+					}
+				}
+
+				if((error == 0) || (error == 1) || (error == 2)) {
+					if(el.classList.contains('error')) {
+						el.classList.remove('error');
+					}
+                                        if(((status == 7) && (error == 0)) || ((error != 0) && (error != 1))) {
+                                                el.classList.add('active');
+                                                if(status != 7) {
+                                                        el.classList.add('blink');
+                                                }
+                                                $(el).prevAll().addClass('prev');
+                                        }
+					$("#errorStr"+idx).hide();
+                                        $("#errorExtStr"+idx).hide();					
+                                } else {
+					el.classList.add('active');
+                                        el.classList.add('error');
+	                                el.classList.remove('blink');
+                                        $(el).prevAll().addClass('prev');
+
+					var errorString = htmlUnescape(errorStr);
+					var errorVal = $.parseHTML(errorString);
+
+					$("#errorStr"+idx).html('-').append(" ").append(errorVal);
+					$("#errorExtStr"+idx).html('-').append(" ").append(errorExtStr);
+					$("#errorStr"+idx).show();
+					$("#errorExtStr"+idx).show();
+				}
+			}
+		});	
+		
+		$("#progressBar").each((_, progress)=> {
+			const steps = document.querySelectorAll('#progressBar li');
+			steps.forEach(function(el, i) {
+				if(status == el.dataset.state) {
+					$(el).prevAll().removeClass('active');
+					$(el).prevAll().removeClass('blink');
+					$(el).prevAll().addClass('prev');
+
+					if(el.classList.contains('error')) {
+                                        	el.classList.remove('error');
+                                        }
+
+					if((error == 0) || (error == 1) || (error == 2)) {
+						if(((status == 7) && (error == 0)) || ((error != 0) && (error != 1))) {
+                                                        el.classList.add('active');
+                                                        if(status != 7) {
+                                                                el.classList.add('blink');
+                                                        }
+                                                        $(el).prevAll().addClass('prev');
+                                                }
+					} else {
+						el.classList.add('active');
+                                                el.classList.add('error');
+						el.classList.remove('blink');
+                                                $(el).prevAll().addClass('prev');
+		                                $(el).prevAll().removeClass('blink');
+					}
+				}
+			});
+
+		});
+	}
+
+	function htmlUnescape(str) {
+		return str.replace(/&lt;/g, "<").replace(/&gt;/, ">").replace(/&#x2F;/, "/");
+	}
+
+/* ]]> */
+</script>
+
+<tmpl_if IN_SET(activationCodeFailed, "true")>
+	<div class="notification app error">
+		<div class="notification_inner">
+			<p>
+				"Activation code failed"
+			</p>
+		</div>
+	</div>
+</tmpl_if>
+
+<h2 class="sectionHead"><tmpl_udf GET_PO_TEXT("ztp_header", gProductNumber, gProductName)></h2>
+
+<fieldset id="ztp_field">
+	<div class="form-group noblock clearfix" style="display:none;" id="ztpDefault">
+		<div class="label">
+			<strong><tmpl_var _("webui", "ztp_status_label_text")></strong>
+		</div>
+		<div class="input" id="ztpStatus"><tmpl_var ztpStatus></div>
+	</div>
+	
+	<div class="ig_section ig_group" style="display:none;" id="ztpProgress">
+		<div class="ig_row">
+			<div class="form-group">
+				<div class="label"><tmpl_var _("webui", "ztp_server_label_text")></div>
+				<div class="input" id="serverURL"><tmpl_var serverURL></div>
+			</div>
+			<div class="form-group">
+				<div class="label"><tmpl_var _("webui", "ztp_keep_alive_label_text")></div>
+				<div class="input" id="keepAliveInterval"><tmpl_var keepAliveInterval></div>
+			</div>
+			<div class="form-group">
+				<div class="label"><tmpl_var _("webui", "ztp_cpe_name_label_text")></div>
+				<div class="input" id="cpeName"><tmpl_var cpeName></div>
+			</div>
+			<div class="form-group">
+				<div class="label"><tmpl_var _("webui", "ztp_tenant_name_label_text")></div>
+				<div class="input" id="tenantName"><tmpl_var tenantName></div>
+			</div>
+			<div class="form-group">
+				<div class="label"><tmpl_var _("webui", "ztp_mac_address_label_text")></div>
+				<div class="input" id="macAddress"><tmpl_var macAddress></div>
+			</div>
+		</div>
+		<div class="ig_row">
+			<h3 class="sectionHead"><tmpl_var _("webui", "ztp_status_label_text")></h3>
+			<div class="form-group">
+				<div class="ztp_container">
+					<ul id="progressBar" class="progressbar">
+						<tmpl_foreach ztpStatusList as item>
+							<li data-state="<tmpl_var ztpState>" <tmpl_if item.__first__>class='active'</tmpl_if> <tmpl_if item.__last__>class='done'</tmpl_if>>
+								<tmpl_var (item.__index__ + 1)>
+							</li>
+						</tmpl_foreach>
+					</ul>
+				</div>
+			</div>
+			<div class="form-group">
+				<ol id = "statusElements" type="1">
+					<tmpl_foreach ztpStatusList as item>
+						<li data-state = "<tmpl_var ztpState>" <tmpl_if item.__first__>class='active'</tmpl_if> <tmpl_if item.__last__>class='done'</tmpl_if>>
+							<tmpl_var (item.__index__ + 1)>.&nbsp;<tmpl_var item.ztpStateStr>&nbsp;<span id="localTime<tmpl_var (item.__index__ + 1)>"></span>
+						</li>
+						<p id="errorStr<tmpl_var (item.__index__ + 1)>" class="error" style="display:none;"></p>
+						<p id="errorExtStr<tmpl_var (item.__index__ + 1)>" class="error" style="display:none;"></p>
+					</tmpl_foreach>
+				</ol>
+			</div>
+		</div>
+	</div>
+</fieldset>
+

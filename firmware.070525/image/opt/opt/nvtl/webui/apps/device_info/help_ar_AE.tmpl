@@ -1,0 +1,45 @@
+<div id="device_info">
+	<h1><tmpl_udf GET_PO_TEXT("device_info_menu_text", gProductName)></h1>
+						
+	<h3><tmpl_var truncate(_("webui", "device_info_manufacturer_label"), (size(_("webui", "device_info_manufacturer_label")) - size(":")))></h3>
+		<p>الشركة المصنعة لجهاز <tmpl_var _("webui", "webui_product_name")> هذا.</p>
+	<h3><tmpl_var truncate(_("webui", "device_info_model_label"), (size(_("webui", "device_info_model_label")) - size(":")))></h3>
+		<p>اسم ورقم الطراز الرسمي لهذا الجهاز.</p>
+			
+	<h3><tmpl_var truncate(_("webui", "device_info_global_os_version_label"), (size(_("webui", "device_info_global_os_version_label")) - size(":")))></h3>
+	<p>إصدار البرنامج المثبت حاليًا. هذا هو رقم الإصدار الرئيسي. تتعلق معلومات الإصدار التالية بمكونات البرامج المختلفة.</p>
+	<tmpl_if showSDMVersion>
+		<h3><tmpl_var truncate(_("webui", "device_info_global_sdm_version_label"), (size(_("webui", "device_info_global_sdm_version_label")) - size(":")))></h3>
+		<p>يتعلق رقم الإصدار هذا بمكون إدارة الجهاز. يتم تحديث مكون برنامج إدارة الجهاز تلقائيًا عند الحاجة.</p>
+	</tmpl_if>
+	<div class="blockgroup">
+		<tmpl_if showMifiOsVersion>
+			<h4><tmpl_var truncate(_("webui", "device_info_os_version_label"), (size(_("webui", "device_info_os_version_label")) - size(":")))></h4>
+			<p>هذا هو رقم الإصدار لنظام التشغيل ومكوناته.</p>
+		</tmpl_if>
+			<h4><tmpl_var truncate(_("webui", "device_info_modem_version_label"), (size(_("webui", "device_info_modem_version_label")) - size(":")))></h4>
+			<p>بالنسبة لمكون مودم 4G، هذا هو إصدار البرنامج الثابت (البرنامج) المثبت حاليًا.</p>
+		<tmpl_if showWifiFwVersion>
+			<h4>إصدار البرامج الثابتة لشبكة Wi-Fi</h4>
+			<p>بالنسبة لمكون Wi-Fi، هذا هو إصدار البرنامج الثابت (البرنامج) المثبت حاليًا.</p>
+		</tmpl_if>
+		<tmpl_if showWebUiVersion>
+			<h4><tmpl_var truncate(_("webui", "device_info_web_ui_version_label"), (size(_("webui", "device_info_web_ui_version_label")) - size(":")))></h4>
+			<p>رقم إصدار واجهة الويب Jetpack.</p>
+		</tmpl_if>
+		<tmpl_if showAppVersion>
+                        <p>
+                                <h4><tmpl_var truncate(_("webui", "device_info_app_version_label"), (size(_("webui", "device_info_app_version_label")) - size(":")))></h4>
+                                The app version currently installed.
+                        </p>
+                </tmpl_if>
+		<tmpl_if showLcdVersion>
+			<h4><tmpl_var truncate(_("webui", "device_info_lcd_ui_version_label"), (size(_("webui", "device_info_lcd_ui_version_label")) - size(":")))></h4>
+			<p>رقم إصدار البرنامج الذي يتحكم في شاشة الجهاز وتفاعل المستخدم مع محتوى الشاشة.</p>
+		</tmpl_if>
+		<h4><tmpl_var truncate(_("webui", "device_info_pri_version_label"), (size(_("webui", "device_info_pri_version_label")) - size(":")))></h4>
+			<p>يحدد هذا إصدار التهيئة المطبق على هذا الجهاز حاليًا.</p>
+	</div>
+
+</div>
+	

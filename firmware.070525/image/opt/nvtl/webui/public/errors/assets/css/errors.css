@@ -1,0 +1,237 @@
+html {
+	cursor: default;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	-moz-tab-size: 4;
+	tab-size: 4;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	word-break: break-word;
+	text-rendering: optimizeLegibility;
+  }
+  
+  @-moz-document url-prefix() {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+	  font-weight: normal;
+	}
+  }
+  
+  @font-face {
+	font-family: "MyriadPro-Regular";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/assets/fonts/MyriadPro-Regular.eot");
+	src: url("/assets/fonts/MyriadPro-Regular.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/MyriadPro-Regular.woff") format("woff"), url("/assets/fonts/MyriadPro-Regular.ttf") format("truetype"), url("/assets/fonts/MyriadPro-Regular.svg#MyriadPro-Regular") format("svg");
+  }
+  
+  @font-face {
+	font-family: "NMyriadPro-Bold";
+	font-weight: normal;
+	font-style: normal;
+	src: url("/assets/fonts/MyriadPro-Bold.eot");
+	src: url("/assets/fonts/MyriadPro-Bold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/MyriadPro-Bold.woff") format("woff"), url("/assets/fonts/MyriadPro-Bold.ttf") format("truetype"), url("/assets/fonts/MyriadPro-Bold.svg#NMyriadPro-Bold") format("svg");
+  }
+  
+  body {
+	background: #ffffff;
+	color: #000000;
+	font-family: "MyriadPro-Regular", "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+	font-size: 0.875rem;
+	line-height: 0.9375rem;
+  }
+  
+  body.error_page #main {
+	max-width: 1440px;
+	position: relative;
+	margin: 0 auto;
+  }
+  
+  body.error_page #main #app_container #app_inner {
+	max-width: 1440px;
+  }
+  
+  body.error_page #main #app_container #app_inner #app_content {
+	width: 80%;
+	margin: 20px auto;
+  }
+  
+  body.error_page #main #app_container #app_inner #app_content h2 {
+	font-size: 1.57em;
+	margin: 17px auto;
+	line-height: 35px;
+	font-weight: bold;
+	border-bottom: 2px solid #0082ca;
+	padding: 4px 0px;
+  }
+  
+  #header {
+	border-bottom: 1px solid grey;
+  }
+  
+  #header_inner {
+	position: relative;
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 32px 15px;
+	min-height: 107px;
+  }
+  
+  #header_inner h3.productName,
+	#header_inner h3.productNumber {
+	font-size: 16px;
+	position: absolute;
+	bottom: 16px;
+	left: 190px;
+	color: #747676;
+	white-space: nowrap;
+  }
+  
+  #carrier_logo > img {
+	display: block;
+  }
+  
+  .fixed-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+  }
+  
+  #footer {
+	margin-top: 10px;
+	border-top: 1px solid grey;
+	padding-top: 5px;
+	position: absolute !important;
+	width: 100%;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	margin: auto;
+  }
+  
+  #footer div {
+	-webkit-align-self: center;
+	-ms-flex-item-align: center;
+	-ms-grid-row-align: center;
+	align-self: center;
+  }
+  
+  .footer_inner {
+	width: 100%;
+	max-width: 1440px;
+	margin: auto;
+	padding: 0px 15px;
+	box-sizing: border-box;
+  }
+  
+  .footer .col {
+	float: left;
+	text-align: center;
+  }
+  
+  .footer .logo_device {
+	max-width: 180px !important;
+  }
+  
+  .footer .copyright {
+	width: calc(100% - 315px) !important;
+  }
+  
+  .footer .mifi_device {
+	max-width: 135px !important;
+  }
+  
+  .footer a#inseegoUrl {
+	font-weight: 400;
+	color: #000;
+	text-decoration: none;
+	display: inline-block;
+  }
+  
+  .footer a#inseegoUrl:hover {
+	border-bottom: 1px solid #0088ca;
+  }
+  
+  .footer a#inseegoUrl:active,
+  .footer a#inseegoUrl:visited {
+	color: #000 !important;
+	text-decoration: none;
+  }
+  
+  a.gohome {
+	background: none;
+	border-bottom: none;
+	padding: 5px 10px;
+	color: white;
+	background-color: #0088ca;
+	display: inline-block;
+	text-decoration: none;
+  }
+  
+  @media screen and (max-width: 768px) {
+	#footer {
+	  position: relative !important;
+	}
+	.footer .logo_device,
+	.footer .copyright,
+	.footer .mifi_device {
+	  max-width: inherit !important;
+	  width: 100% !important;
+	  line-height: inherit;
+	  text-align: center !important;
+	  display: block !important;
+	  padding-top: inherit !important;
+	}
+	.footer .mifi_device {
+	  margin-bottom: 10px;
+	}
+	.footer #inseegoLogo,
+	.footer #powered {
+	  float: none !important;
+	}
+	.footer p {
+	  margin: 2px auto;
+	}
+  }
+  
+  .clearfix:before,
+  .clearfix:after {
+	content: "";
+	display: table;
+  }
+  
+  .clearfix:after {
+	clear: both;
+  }
+  
+  .clearfix {
+	zoom: 1;
+  }
+  
+  
+  
+  
+  :lang(ar) * {
+	direction: rtl;
+  }
+  
+  :lang(ar) #header_inner h3.productName,
+  :lang(ar) #header_inner h3.productNumber {
+	right: 190px;
+	bottom: 6px;
+	white-space: nowrap;
+  }
+  
+  :lang(ar) .footer .col {
+	float: right;
+	text-align: center;
+  }
+  

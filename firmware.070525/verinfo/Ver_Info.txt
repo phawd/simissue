@@ -1,0 +1,23 @@
+{
+    "Image_Build_IDs": {
+        "aop": "AOP.HO.3.3-00046-OLYMPICAAAAANAZO-1",
+        "apps": "LE.UM.6.3.6.r1-02300-SDX65.0-1",
+        "boot": "BOOT.MXF.1.1.1-00166-Olympic-1.562469.1",
+        "btfm": "BTFW.HSP.2.1.0-00468-PATCHZ-2",
+        "btfm_hsp": "BTFW.HSP.2.0.0-00610-HSP_PATCHZ-1",
+        "common": "Olympic.LE.1.3.r1-00297-NBOOT.CPE.PINE.PROD-1.562469.1",
+        "glue": "GLUE.OLYMPIC_LE.1.3-00072-NOOP_TEST-1",
+        "lnx_host": "LE.LNXHOSTSW.1.0-05600-LNXHOSTSW.0-1",
+        "modem": "MPSS.DE.3.0-02244-OLYMPIC_GENALL_PACK-1",
+        "tz": "TZ.FU.5.15-00065-OLYMPICAAAAANAZT-1",
+        "tz_apps": "TZ.APPS.1.15-00034-OLYMPICAAAAANAZT-1",
+        "wlan_hsp": "WLAN.HSP.1.1.3-00259-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1",
+        "wlan_pine": "WLAN.SDX_PINE.1.1-00030-QCAHKSWPL_SILICONZ-1"
+    },
+    "Metabuild_Info": {
+        "Meta_Build_ID": "Olympic.LE.1.3.r1-00297-NBOOT.CPE.PINE.PROD-1.562469.1",
+        "Product_Flavor": "[None]",
+        "Time_Stamp": "2023-02-15 17:33:11"
+    },
+    "Version": "1.0"
+}

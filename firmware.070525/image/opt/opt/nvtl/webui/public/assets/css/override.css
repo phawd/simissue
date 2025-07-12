@@ -1,0 +1,790 @@
+/* Use this Stylesheet to override */
+
+html[dir="rtl"] a.helpLink,
+html.rtl a.helpLink {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+html.rtl #internetStatusIP6Address {
+    unicode-bidi: plaintext;
+    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+    #smsInbox td span.smsMobile {
+        display: block !important;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+
+    #smsInbox thead {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #smsInbox td span.smsMobile {
+        display: none !important;
+    }
+
+    #smsInbox thead {
+        display: table-header-group;
+    }
+
+    #smsInbox th {
+        white-space: nowrap;
+    }
+}
+
+#statusBar_battery_grp {
+    display: none !important;
+}
+
+#statusBar_tech.tech_4glte_plus,
+#mobile_statusBar_tech.tech_4glte_plus {
+    width: 25px;
+    background-position: -670px -100px;
+}
+.loading {
+    background-position: right;
+}
+
+html[dir="rtl"] .loading{
+background-position: left;
+}
+
+#status_logs .help {
+    display: block;
+    padding: 0px;
+}
+
+#settings_virtual #pageHeadCol + a.helpLink {
+	display: none;
+}
+
+/* Dropdown Menu fix */
+:lang(en) .sub_menu {
+  max-width: 115px;
+}
+:lang(es) .sub_menu {
+  max-width: 190px;
+}
+:lang(ar) .sub_menu {
+  max-width: 120px;
+}
+:lang(fr) .sub_menu {
+  max-width: 180px;
+}
+:lang(da) .sub_menu {
+  max-width: 165px;
+}
+:lang(de) .sub_menu {
+  max-width: 140px;
+}
+:lang(et) .sub_menu {
+  max-width: 155px;
+}
+:lang(fi) .sub_menu {
+  max-width: 165px;
+}
+:lang(it) .sub_menu {
+  max-width: 185px;
+}
+:lang(ja) .sub_menu {
+  max-width: 130px;
+}
+:lang(lv) .sub_menu {
+  max-width: 170px;
+}
+:lang(lt) .sub_menu {
+  max-width: 180px;
+}
+:lang(nn) .sub_menu {
+  max-width: 165px;
+}
+:lang(sv) .sub_menu {
+  max-width: 135px;
+}
+
+
+.button_container.align-field {
+    text-align: left;
+    margin-right: inherit;
+  }
+  
+  .button_container.align-field button {
+    float: inherit !important;
+  }
+  
+  .button_container.align-right {
+    text-align: left;
+  }
+  
+  body#settings_virtual .button_container a.btn.primary {
+    float: left !important;
+  }
+  
+  html.rtl .button_container.align-field {
+  text-align: left;
+  margin-right: inherit;
+  }
+  
+  html.rtl .button_container.align-right {
+    text-align: left;
+  }
+  
+  html.rtl body#settings_virtual .button_container a.btn.primary {
+    float: right !important;
+  }
+  
+  html.rtl #installBtns #installNow {
+    float: left !important;
+  }
+  
+  html.rtl #installBtns #installLater {
+    float: right !important;
+  }
+  
+  div#UpdateStatusText {
+    margin-bottom: 6px;
+  }
+  
+  #sim_manager .form-group .selector,
+#sim_manager .form-group select {
+    display: inline-block;
+    min-width: 280px;
+  }
+  
+  button#configureVpnSettings {
+    float: left;
+  }
+  
+  html.rtl button#configureVpnSettings {
+    float: right;
+  }
+  
+  #macFilterTable #savechanges.primary {
+    width: inherit;
+    float: right;
+  }
+  
+  html.rtl #macFilterTable #savechanges.primary {
+    width: inherit;
+    float: left;
+  }
+  
+
+  
+  #advanced_lan_settings_2 {
+    margin-top: 0px;
+  }
+  
+  #advanced_lan_settings_2 .sectionHead {
+    margin-top: 0px;
+  }
+  
+  #advanced_lan_settings_2 .note {
+    display: none;
+  }
+  
+  #port_forward .button_container.align-right > button:first-child,
+  #port_filtering .button_container.align-right > button:first-child {
+    margin-right: 10px !important;
+  }
+  
+  #status_logs #downLoadLogForm {
+    display: inline;
+    float: inherit;
+  }
+  html.rtl #status_logs #downLoadLogForm {
+    float: inherit  !important;
+  }
+  
+  body.no_status_bar .productName {
+    display: none !important;
+  }
+  
+  span#WifiAdvancedMaxConnections {
+    display: inline-block;
+    padding-top: 4px;
+  }
+  
+  .table.dual-band .col.rb .tooltip {
+    float: none !important;
+  }
+  
+  html[dir="rtl"] #backup_restore .button_container.align-right button:first-child {
+    float: right !important;
+  }
+  html[dir="rtl"] #connectedSaveChanges {
+    float: right;
+  }
+  #connectedSaveChanges {
+    float:left;
+  }
+  
+  form#wifi_guest_settings_form .table .button_container,
+  form#wifi_primary_settings_form .table .button_container
+  { margin: 10px 0px 0px 0px;}
+  
+  .dialog_page form#setPasscodeForm .button_container.align-field button {
+    float: inherit !important;
+    margin-left: 0px!important;
+  }
+
+  html.rtl .dialog_page form#setPasscodeForm .button_container.align-field {
+    text-align: right;
+}
+
+#confirmPasscode, #currentPasscodeTwo, #newPasscode, input.password {
+padding: 5px 35px 5px 5px !important
+}
+
+html.rtl #confirmPasscode, html.rtl #currentPasscodeTwo, html.rtl #newPasscode, html.rtl input.password {
+padding: 5px 5px 5px 35px !important
+}
+
+#newpasswd .input {
+    max-height: 28px !important;
+}
+
+html[dir="rtl"] .button_container button:only-child {
+  float: right !important;
+}
+
+html[dir="rtl"] #backup_restore .button_container.align-right button:first-child {
+  float: right !important;
+}
+
+@media screen and (max-width: 768px) {
+
+  #customer_care #app_inner,
+  html.rtl #customer_care #app_inner {
+    padding: 10px;
+  }
+}
+html.rtl #vpn #vpnConnectDisconnect{
+  margin-left: 0px !important;
+  margin-right: 10px !important;
+  float: none;
+}
+
+div#mnsStatus {
+  line-height: inherit;
+}
+
+.ui-dialog-content .notification .notification_inner > p{
+  max-width: fit-content;
+}
+
+@media screen and (max-width: 1366px) {
+
+  #primaryPwd span>span:first-child,
+  #guestPwd span>span:first-child {
+    width: calc(100% - 30px);
+  }
+}
+
+/* About Spacing */
+#status_current .tier_1_content,
+#status_diagnostics .tier_1_content,
+#device_info .tier_1_content,
+#software_update .tier_1_content,
+#backup_restore .tier_1_content,
+#status_logs .tier_1_content,
+#gps .tier_1_content
+{
+  padding: 0px;
+}
+
+#wwan_settings .tier_2_content,
+#manual_dns .tier_2_content,
+#sim .tier_2_content,
+#firewall .tier_2_content,
+#macfilter .tier_2_content,
+#lan .tier_2_content,
+#port_filtering .tier_2_content,
+#port_forward .tier_2_content,
+#vpn .tier_2_content,
+#inseego_connect .tier_2_content,
+#user_preferences .tier_2_content,
+#device_preferences .tier_2_content,
+#notification_preferences .tier_2_content
+{
+  padding-top: 10px;
+}
+
+#status_current .form-group,
+#status_diagnostics .form-group,
+#device_info .form-group {
+  margin-bottom: 0px
+}
+
+#status_current fieldset,
+#status_diagnostics fieldset,
+#device_info .fieldset {
+  margin-top: 0px;
+}
+
+#status_logs .notification {
+  margin-top: 10px;
+  }
+
+#portandipAddresses .label {
+  padding: 0px;
+}
+
+#portandipAddresses .input span .radio {
+  display: inline-table;
+}
+
+#remote-admin-settings .table>.form-group label,
+#remote-admin-settings .table>.form-group .checker {
+  padding: 0px;
+}
+
+  
+#settings_virtual .warning,  #settings_virtual .warning h2.sectionHead  {
+padding-top:0px !important;
+margin-top:0px
+}
+
+#sim_manager #SIMPinCurrent {
+  /* margin-left: 4px; */
+  width: 282px;
+}
+
+/* DATA USAGE */
+#data_usage #retrieval_status.loading {
+  height: inherit;
+  line-height: 32px;
+}
+
+body#data_usage .form-group .label,
+body#data_usage .form-group .input {
+  padding: 0px !important;
+  line-height: 16px;
+  font-size: normal;
+}
+
+#gps_remote button#editButton {
+   min-width: inherit !important;
+}
+
+#gps_remote button#deleteButton {
+    color: #0082ca;
+    min-width: inherit !important;
+    padding: 0px !important;
+    border: none !important;
+    text-decoration: underline;
+}
+
+table#simManagerTable td,
+table#simManagerTable th {
+        text-align:left;
+}
+
+div #simManagerSpinnerTable {
+        margin-top: 50px;
+        text-align: center;
+}
+
+div #reservedIpSpinnerTable {
+        margin-top: 50px;
+        text-align: center;
+}
+
+div #lanSpinnerTable {
+        margin-top: 50px;
+        text-align: center;
+}
+
+#status_login {
+  border-radius: 0px !important;
+}
+.sub_menu {
+border: 2px solid #D8DADA;
+}
+
+.ui-dialog-titlebar {
+border-bottom: 1px solid #e9e9e9;
+margin-bottom: 15px
+}
+.ui-dialog-title{
+text-decoration: none !important;
+}
+
+/*Disable Change password link */
+li#admin_settings.disable, ul#mobile_navigation_ext .admin_settings.disabled, ul#mobile_navigation_ext .admin_settings.disabled a{
+  pointer-events: none;
+  color: #999;
+  cursor: not-allowed !important;
+}
+
+#inputDefaultPassword {
+  margin-top: 10px;
+}
+
+#sim_manager #simPinInput label{
+  margin-right: 0px;
+}
+#sim_manager #simPinInput input{
+max-width: 282px;
+}
+
+#keyInfo {
+  display:block;
+  padding-left:0px;
+}
+
+#data_usage #data_usage_settings .label, #data_usage #data_usage_settings label  {width: 100% !important; max-width:280px!important; }
+#data_usage #data_usage_settings label:after { content: ":"; }
+#data_usage #data_usage_settings .form-group.lbl-append .input { width: 300px; }
+
+
+#https_support .button_container button.primary {
+  float: left;
+}
+html[dir="rtl"] #https_support .button_container button.primary,
+  html.rtl #https_support .button_container button.primary {
+  float: right;
+}
+
+.tier_1_content > div.notification.app, .tier_2_content > div.notification.app  {
+  margin-top: 10px;
+}
+#connected_devices table#ConnectedDevicesPrimaryTable td:nth-child(3){
+    white-space: nowrap;
+}
+.footer {
+  position: relative !important;
+}
+
+@media screen and (max-width: 480px) {
+	#notification_preferences .col-primary label { 
+		line-height: 29px; 
+	}
+	#notification_preferences label .tooltip { 
+		margin-right: 4px;
+	}
+	#apps_home  .ig_card_footer { 
+		position:relative 
+	}
+}
+
+#advancedSettingsHeading {
+  border-bottom: 2px solid #0082ca;
+}
+
+#reserved_ip button#saveChanges {
+    width: 172px;
+    float: left;
+}
+
+#reserved_ip button#changeLink {
+    margin-left: 30px !important;
+    width: 172px;
+}
+
+#apnProfilesTable th {
+    text-align: left;
+}
+
+button#cancelProfile {
+    margin-left: 200px !important;
+}
+
+button#profileSavechanges,
+button#cancelProfile {
+    width: 150px;
+}
+
+#apn_profiles input {
+  max-width: none;
+}
+
+#apn_profiles .edit, .deleteandreset {
+  color: #0082ca;
+  cursor: pointer;
+  width: max-content;
+}
+
+#lan button#reservedIP {
+    float:left;
+}
+
+.changeLink {
+   text-decoration: underline;
+}
+
+.form-group-lg label, .form-group-lg .label{
+  width: 446px !important;
+}
+.ui-dialog .toggleSettingContainer .form-group label {
+       width: 218px !important;
+}
+.ui-dialog .toggleSettingContainer .form-group .slidebutton-container, .form-group-lg .slidebutton-container {
+	margin-left: 0px;
+}
+.form-group-lg .input + .inline_error,.form-group-lg .inline_error, .form-group-lg input + .inline_error {
+  margin-left: 446px !important;
+  padding: 2px;
+  margin-top: 0px;
+}
+@media screen and (max-width: 640px) {
+.form-group-lg label, .form-group-lg .label, #preferences_form label, #preferences_form .label{
+ width : calc(100% - 85px) !important;
+}
+.form-group-lg .input + .inline_error, .form-group-lg .inline_error, .form-group-lg input + .inline_error {
+  margin-left: inherit !important;
+}
+}
+
+h1#SoftwareInstallTitle {
+	border-bottom: 2px solid #0082ca;
+	padding: 4px 0;
+	margin-top: 20px;
+	text-align: left;
+}
+
+div#SoftwareInstallStatus {
+	margin-top:20px;
+}
+
+@media (min-aspect-ratio: 2/1) {
+    #data_usage #data_plan_wrapper.progress_bar_wrapper {
+        padding-left: 20px !important;
+    }
+}
+
+#tr069_form .form-group label {
+        width: 350px;
+}
+
+#tr069_form .col.rb {
+  text-align:right;
+}
+
+#tr069_form .col.rb label{
+  text-align:center;
+  line-height: 24px;
+  padding-left: 5px
+}
+
+#tr069 h3 {
+        padding-top: 20px;
+}
+
+#tr069 .form-group input + .inline_error {
+        margin-left: 350px !important
+}
+
+#tr069_form .button_container.align-field {^M
+        margin-right: 125px;  ^M
+}
+
+#enableTr069Toggle .slidebutton-container {
+        margin-left:5px;
+}
+
+#tr069 .toggleSettingContainer .form-group label {
+        width:350px;
+}
+
+#WANInterfacesTable th,
+#WanRulesTable th {
+        text-align:left;
+}
+
+#WANInterfacesTable td input.text {
+        width:80% !important;
+}
+
+.ui-dialog-buttonpane button.cancel {
+  margin-left:20px !important;
+  padding: 5px 25px !important;
+}
+
+#gps .ui-dialog-buttonset {
+    float: none;
+}
+
+#data_usage_stats .ig_9 {
+       width:65%;
+}
+
+#data_usage_stats .ig_6 {
+        width:70%;
+}
+
+#reserved_ip table th {
+    text-align: left;
+}
+
+/* 
+ * ZTP Progress bar
+ */
+
+#ztp ul.no-bullets {
+	list-style-type:none;
+}
+
+#ztp .ztp_container {
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+#ztp .progressbar li {
+	float: left;
+	width: 8%;
+	position: relative;
+	text-align: left;
+}
+
+#ztp .progressbar li:before {
+	content:"";
+	width: 20px;
+	height: 20px;
+	display: block;
+	margin: 0 auto 10px -6px;
+	border-radius: 50%;
+	line-height: 27px;
+	background: white;
+	color: #bebebe;
+	text-align: center;
+	font-weight: bold;
+}
+
+#ztp .progressbar {
+	counter-reset: step;
+}
+
+#ztp .progressbar li:after {
+	content: '';
+	position: absolute;
+	width:84%;
+	height: 3px;
+	background: #979797;
+	top: 9px;
+	left: -88%;
+}
+
+#ztp .progressbar li:first-child:after {
+	content: none;
+}
+
+#ztp .progressbar li.prev:before {
+	background: #0082ca;
+}
+
+#ztp .progressbar li.active:before {
+	background: #0082ca;
+}
+
+#ztp .progressbar .done.active:before {
+	background: green !important;
+	position: relative;
+	z-index: 10;
+}
+
+#ztp ol li:first-child {
+	padding-top:40px;
+}
+
+#ztp ol li {
+	padding-top: 10px;
+	color: #979797;
+}
+
+.blink:before,
+#ztp ol li.blink {
+	animation: blinker 5s linear infinite;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0.5;
+	}
+}
+
+
+#ztp ol li.active,
+#ztp ol li.prev {
+    	color: #0082ca;
+    	font-weight:bold;
+    	position: relative;
+   	z-index: 10;
+}
+
+#ztp ol li.error {
+    	color: #b00000;
+    	font-weight: bold;
+    	padding-bottom: 10px;
+}
+
+#ztp .progressbar li.error:before {
+    	background: #b00000;
+    	position: relative;
+    	z-index: 10;
+}
+
+#ztp ol li.done.active {
+    	color:green;
+    	font-weight: bold;
+}
+
+#ztp .progressbar li:before {
+	background: #979797;
+}
+
+#ztp .progressbar li.active:after,
+#ztp .progressbar li.prev:after{
+    	background: #0082ca;
+}
+
+@media screen and (max-width: 1024px) {
+	#ztp .progressbar li {
+		width: 12%;
+	}
+	
+	#ztp .progressbar li:after {
+                width: 86%;
+                left: -90%;
+        }
+}
+
+@media screen and (max-width: 768px) {
+	#ztp .progressbar li {
+		width: 12%;
+	}
+	
+	#ztp .progressbar li:after {
+                width: 80%;
+                left: -85%;
+        }
+}
+
+@media screen and (max-width: 520px) {
+	#ztp .progressbar li {
+		width: 12%;
+	}
+	
+	#ztp .progressbar li:after {
+                width: 68%;
+                left: -78%;
+        }
+}
+
+@media screen and (max-width: 400px) {
+	#ztp .progressbar li {
+		width: 12%;
+	}
+
+	#ztp .progressbar li:after {
+		width: 58%;
+		left: -70%;
+	}
+}
+

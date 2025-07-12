@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Auf diesem Bildschirm werden viele Optionen angezeigt. Darüber können Sie das Verhalten von <tmpl_var _("webui", "webui_product_name")> bedarfsgerecht für Ihre Anforderungen einstellen.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Diese Einstellung bestimmt die Verbindungsart, wenn ein Computer an den USB-C-Anschluss von <tmpl_var _("webui", "webui_product_name_with_suffix")> angeschlossen ist Wählen Sie die gewünschte Option.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Wenn diese Option aktiviert ist, werden Sie (auf dem <tmpl_var _("webui", "webui_product_name")>-Bildschirm) aufgefordert, den gewünschten USB-Modus auszuwählen, wenn eine USB-Verbindung zu einem Computer erkannt wird. Wenn Sie in dieser Eingabeaufforderung eine Auswahl vornehmen, ändert das die obige Einstellung nicht, das wirkt sich nur auf den Modus für die aktuelle USB-Sitzung aus.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>Diese Einstellung bestimmt, wie schnell sich der <tmpl_var _("webui", "webui_product_name_with_suffix")>-Bildschirm nach einer Zeit der Inaktivität abschaltet. Wählen Sie die gewünschte Option.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p>Nach einer Zeit der Inaktivität geht das <tmpl_var _("webui", "webui_product_name")> in den Ruhezustand über. Wählen Sie den gewünschten Zeitraum, nach dem der Ruhezustand beginnen soll.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p>Das <tmpl_var _("webui", "webui_product_name")> kann nach einer gewissen Zeit der Inaktivität herunterfahren. Wählen Sie den gewünschten Zeitraum, nach dem das Gerät herunterfahren soll.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>Mit dieser Funktion können Sie Geräte wie ein Telefon oder Bluetooth-Headset über den <tmpl_var _("webui", "webui_product_name_with_suffix")>-Akku aufladen. Schließen Sie einfach das USB-Kabel des Geräts an den universellen Ladeanschluss von <tmpl_var _("webui", "webui_product_name_with_suffix")> an.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>In diesem Feld wird der aktuelle Status der Funktion „Universelle Aufladung“ angezeigt. Mögliche Statuswerte sind:</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> - ein externes Gerät wird über den Akku von <tmpl_var _("webui", "webui_product_name_with_suffix")> geladen</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> - wenn ein externes Gerät an den universellen Ladeanschluss von <tmpl_var _("webui", "webui_product_name_with_suffix")> angeschlossen ist, wird es aufgeladen</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> - der <tmpl_var _("webui", "webui_product_name_with_suffix")>-Akku zu schwach ist, um weitere Geräte aufzuladen</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Wenn „EIN“ eingestellt ist, können die verfügbaren Einstellungen über den <tmpl_var _("webui", "webui_product_name_with_suffix")>-Bildschirm geändert werden. Dazu gehört die Zurücksetzung auf die Werkseinstellung. Dabei werden alle Einstellungen auf die werkseitigen Standardwerte zurückgesetzt.</p>
+		<p>Wenn „AUS“ eingestellt ist, können über den <tmpl_var _("webui", "webui_product_name_with_suffix")>-Bildschirm keine Änderungen vorgenommen werden.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Wenn „EIN“ eingestellt ist, ist die Reset-Taste an der Unterseite von <tmpl_var _("webui", "webui_product_name")> funktionsfähig. Damit lassen sich alle Einstellungen auf die werkseitigen Standardwerte zurücksetzen.</p>
+	<p>Wenn „AUS“ eingestellt ist, funktioniert die Reset-Taste nicht. So wird verhindert, dass ein Benutzer die Einstellungen durch einen Reset ändert.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Die Ethernet-Anzeige wird in der Statusleiste angezeigt, wenn der Ethernet-Anschluss aktiviert ist. Andernfalls ist sie ausgeblendet.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

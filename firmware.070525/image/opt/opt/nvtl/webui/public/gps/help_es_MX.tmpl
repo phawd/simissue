@@ -1,0 +1,58 @@
+<div id="gps_status">
+	<h1><tmpl_var _("webui", "gps_status_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Este dispositivo incorpora un receptor de GPS. El receptor del GPS puede determinar su ubicación actual. Utilice esta pestaña para habilitar el GPS, ver la información de la ubicación actual y habilitar la transmisión de GPS a dispositivos con la función GPS a través de Wi-Fi.
+	</p>
+
+	<h2><tmpl_var _("webui", "gps_status_gps_settings_sub_heading_text")></h2>
+
+	<tmpl_if GPSEnableShow>
+		<h3><tmpl_var _("webui", "gps_status_enable_label")></h3>
+		<p>
+			Este ajuste habilita o deshabilita la radio GPS en su dispositivo. Cuando el control deslizante de ENCENDIDO/APAGADO está ENCENDIDO, el dispositivo adquiere el GPS y pone los datos de ubicación del GPS a disposición en esta página. Aparece un acuerdo de GPS; haga clic en Confirmar para continuar. Cuando está APAGADO, no hay datos de GPS disponibles.
+		</p>
+
+		<h3><tmpl_udf GET_PO_TEXT("gps_status_startup_state_label", gProductName)></h3>
+		<p>
+			Esta configuración determina cuándo se desactivará el receptor de GPS una vez que esté activado. Si está <b>ENCENDIDO</b>, el receptor de GPS se desactivará una vez que se apague el dispositivo. Deberá volver a encenderlo la próxima vez que necesite el receptor de GPS.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if GPSOverWiFiEnableShow>
+		<tmpl_if GPSPortNumberShow>		
+			<h2><tmpl_var _("webui", "gps_status_enable_sub_header_text")></h2>
+		
+			<h3><tmpl_var truncate(_("webui", "gps_status_gps_over_wifi_label"), (size(_("webui", "gps_status_gps_over_wifi_label")) - size(":")))></h3>
+			<p>
+				GPS a través de Wi-Fi le permite compartir la información de ubicación con dispositivos conectados. Los datos de GPS sin procesar se proporcionan en forma de un flujo de texto de la Asociación Nacional de Electrónica Marina (National Marine Electronics Association, NMEA). Puede usar aplicaciones de terceros para utilizar o reenviar los datos de GPS a un servidor remoto. Cuando el control deslizante de <b>ENCENDIDO/APAGADO</b> está <b>ENCENDIDO</b>, la información de ubicación <b>NO</b> se comparte.
+			</p>
+
+			<h3><tmpl_var truncate(_("webui", "gps_status_port_number_label"), (size(_("webui", "gps_status_port_number_label")) - size(":")))></h3>
+			<p>
+				El número de puerto TCP utilizado para establecer una conexión con el dispositivo y obtener datos de GPS sin procesar para la función GPS a través de Wi-Fi. A menos que tenga un buen motivo para hacerlo, no debe modificar el número de puerto. Los valores de puerto aceptables están entre 1024 y 65535.
+			</p>
+		</tmpl_if>
+	</tmpl_if>
+
+	<tmpl_if GPSDownloadDriversShow>
+		<h3><tmpl_var _("webui", "gps_status_wifi_driver_download_link")></h3>
+		<p>
+			Para la función de GPS a través de Wi-Fi, si desea acceder al flujo de datos de GPS desde un puerto COM virtual en lugar del puerto TCP (arriba), use el botón Descargar controlador para descargar e instalar un controlador de GPS para la plataforma Windows. Este controlador crea un puerto NMEA virtual, obtiene datos de GPS del dispositivo y pone estos datos de GPS a disposición de las aplicaciones de terceros compatibles con NMEA.
+		</p>
+	</tmpl_if>
+
+	<h2><tmpl_var _("webui", "gps_status_map_section_header_text")></h2>
+	<h3><tmpl_var truncate(_("webui", "gps_status_latitude_label"), (size(_("webui", "gps_status_latitude_label")) - size(":")))></h3>
+	<p> La Latitud para el último punto fijo de ubicación. </p>
+
+	<h3><tmpl_var truncate(_("webui", "gps_status_longitude_label"), (size(_("webui", "gps_status_longitude_label")) - size(":")))></h3>
+	<p> La Longitud para el último punto fijo de ubicación. </p>
+
+	<h3><tmpl_var truncate(_("webui", "gps_status_altitude_label"), (size(_("webui", "gps_status_altitude_label")) - size(":")))></h3>
+	<p> La Altitud para el último punto fijo de ubicación. </p>
+
+	<h3><tmpl_var truncate(_("webui", "gps_status_accuracy_label"), (size(_("webui", "gps_status_accuracy_label")) - size(":")))></h3>
+	<p> Es una medida de la precisión de la posición horizontal obtenida por el receptor de GPS. </p>
+</div>
+

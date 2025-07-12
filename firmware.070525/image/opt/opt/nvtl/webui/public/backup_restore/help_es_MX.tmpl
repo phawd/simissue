@@ -1,0 +1,53 @@
+<!-- Backup and Restore -->
+<div id="backup_restore">
+        <h1><tmpl_var _("webui", "backup_restore_menu_text")></h1>
+        <h2>Descripción general</h2>
+	<p> 
+		Use esta pestaña para hacer una copia de seguridad de los ajustes actuales del dispositivo en un archivo de su computadora, restaurar (cargar) un archivo de configuración guardado previamente, restablecer el enrutador a los valores predeterminados de fábrica o reiniciar el enrutador.
+	</p>
+
+        <h2><tmpl_var _("webui", "backup_restore_the_backup_sub_header_text")></h2>
+        <h3>Contraseña del administrador</h3>
+        <p>
+                 Para hacer una copia de seguridad de los ajustes actuales del dispositivo en un archivo de su computadora, ingrese su <b>contraseña del administrador</b> en el campo Contraseña del administrador.
+        </p>
+	<p>
+		La contraseña del administrador por defecto está impresa en la parte inferior del dispositivo. Si cambió la contraseña del administrador y no la recuerda, seleccione <b>Iniciar sesión</b> en la esquina superior derecha, haga clic en <b>Olvidé contraseña del administrador</b> y responda la pregunta de seguridad que se muestra. Se muestra la contraseña del administrador actual.
+	</p>
+	<p>
+		<strong>NOTA:</strong> Si ingresa una contraseña incorrecta cinco veces seguidas, quedará bloqueado fuera de la interfaz de usuario web del administrador. Para desbloquear la contraseña, reinicie el dispositivo.
+	</p>
+        
+	<h3><tmpl_var _("webui", "backup_restore_backup_now_button")></h3>
+	<p>
+		Haga clic en el botón <b>Descargar</b>. El archivo se descarga automáticamente a la carpeta Descargas predeterminada en el dispositivo conectado a la interfaz de usuario web del administrador. Este archivo de configuración contiene todos los ajustes del dispositivo
+	</p>
+	<p class="note">
+        	<strong>Nota:</strong> El archivo de copia de seguridad no se puede editar ni ver en el sistema descargado ni en ningún otro dispositivo. Este archivo solo se puede restaurar para este modelo de <tmpl_var _("webui", "webui_product_name")>, y los ajustes solo se pueden ver o cambiar mediante la interfaz de usuario web.
+	</p>
+
+	<h2><tmpl_var _("webui", "backup_restore_the_restore_sub_header_text")></h2>
+	<p>
+		<strong>CUIDADO</strong> Restaurar ajustes (al cargar un archivo de configuración) cambia TODOS los ajustes existentes para que coincidan con el archivo de configuración. Esto puede cambiar los ajustes actuales del Wi-Fi y generar la interrupción de todas las conexiones existentes al dispositivo y la desconexión de la interfaz de usuario web del administrador.
+	</p>
+
+	<p>
+		Para restaurar los ajustes del sistema desde un archivo de ajustes de copia de seguridad, ingrese la contraseña del administrador en el campo <b>Contraseña del administrador</b>.
+	</p>
+
+	<p>Haga clic en <b>Examinar</b> y elija un archivo de ajustes de copia de seguridad para restaurar.</p>
+	
+	<p><strong>NOTA:</strong> Solo puede restaurar un archivo creado para este modelo de dispositivo.</p>
+
+	<p>Haga clic en el botón <b>Restaurar ahora</b>.</p>
+
+	<h2><tmpl_var _("webui", "backup_restore_factory_restore_sub_header_text")></h2>
+	<p>Este botón restablece todos los ajustes a los valores predeterminados de fábrica.</p>
+	<p>
+		<strong>ADVERTENCIA </strong> Esto activa un reinicio y puede cambiar los ajustes actuales del Wi-Fi y generar la interrupción de todas las conexiones existentes al dispositivo y la desconexión de la interfaz de usuario web del administrador.
+	</p>
+	
+	<h2><tmpl_var _("webui", "restart_jetpack_text")></h2>
+	<p>Este botón apaga y enciende su <tmpl_var _("webui", "webui_product_name")>.</p>
+</div>
+ <!-- id="backup_restore" -->

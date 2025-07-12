@@ -1,0 +1,47 @@
+<!-- Vpn -->
+<div id="vpn">
+	<h1><tmpl_var _("webui", "vpn_menu_text")></h1>
+	<h2>Descripción general</h2>
+        <p>Utilice esta página para establecer conexiones seguras a redes remotas a través de una red pública utilizando OpenVPN.</p>
+	<p>
+		<strong>NOTA: </strong>Cuando se establece una conexión OpenVPN, los ajustes de filtrado y enrutamiento de puertos no están vigentes, ya que el tráfico de todos los dispositivos conectados pasa por el túnel OpenVPN. 
+        </p>
+       
+	<h2><tmpl_var _("webui", "vpn_connection_sub_head_text")></h2>
+	<h3><tmpl_var truncate(_("webui", "vpn_setup_files_label"), (size(_("webui", "vpn_setup_files_label")) - size(":")))></h3>
+	<p>Arrastre y suelte los archivos de configuración de OpenVPN que le suministró su proveedor de OpenVPN en el área de carga de archivos.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_username_label"), (size(_("webui", "vpn_username_label")) - size(":")))></h3>
+	<p>Ingrese su nombre de usuario de la conexión OpenVPN aquí.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_password_label"), (size(_("webui", "vpn_password_label")) - size(":")))></h3>
+	<p>Ingrese la contraseña de la conexión OpenVPN aquí.</p>
+	
+	<h3><tmpl_var truncate(_("webui", "vpn_auto_connect_label"), (size(_("webui", "vpn_auto_connect_label")) - size(":")))></h3>
+	<p>
+		Cuando el control deslizante de ENCENDIDO/APAGADO está ENCENDIDO, el túnel VPN se establecerá automáticamente cada vez que se establezca una conexión a Internet. Cuando está APAGADO, la conexión VPN debe establecerse manualmente.
+	</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_clear_all_settings_button_text"), (size(_("webui", "vpn_clear_all_settings_button_text")) - size(":")))></h3>
+	<p>
+		Haga clic en el botón Borrar todos los ajustes de la VPN para eliminar archivos de VPN, registros de VPN y restablecer todos esos ajustes al estado original no configurado.
+	</p>
+
+	<p>Haga clic en <b>Guardar cambios y conectarse</b> para guardar sus configuraciones y conectarse al servidor VPN.</p>
+
+	<h2><tmpl_var _("webui", "vpn_connection_sub_heading_text")></h2>
+	<p>Esta sección es visible una vez que haya configurado su dispositivo para OpenVPN.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_connection_status_label"), (size(_("webui", "vpn_connection_status_label")) - size(":")))></h3>
+	<p>Indica el estado de la conexión OpenVPN.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_connection_time_label"), (size(_("webui", "vpn_connection_time_label")) - size(":")))></h3>
+	<p>La duración de la conexión OpenVPN actual.</p>
+
+	<h3><tmpl_var _("webui", "vpn_connect_button_text")></h3>
+	<p>Use este botón para conectar la OpenVPN.</p>
+
+	<h3><tmpl_var truncate(_("webui", "vpn_view_log_button_text"), (size(_("webui", "vpn_view_log_button_text")) - size(":")))></h3>
+	<p>Use este botón para ver los archivos de registro de OpenVPN.</p>
+</div>
+ <!-- id="Vpn" -->

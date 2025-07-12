@@ -1,0 +1,180 @@
+<!-- Port Forwarding -->
+<div id="port_forward">
+	<h1>Port Forwarding</h1>
+	<h2>Overview</h2>
+	<p>
+		Port Forwarding allows specific applications to be forwarded to a particular device connected to your network. Normally, the built-in firewall blocks incoming traffic from the Internet. Port forwarding allows Internet users to access any server you are running on your computer, such as a Web, FTP, or Email server.
+		<p><strong>Important:</strong> Port forwarding creates a security risk and should not be turned on unless it is required.
+	</p>
+	<p>
+		<strong>NOTE:</strong> To configure Port Forwarding, you need a static IP address assigned to your line of service. Contact your service provider to set up a line of service for static IP.</p>
+	<p>
+		Some mobile networks provide you with an IP address on their own network rather than an Internet IP address. In this case, Port Forwarding cannot be used, because Internet users cannot reach your IP address.
+	</p>
+
+	<h2><tmpl_var _("webui", "adv_port_forward_subheader_text")></h2>
+	<h3><tmpl_var _("webui", "adv_port_forward_menu_text")></h3>
+	<p>
+		To turn on port forwarding, move the ON/OFF slider to ON. To turn off port forwarding, so that no inbound traffic is forwarded to a LAN client, move the slider to <b>OFF</b>.
+	</p>
+
+	<h3>Applications</h3>
+	<p>
+		Check the box next to each Port Forwarding application that you want to allow.
+	</p>
+	<p>
+		To forward all inbound WAN traffic on a specific port to a single LAN client, enter the IP address of the target device in the <b>Application IP address</b> field.
+	</p>
+	<p>
+		The following table provides port numbers and protocol information for each port forwarding application listed.
+	</p>
+
+	<table class="portForwardingTable" id="">
+	 	<thead>
+			<tr class="">
+				<th class=""> Application Name</th>
+				<th class="">Port</th>
+				<th class="">TCP*</th>
+				<th class="">STCP*</th>
+				<th class="">UDP*</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td> DNS</td>
+				<td> 53</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> Yes</td>
+			</tr>
+			<tr>
+				<td> FTP Control(command)</td>
+				<td> 21</td>
+				<td> Yes</td>
+				<td> Yes</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> FTP Data Transfer</td>
+				<td> 20</td>
+				<td> Yes</td>
+				<td> Yes</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> HTTP</td>
+				<td> 80</td>
+				<td> Yes</td>
+				<td> Yes</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> HTTPS</td>
+				<td> 443</td>
+				<td> Yes</td>
+				<td> Yes</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> NNTP</td>
+				<td> 119</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> POP3</td>
+				<td> 110</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> POP3S</td>
+				<td> 995</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> Yes</td>
+			</tr>
+			<tr>
+				<td> SMTP</td>
+				<td> 25</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> SecureSMTP</td>
+				<td> 465</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> No</td>
+			</tr>
+			<tr>
+				<td> SNMP</td>
+				<td> 161</td>
+				<td> Assigned</td>
+				<td> No</td>
+				<td> Yes</td>
+			</tr>
+			<tr>
+				<td> Telnet</td>
+				<td> 23</td>
+				<td> Yes</td>
+				<td> No</td>
+				<td> Assigned</td>
+			</tr>
+			<tr>
+				<td> TFTP</td>
+				<td> 69</td>
+				<td> Assigned</td>
+				<td> No</td>
+				<td> Yes</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p><b>Yes</b> indicates the protocol is standardized for the port number.</p>
+	<p><b>No</b> indicates the protocol is standardized for the port number.</p>
+	<p><b>Assigned</b>  indicates the port number is assigned by IANA (Internet Assigned Numbers Authority) for protocol use, but may not be standardized.</p>	
+
+	<h2>Custom Applications</h2>
+	<p>
+		Use the <b>Add custom application</b> button to add a new row to the custom application list. You can add up to ten custom applications. Once defined, these applications can be turned on and off the same way as pre-defined applications.
+	</p>
+	
+	<h3><tmpl_var _("webui", "webui_app_on_text")></h3>
+	<p>Check this box if you want the new application to be able to access the Internet (enabling port forwarding).</p>
+
+	<h3>Application Name</h3>
+	<p>Enter a name for the custom application.</p>
+
+	<h3>IP Address</h3>
+	<p>
+		If you want to limit service for the application to a single connected device, enter the IP address of the target device. To find the IP address of a device, go to the Connected Devices page. <strong>NOTE:</strong> To ensure the device you are forwarding to does not have a different IP address after a reboot, either statically assign the IP address on the client device or set up a DHCP reservation.		
+	</p>
+
+	<h3>Port Type</h3>
+	<p>Select Translate from the drop-down list.</p>
+	
+	<h3>Port Numbers</h3>
+	<p>Use the From and To fields to specify the range of port numbers to be forwarded.</p>
+	<p><strong>NOTE:</strong> If the application uses a single port instead of a range, type the same value in both the From and To fields.</p>
+	<p>
+		For translate ports, use the Ext. and Int. to specify ports. NOTE: Forwarding takes inbound traffic on a port to the same port on a client device. Use translate ports to send traffic to a different port on the client device. For example, instead of having inbound traffic on port 1234 forward to port 1234 of the client device, you can have it forward to port 5678.
+	</p>
+	
+	<h3>Protocol</h3>
+	<p>
+		Select the protocol used by the port range from the drop-down list (TCP, UDP, or both).
+	</p>
+		
+	<h3>Delete</h3>
+	<p>
+		Check this box to delete a custom application. <strong>NOTE:</strong> Click on the Port Forwarding tab again to remove deleted custom applications from view on the screen.
+	</p>
+	
+	<p>Click <b>Save Changes</b> to save any changes made to the custom applications.</p>
+</div>
+<!-- id="port_forward" -->
+

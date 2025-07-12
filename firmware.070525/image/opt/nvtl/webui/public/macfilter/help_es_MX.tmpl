@@ -1,0 +1,31 @@
+<!-- MAC Filter -->
+<div id="macfilter">
+	<h1><tmpl_var _("webui", "adv_macfilter_menu_text")></h1>
+	<h2>Descripción general</h2>
+	<p>
+		El filtro MAC permite que solo los dispositivos seleccionados accedan a la red <tmpl_var _("webui", "webui_product_name")> a través de DHCP. Por defecto, el filtro MAC está desactivado. Use esta pestaña para activar el filtro MAC y especificar el acceso al dispositivo.
+	</p>
+
+	<h2><tmpl_var _("webui", "adv_macfilter_menu_text")></h2>	
+	<p>
+		Para usar el filtro MAC, seleccione los dispositivos de la lista de dispositivos que desea que se les permita conectarse a la red principal y mueva el control deslizante de <b>Filtro MAC ENCENDIDO/APAGADO</b> a <b>ENCENDIDO</b>. Haga clic en <b>Guardar cambios</b>.
+	</p>
+	
+	<p>
+		<strong>ADVERTENCIA!</strong> La activación del filtro MAC desconecta inmediatamente todos los dispositivos que no están incluidos en el filtro desde la red. 
+	</p>
+
+	<p>Esta lista incluye todos los dispositivos conectados actualmente a este dispositivo.</p>
+
+	<h3><tmpl_var _("webui", "adv_macfilter_add_device_button")></h3>
+	<p>
+		Use este botón para agregar un dispositivo a la lista de dispositivos, luego ingrese el nombre del dispositivo y la dirección MAC y elija si desea seleccionar la casilla Filtro de direcciones MAC.
+	</p>
+
+	<h3>Eliminar un dispositivo</h3>
+	<p>Para eliminar un dispositivo de la lista, seleccione su casilla de verificación Eliminar y haga clic en <b>Guardar cambios.</b></p>
+	
+	<h3><tmpl_var _("webui", "adv_macfilter_refresh_button")></h3>
+	<p>Para descartar los cambios no guardados y actualizar la lista, haga clic en <b>Actualizar lista</b> y <b>Confirmar</b></p>
+ </div>
+<!--  macfilter  -->

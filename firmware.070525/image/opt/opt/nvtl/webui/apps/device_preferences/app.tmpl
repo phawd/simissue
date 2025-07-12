@@ -1,0 +1,406 @@
+<script type="text/javascript">
+		var needConfirmMsg = 0;
+		/* <![CDATA[ */
+		var needConfirmMsg = 0;
+		var usbmodeVal = '<tmpl_var usbMode>';
+		var usbmodeChanged = false;
+		<tmpl_if IN_SET(usbPromptEnabled,"on")>
+			var usbPromptVal = 1;
+		<tmpl_else>
+			var usbPromptVal = 0;
+		</tmpl_if>
+		function showWarning(text) {
+                            modalPopup.createWindow('<tmpl_var _("webui", "ethernet_enable_title_text")>', '<p>'+text+'</p>', 430, "auto", [{
+                                text : '<tmpl_var _("webui", "webui_modal_ok_button")>',
+                                className : "primary",
+                                trigger : function() {
+                                    // do nothing
+                                }
+                            }], null, function() {
+                                // do nothing
+                            });
+                        }
+		var usbPromptChanged = false;
+		var deepSleepVal = '<tmpl_var deepSleep>';
+		var deepSleepChanged = false;
+		var screenTimeoutVal = '<tmpl_var screenTimeout>';
+		var screenTimeoutChanged = false;
+		var shutdownTimeVal = '<tmpl_var idleShutdownTime>';
+		var shutdownTimeChanged = false;
+		var universalChargingVal = '<tmpl_var ucThreshold>';
+		var universalChargingChanged = false;
+		var chargingSource = $.uiEnums.CHARGINGSOURCE_NONE;
+		var isEthernetEnablePopupShown = false;
+		var isEthernetEnabled = '<tmpl_var ethernetportStatus>';
+		var isRestartingPopupShown = false;
+		var restartTimer = null;
+		var restartTime = 30;
+		$(function()
+		{	
+
+			$("input[id=usbModeChange]").val(0);
+			// Bind and Initialize Toggle Button.
+			if (jQuery.fn.slideButton) {
+				$("#displaySettingsEnabled").slideButton("ajaxToggle", {
+					checkUrl : "<tmpl_udf GET_URI('preferences_display_settings_enable')>",
+					uncheckUrl : "<tmpl_udf GET_URI('preferences_display_settings_disable')>",
+					data : {
+						gSecureToken : "<tmpl_var gSecureToken>"
+					}
+				});
+
+				$("#batteryPreservationModeEnabled").slideButton("ajaxToggle", {
+					checkUrl : "<tmpl_udf GET_URI('preferences_battery_preservation_mode_enable')>",
+					uncheckUrl : "<tmpl_udf GET_URI('preferences_battery_preservation_mode_disable')>",
+					data : {
+						gSecureToken : "<tmpl_var gSecureToken>"
+					}
+				});
+				
+				$("#hardwareResetEnabled").slideButton("ajaxToggle", {
+					checkUrl : "<tmpl_udf GET_URI('preferences_hardware_reset_enable')>",
+					uncheckUrl : "<tmpl_udf GET_URI('preferences_hardware_reset_disable')>",
+					data : {
+						gSecureToken : "<tmpl_var gSecureToken>"
+					}
+				});
+
+				$("#displayEthernetPortEnabled").slideButton("ajaxToggle", {
+					checkUrl : "<tmpl_udf GET_URI('preferences_display_ethernet_touchscreen_enable')>",
+					uncheckUrl : "<tmpl_udf GET_URI('preferences_display_ethernet_touchscreen_disable')>",
+					data : {
+						gSecureToken : "<tmpl_var gSecureToken>"
+					}
+				});
+			}
+
+			$("#usbMode").change(function() {
+				$("input[id=usbModeChange]").val(1);
+				if (usbmodeVal !== this.value) {
+					usbmodeChanged = true;
+				} else {
+					usbmodeChanged = false;
+				}
+			});
+
+			$("#usbPromptEnabled").change(function(){
+				if (((this.checked) && (!usbPromptVal)) || ((!this.checked) && (usbPromptVal))) {
+					usbPromptChanged = true;
+				} else {
+					usbPromptChanged = false;
+				}
+			});
+
+			$("#screenTimeout").change(function(){
+				if (screenTimeoutVal !== this.value) {
+					screenTimeoutChanged = true;
+				} else {
+					screenTimeoutChanged = false;
+				}
+			});
+
+			$("#deepSleep").change(function(){
+				if (deepSleepVal !== this.value) {
+					deepSleepChanged = true;
+				} else {
+					deepSleepChanged = false;
+				}
+			});
+
+			$("#idleShutdownTime").change(function(){
+				if (shutdownTimeVal !== this.value) {
+					shutdownTimeChanged = true;
+				} else {
+					shutdownTimeChanged = false;
+				}
+			});
+
+			$("#ucThreshold").change(function(){
+				if (universalChargingVal !== this.value) {
+					universalChargingChanged = true;
+				} else {
+					universalChargingChanged = false;
+				}
+			});
+			
+			$("#ethernetportenabled").click(function(){
+				if ($("#ethernetportenabled").is(":checked")) 
+                                        showWarning("<tmpl_var _("webui", "ethernet_enable_turns_on")>");
+                        });
+			
+		});
+
+		function undoChange($el) {
+	        if (jQuery.fn.slideButton) $el.slideButton("undo");
+	    }
+
+	    function submitFunction() {
+				document.getElementById("preferences_form").submit();
+			}
+	    
+</script>
+<tmpl_if isHidden>
+	<div class="notification app error">
+		<i class="icon-error"></i>
+		<tmpl_var _("webui", "webui_app_hidden_text")>
+	</div>
+<tmpl_else>
+	<tmpl_if isLocked>
+		<div class="notification app error">
+			<i class="icon-error"></i>
+			<tmpl_var _("webui", "webui_app_locked_text")>
+		</div>
+	</tmpl_if>
+
+	<tmpl_if errorCount>
+		<div class="notification app error">
+			<i class="icon-error"></i>
+			<p><tmpl_var _("webui", "webui_save_code_failed_text")></p>
+		</div>
+	</tmpl_if>
+
+	<tmpl_if gPostSuccess>
+		<div class="notification app success">
+			<i class="icon-success"></i>
+			<span class="boxclose" onclick="this.parentElement.style.display='none';"></span>
+			<p>
+				<tmpl_var _("webui", "webui_save_code_success_text")>
+			</p>
+		</div>
+	</tmpl_if>
+
+	<form id="preferences_form" method="POST" action="<tmpl_udf GET_URI('preferences')>">
+		<div>
+			<input type="hidden" name="gSecureToken" id="gSecureToken" value="<tmpl_var gSecureToken>" />
+			<input type="hidden" name="usbModeChange" id="usbModeChange" value="<tmpl_var usbModeChange>" />
+		</div>
+
+		<div class="table">
+
+					<fieldset id="general" class="first">
+						<tmpl_if usbmodeShow>
+							<div class="form-group form-group-lg">
+								<label>
+										<tmpl_if showToolTip>
+											<div class="tooltip tooltip-help" title="<tmpl_udf GET_PO_TEXT('preferences_usb_mode_help_text', gProductName)>">
+												<tmpl_var _("webui", "webui_inline_help_icon")>
+											</div>
+										</tmpl_if>
+									<tmpl_var _("webui", "preferences_usb_mode_label")>
+								</label>
+								<select name="usbMode" id="usbMode">
+									<tmpl_include "usb_mode_options.tmpl">
+								</select>
+							</div>
+						</tmpl_if>
+
+						<tmpl_if usbPromptShow>
+							<div class="form-group form-group-lg">
+								<label> 
+									<tmpl_if showToolTip>
+										<div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_usb_connection_prompt_help_text')>">
+											<tmpl_var _("webui", "webui_inline_help_icon")>
+										</div>
+									</tmpl_if>
+									<tmpl_var _("webui", "preferences_usb_connection_prompt_label")>
+								</label>
+								<input type="checkbox" name="usbPromptEnabled" id="usbPromptEnabled"<tmpl_if IN_SET(usbPromptEnabled,"on")> checked="checked"</tmpl_if> />
+							</div>
+						</tmpl_if>
+
+						<div class="form-group form-group-lg">
+							<label>
+									<tmpl_if showToolTip>
+										<div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_turn_off_help_text')>">
+											<tmpl_var _("webui", "webui_inline_help_icon")>
+										</div>
+									</tmpl_if>
+								<tmpl_var _("webui", "preferences_turnoff_diplay_label")>
+							</label>
+							<select name="screenTimeout" id="screenTimeout">
+								<tmpl_include "screen_timeout_options.tmpl">
+							</select>
+						</div>
+
+						<tmpl_if deepSleepModeShow>
+							<div class="form-group form-group-lg">
+								<label>
+									<tmpl_if showToolTip>
+										<div class="tooltip tooltip-help" title="<tmpl_udf GET_PO_TEXT('preferences_deep_sleep_help_text', gProductName)>">
+											<tmpl_var _("webui", "webui_inline_help_icon")>
+										</div>
+									</tmpl_if>
+								<tmpl_var _("webui", "preferences_deep_sleep_label")>
+								</label>
+								<select name="deepSleep" id="deepSleep">
+									<tmpl_include "deep_sleep_options.tmpl">
+								</select>
+							</div>
+						</tmpl_if>
+
+						<tmpl_if autoShutdownShow>
+							<div class="form-group form-group-lg">
+								<label id="lblIdleShutdownTime">
+								 		<tmpl_if showToolTip>
+											<div class="tooltip tooltip-help" title="<tmpl_udf GET_PO_TEXT('preferences_auto_shutdown_help_text', gProductName)>">
+												<tmpl_var _("webui", "webui_inline_help_icon")>
+											</div>
+										</tmpl_if>
+									<tmpl_var _("webui", "preferences_auto_shutdown_label")></label>
+									<select name="idleShutdownTime" id="idleShutdownTime">
+										<tmpl_include "shutdown_options.tmpl">
+									</select>
+
+								<tmpl_if shutdownTimeError>
+									<div class="inline_error" id="shutdownTimeError">
+										<tmpl_var shutdownTimeError>
+									</div>
+								</tmpl_if>
+							</div>
+						</tmpl_if>
+					</fieldset>
+					<div class="primary">
+                        			<tmpl_if displaySettingsShow>
+                                        		<fieldset id="displaySettingsd" class="first">
+                                                		<div class="toggleSettingContainer align-field" id="enableDisplaySettingsToggle">
+                                                        		<div class="form-group form-group-lg">
+                                                                		<label>
+                                                                                        <tmpl_if showToolTip>
+                                                                                                <div class="tooltip tooltip-help" title="<tmpl_udf GET_PO_TEXT('preferences_display_settings_toggle_text', gProductName)>">
+                                                                                                        <tmpl_var _("webui", "webui_inline_help_icon")>
+                                                                                                </div>
+                                                                                        </tmpl_if>
+                                                                                <tmpl_udf GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)>
+                                                                        	</label>
+                                                                <div class="toggle">
+                                                                        <input class="toggleSwitchCheckbox" type="checkbox" id="displaySettingsEnabled" name="displaySettingsEnable"<tmpl_if IN_SET(displaySettingsEnabled, "true", "on", "1")> checked="checked"</tmpl_if> <tmpl_if isLocked>disabled="disabled"</tmpl_if> />
+                                                                		</div>
+                                                        		</div>
+                                                		</div><!--/.toggleSettingContainer-->
+                                			</fieldset>
+                				</tmpl_if><!--displaySettingsShow-->
+
+                <div id="hardwareResetSettings" class="first">
+                        <div class="toggleSettingContainer align-field" id="enablehardwareResetToggle">
+                                <div class="form-group form-group-lg">
+                                                <label>
+
+                                                                <tmpl_if showToolTip>
+                                                                        <div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_hardware_reset_toggle_text')>">
+                                                                                <tmpl_var _("webui", "webui_inline_help_icon")>
+                                                                        </div>
+                                                                </tmpl_if>
+                                                        <tmpl_udf GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)>
+                                                </label>
+
+                                        <div class="toggle">
+                                                <input class="toggleSwitchCheckbox" type="checkbox" id="hardwareResetEnabled" name="hardwareResetEnable" <tmpl_if IN_SET(hardwareResetEnabled, "true", "on", "1")> checked="checked"</tmpl_if> <tmpl_if isLocked>disabled="disabled"</tmpl_if> />
+                                        </div>
+                                </div>
+                        </div><!--/.toggleSettingContainer-->
+                </div>
+
+						<tmpl_if batteryPreservationModeShow>
+                        				<div class="toggleSettingContainer align-field" id="enableBatteryPreservationModeToggle">
+                                        			<div class="form-group form-group-lg">
+                                        				<label>
+                                                				<tmpl_if showToolTip>
+                                                        				<div class="tooltip tooltip-help" title="<tmpl_udf GET_PO_TEXT('preferences_battery_preservation_mode_text', gProductName)>">
+                                                                		<tmpl_var _("webui", "webui_inline_help_icon")>
+                                                        		</div>
+                                                		</tmpl_if>
+                                                <tmpl_udf GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)>
+                                        				</label>
+                                        			<div class="toggle">
+                                                <input class="toggleSwitchCheckbox" type="checkbox" id="batteryPreservationModeEnabled" name="batteryPreservationModeEnable"<tmpl_if IN_SET(batteryPreservationModeEnabled, "true", "on", "1")> checked="checked"</tmpl_if> <tmpl_if isLocked>disabled="disabled"</tmpl_if> />
+                                        				</div>
+                                        			</div>
+                                			</div><!--/.toggleSettingContainer-->
+                				</tmpl_if><!--batteryPreservationModeShow-->
+
+                				<tmpl_if EthernetEnableShow>
+                                                        <div class="form-group form-group-lg">
+                                                                <label>
+                                                                        <tmpl_if showToolTip>
+                                                                                <div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_enable_ethernet_port_toggle_text')>">
+                                                                                        <tmpl_var _("webui", "webui_inline_help_icon")>
+                                                                                </div>
+                                                                        </tmpl_if>
+                                                                        <tmpl_var _("webui", "preferences_enable_ethernet_port_toggle_label")>
+                                                                </label>
+                                                                <input type="checkbox" name="ethernetportenabled" id="ethernetportenabled"<tmpl_if IN_SET(ethernetportenabled,"on")> checked="checked"</tmpl_if> />
+                                                        </div>
+                                                </tmpl_if>
+
+					<tmpl_if universalChargingShow>                                    
+						<fieldset id="ucf" class="first">
+
+							<h3 class="sectionHead"><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h3>
+							<p>
+								<tmpl_udf GET_PO_TEXT("preferences_universal_charging_intro_text", gProductName)>
+							</p>
+							<div class="form-group form-group-lg">
+                                                                <div class="label">
+                                                                        <tmpl_if showToolTip>
+                                                                                <div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_universal_charging_status_help_text')>">
+                                                                                        <tmpl_var _("webui", "webui_inline_help_icon")>
+                                                                                </div>
+                                                                        </tmpl_if>
+                                                                        <tmpl_var _("webui", "preferences_universal_charging_status_label")>
+                                                                </div>
+                                                                <div class="input">
+                                                                        <tmpl_var ucStatus>
+                                                                </div>
+
+                                                        </div>
+							<div class="form-group form-group-lg">                                                                                                     
+       							<label>                                                                                                                          
+           							 <tmpl_if showToolTip>                                                                                                      
+                    					<div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_universal_charging_label_help_text')>">
+                            			<tmpl_var _("webui", "webui_inline_help_icon")>                                                            
+                    					</div>                                                                                                             
+            						</tmpl_if>                                                                                                                 
+            						<tmpl_udf GET_PO_TEXT("preferences_universal_charging_label", gProductName)></label>                                       
+            					<select name="ucThreshold" id="ucThreshold">                                                                               
+                    				<tmpl_include "uc_threshold_options.tmpl">                                                                         
+            					</select>                                                                                                                  
+   							 </div>                                                                                                                             
+							</div>
+
+						</fieldset>
+					</tmpl_if><!--universalChargingShow-->
+		
+		</div><!--table-->
+
+	</form>	
+
+		<tmpl_if EthernetSettingsFromTouchscreenShow>
+			<tmpl_if showEthernetCarrierEnabled>
+				<fieldset id="displayEthernetSetting" class="first">
+					<div class="toggleSettingContainer scrimp align-field">
+						<div class="form-group form-group-lg">
+								<label>
+										<tmpl_if showToolTip>
+											<div class="tooltip tooltip-help" title="<tmpl_var _('webui', 'preferences_enable_ethernet_port_toggle_text')>">
+												<tmpl_var _("webui", "webui_inline_help_icon")>
+											</div>
+										</tmpl_if>
+									<tmpl_udf GET_PO_TEXT("preferences_enable_ethernet_port_touchscreen_toggle_label", gProductName)>
+								</label>
+							<div class="toggle">
+								<input class="toggleSwitchCheckbox" type="checkbox" id="displayEthernetPortEnabled" name="displayEthernetPortEnabled"<tmpl_if IN_SET(displayEthernetPortEnabled, "true", "on", "1")> checked="checked"</tmpl_if> <tmpl_if isLocked>disabled="disabled"</tmpl_if><tmpl_if EthernetSettingsFromTouchscreenLocked> disabled="disabled"</tmpl_if> />
+							</div>
+						</div>
+					</div><!--/.toggleSettingContainer-->
+				</fieldset>
+			</tmpl_if>
+		</tmpl_if>
+	</div>
+
+	<div class="button_container clearfix ">
+			<button type="submit" class="primary" onclick="submitFunction()"<tmpl_if isLocked> disabled="disabled"</tmpl_if>>
+				<tmpl_var _("webui", "webui_save_button")>
+			</button>
+	</div><!--button_container-->
+	
+</tmpl_if>

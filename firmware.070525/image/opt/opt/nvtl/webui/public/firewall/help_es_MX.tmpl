@@ -1,0 +1,56 @@
+<!-- Firewall -->
+<div id="firewall">
+	<h1><tmpl_var _("webui", "adv_firewall_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		El firewall determina qué tráfico de Internet puede pasar entre este dispositivo y los dispositivos conectados, y protege sus dispositivos conectados del tráfico malicioso que entra desde Internet. El firewall no se puede desactivar. Utilice la pestaña Firewall para habilitar la contraseña VPN o para designar un dispositivo específico que reciba todo el tráfico.
+	</p>	
+			
+	<h2><tmpl_var _("webui", "adv_firewall_vpn_passthrough_enable_label")></h2>
+	<p>
+		Para permitir que los dispositivos conectados establezcan un túnel VPN, asegúrese de que el control deslizante de ENCENDIDO/APAGADO esté <b>ENCENDIDO</b>.
+	</p>
+
+	<tmpl_if showTransparentMode>
+		<tmpl_if ipv6Supported>
+			<h3><tmpl_var _("webui", "adv_firewall_ipv6_transparent_label")></h3>
+				<p>Normalmente, el firewall bloqueará las solicitudes de conexión IPv6 entrantes destinadas a un dispositivo conectado IPv6.
+				</p>
+				<p>
+			i		Si desea permitir que estas solicitudes de conexión entrantes lleguen al dispositivo conectado indicado, active este ajuste.  El Modo transparente solo debe activarse cuando sea necesario, ya que reduce la protección provista por el firewall del dispositivo.
+				</p>
+		</tmpl_if>
+	</tmpl_if>
+
+	<tmpl_if showICMPPing>
+                <h2><tmpl_var _("webui", "adv_firewall_wan_ping_enable_label")></h2>
+                <p>
+                        Por defecto, dispositivo ignorará las solicitudes de ping recibidas en la interfaz WAN. Para permitir que su dispositivo responda a las solicitudes de ping recibidas en la interfaz WAN, mueva el control deslizante de ENCENDIDO/APAGADO a ENCENDIDO.
+                </p>
+        </tmpl_if>
+
+	<h2><tmpl_var _("webui", "adv_firewall_dmz_sub_header_text")></h2>
+	<p>
+		<strong>NOTA:</strong> Cuando la contraseña IP está activada, las capacidades de la DMZ se establecen a través del sistema de enrutamiento del host conectado. Los ajustes no están disponibles en esta sección. Vaya a Opciones avanzadas &gt; LAN para desactivar la contraseña IP.
+	</p>
+	<p>
+		Para habilitar la DMZ, necesita que se asigne una dirección IP estática a su línea de servicio. Póngase en contacto con su proveedor de servicios para configurar una línea de servicio para la IP estática.
+	</p>
+
+	<h3><tmpl_var _("webui", "adv_firewall_dmz_enable_label")></h3>
+	<p>
+		Marque esta casilla para habilitar la DMZ. La DMZ permite que el dispositivo conectado especificado como la dirección IP de DMZ (dirección IP de destino) reciba todo el tráfico que, de otro modo, el firewall bloquearía.		
+	</p>
+	<p>
+		Habilitar la DMZ puede ayudar a que algunas aplicaciones de red problemáticas funcionen correctamente, pero el dispositivo DMZ debe tener el propio firewall para protegerse contra el tráfico malicioso.
+	</p>
+
+	<h3><tmpl_var _("webui", "adv_firewall_dmz_ip_address_label")></h3>
+	<p>
+		Ingrese la dirección IP del dispositivo conectado que desea establecer como dispositivo DMZ (el destino de la DMZ). <strong>NOTA:</strong> Puede verificar la dirección IP de cada dispositivo conectado en la pantalla Dispositivos conectados.
+	</p>	
+
+	<p>Haga clic en <b>Guardar cambios. </b></p>
+</div>
+<!-- id="firewall" -->
+

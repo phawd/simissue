@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Sellel ekraanil on palju suvandeid, mis võimaldavad seadistada seadme <tmpl_var _("webui", "webui_product_name")> käitumist nii, et see vastaks paremini teie vajadustele.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Need seaded määravad ühenduse tüübi, kui arvuti on ühendatud seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> USB-C-porti. Valige soovitud suvand.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Kui see on märgitud, palutakse teil arvutiga USB-ühenduse tuvastamisel valida (seadme <tmpl_var _("webui", "webui_product_name")> ekraanil) soovitud USB-režiim. Sellel viibal valiku tegemine ei muuda ülaltoodud sätet, vaid määrab ainult praeguse USB-seansi režiimi.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>See säte määrab, kui kiiresti seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> ekraan pärast tegevusetuse perioodi välja lülitub. Valige soovitud suvand.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p>Seade <tmpl_var _("webui", "webui_product_name")> läheb pärast tegevusetuse perioodi puhkerežiimile. Valige soovitud ajavahemik puhkerežiimi sisenemiseks.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p>Seade <tmpl_var _("webui", "webui_product_name")> võib pärast tegevusetuse perioodi välja lülituda. Valige soovitud ajavahemik sulgemise käivitamiseks.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>See funktsioon võimaldab seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> akust laadida seadmeid, nagu telefon või Bluetooth-peakomplekt. Lihtsalt ühendage seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> USB-kaabel universaalse laadimispordiga.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>Sellel väljal kuvatakse Universaalse laadimise funktsiooni praegune olek. Võimalikud olekuväärtused on järgmised.</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> – seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> akust laetakse välisseadmeid.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> – kui seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> universaalse laadimispordiga on ühendatud välisseade, laetakse seda.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> – seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> aku on teiste seadmete laadimiseks liiga tühi.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Kui see on SEES, saab saadaolevaid sätteid seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> ekraanil muuta. Nende sätete hulka kuulub tehaseseadetele lähtestamine, mis lähtestab kõik seaded tehase vaikeväärtustele.</p>
+		<p>Kui see on VÄLJAS, ei ole sätete muutmine seadme <tmpl_var _("webui", "webui_product_name_with_suffix")> ekraani abil võimalik.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Kui see on SEES, siis seadme <tmpl_var _("webui", "webui_product_name")> lähtestusnupp töötab tavapäraselt ja seab kõik sätted tehase vaikeväärtustele.</p>
+	<p>Kui see on VÄLJAS, siis lähtestusnupp ei tööta. See ei lase kasutajal lähtestamise abil seadeid muuta.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Etherneti indikaator kuvatakse olekuribal, kui Etherneti port on lubatud; muidu on see varjatud.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

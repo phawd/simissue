@@ -1,0 +1,8 @@
+<option value="30"<tmpl_if IN_SET(screenTimeout, "30")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_app_after_text")>&nbsp;30&nbsp;<tmpl_var _("webui", "webui_app_seconds_text")></option>
+<option value="60"<tmpl_if IN_SET(screenTimeout, "60")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_app_after_text")>&nbsp;1&nbsp;<tmpl_var _("webui", "webui_app_minute_text")></option>
+<option value="300"<tmpl_if IN_SET(screenTimeout, "300")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_app_after_text")>&nbsp;5&nbsp;<tmpl_var _("webui", "webui_app_minutes_text")></option>
+<option value="600"<tmpl_if IN_SET(screenTimeout, "600")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_app_after_text")>&nbsp;10&nbsp;<tmpl_var _("webui", "webui_app_minutes_text")></option>
+<tmpl_if showEightHoursScreenTimeout>
+	<option value="28800"<tmpl_if IN_SET(screenTimeout, "28800")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_app_after_text")>&nbsp;8&nbsp;<tmpl_var _("webui", "webui_app_hours_text")></option>
+</tmpl_if>
+<option value="0"<tmpl_if IN_SET(screenTimeout, "0")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_app_never_text")></option>

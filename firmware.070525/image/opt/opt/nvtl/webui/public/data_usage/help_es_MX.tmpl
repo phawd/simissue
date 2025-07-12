@@ -1,0 +1,57 @@
+<!-- Data Usage -->
+<div id="data_usage">
+	<h1><tmpl_var _("webui", "data_usage_menu_text")></h1>
+	<h2>Descripción general</h2>
+	<p>Utilice la página Consumo de datos para ver detalles y administrar el consumo de datos de su dispositivo.</p>
+	<p><strong>NOTA:</strong> Su dispositivo solo proporciona una estimación aproximada del consumo de datos. Consulte siempre con su proveedor de servicios para conocer el consumo exacto.</p>
+	
+	<tmpl_if multipleSIMEnabled>
+		<h3>Se muestra la información de la tarjeta SIM</h3>
+		<p>Utilice el menú desplegable para cambiar la SIM en la que se muestra el uso de datos.</p>
+	</tmpl_if>
+	<h3>Uso estimado de datos</h3>
+	<p>Las pantallas del gráfico de consumo de datos varían según el plan, pero generalmente incluyen lo siguiente:</p>
+
+	<div class="blockgroup">
+		<ul>
+			<li>porcentaje estimado de datos restantes para el ciclo de facturación actual.</li>
+			<li>número de días restantes en el ciclo de facturación.</li>
+			<li>límite de datos en el plan.</li>
+			<li>cantidad estimada de datos utilizados en el ciclo de facturación actual.</li>
+			<li>cantidad estimada de datos restantes para el ciclo de facturación actual.</li>
+			<li>fecha en la que finaliza el ciclo de facturación.</li>
+		</ul>
+	</div>
+
+	<p>Puede configurar los ajustes para que reflejen su plan de datos mensuales.</p>
+	<p>Utilice el botón <b>Restablecer el contador de datos ahora</b> para reiniciar el consumo de datos que se muestra en esta página a cero.</p>
+
+	<h3>Restablecer contador de datos en este día del mes</h3>
+	<p>Utilice el menú desplegable para seleccionar un día del mes para que se restablezca el contador que se muestra en esta página.</p>
+
+	<h3>Conexión medida</h3>
+	<p>Ingrese un límite máximo de datos, si lo desea.</p>
+
+	<h3><tmpl_var truncate(_("webui", "data_usage_connection_start_time_label"), (size(_("webui", "data_usage_connection_start_time_label")) - size(":")))></h3>
+        <p>La fecha y la hora de inicio de la sesión actual de Internet.</p>
+
+        <h3><tmpl_var truncate(_("webui", "data_usage_connection_time_label"), (size(_("webui", "data_usage_connection_time_label")) - size(":")))></h3>
+        <p>La cantidad de tiempo que ha transcurrido desde que se estableció la conexión para la sesión de Internet actual.</p>
+
+        <h3><tmpl_var truncate(_("webui", "data_usage_received_label"), (size(_("webui", "data_usage_received_label")) - size(":")))></h3>
+        <p>La cantidad de datos recibidos para la sesión de Internet actual. Este contador comienza de cero cuando se establece la conexión.</p>
+
+        <h3><tmpl_var truncate(_("webui", "data_usage_transmitted_label"), (size(_("webui", "data_usage_transmitted_label")) - size(":")))></h3>
+        <p>La cantidad de datos transmitidos para la sesión de Internet actual. Este contador comienza de cero cuando se establece la conexión.</p>
+
+        <h3><tmpl_var truncate(_("webui", "data_usage_rx_label"), (size(_("webui", "data_usage_rx_label")) - size(":")))></h3>
+        <p>La cantidad de datos recibidos para el ciclo de facturación actual.</p>
+
+        <h3><tmpl_var truncate(_("webui", "data_usage_tx_label"), (size(_("webui", "data_usage_tx_label")) - size(":")))></h3>
+        <p>La cantidad de datos transmitidos para el ciclo de facturación actual.</p>
+
+        <h3><tmpl_var truncate(_("webui", "data_usage_total_usage_label"), (size(_("webui", "data_usage_total_usage_label")) - size(":")))></h3>
+        <p>La cantidad total de datos para el ciclo de facturación actual.</p>
+	<p>Seleccione <b>Guardar cambios</b> para ejecutar los cambios.</p>
+</div>
+

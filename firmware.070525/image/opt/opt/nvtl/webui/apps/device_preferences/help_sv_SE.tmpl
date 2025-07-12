@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Den här skärmen innehåller många alternativ som låter dig ställa in hur<tmpl_var _("webui", "webui_product_name")> ska bete sig för att bättre tillgodose dina behov.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Dessa inställningar bestämmer anslutningstypen när en dator är ansluten till <tmpl_var _("webui", "webui_product_name_with_suffix")>s USB-C-port. Välj önskat alternativ.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Om så är markerat kommer du att bli uppmanad (på <tmpl_var _("webui", "webui_product_name")>s skärm) att välja önskat USB-läge när en USB-anslutning till en dator detekteras. Om ett val görs med anledning av denna uppmaning ändras inte inställningen ovan, det ställer bara in läget för den aktuella USB-sessionen.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>Den här inställningen avgör hur snabbt <tmpl_var _("webui", "webui_product_name_with_suffix")> skärmen stängs av efter en stunds inaktivitet. Välj önskat alternativ.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> kommer att växla till viloläge efter en tids inaktivitet. Välj önskad tid för att växla till viloläge.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p><tmpl_var _("webui", "webui_product_name")> kan stängas av efter en tids inaktivitet. Välj önskad tid för att utlösa en avstängning.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>Den här funktionen gör att du kan du ladda enheter som din telefon eller ditt Bluetooth-headset från <tmpl_var _("webui", "webui_product_name_with_suffix")>-batteriet. Anslut helt enkelt din enhets USB-kabel till <tmpl_var _("webui", "webui_product_name_with_suffix")> port för universell laddning.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>Detta fält visar aktuell status för funktionen universell laddning. Möjliga statusvärden är:</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> – en extern enhet laddas från <tmpl_var _("webui", "webui_product_name_with_suffix")>-batteriet.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> – om en extern enhet är ansluten till <tmpl_var _("webui", "webui_product_name_with_suffix")>s port för universell laddning kommer den att laddas.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> – <tmpl_var _("webui", "webui_product_name_with_suffix")>-batteriet är för svagt för att ladda andra enheter.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Om funktionen är aktiv så kan de tillgängliga inställningarna ändras via <tmpl_var _("webui", "webui_product_name_with_suffix")>-skärmen. Dessa inställningar inkluderar en fabriksåterställning som återställer alla inställningar till de standardvärden som angavs på fabriken.</p>
+		<p>Om funktionen är avstängd är det inte möjligt att ändra inställningarna med <tmpl_var _("webui", "webui_product_name_with_suffix")>-skärmen.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Om den är aktiv fungerar återställningsknappen nedtill på <tmpl_var _("webui", "webui_product_name")> normalt och ändrar alla inställningar till de standardvärden som angavs på fabriken.</p>
+	<p>Om den är avstängd fungerar inte återställningsknappen. Detta förhindrar att en användare ändrar inställningar genom att utföra en återställning.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Ethernet-indikator visas i statusfältet när Ethernet-porten är aktiverad, annars är den dold.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		When battery preservation mode is turned on the battery level will be maintained between 50-60%. This will persist until either the charger is removed or your MiFi is power cycled.
+	</p>
+	</tmpl_if>
+</div>

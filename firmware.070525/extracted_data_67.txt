@@ -1,0 +1,499 @@
+							/* 0x0001D64A 7BD1040004         */ IL_026e: ldfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<messageBytes>5__4' /* 040004D1 */
+							/* 0x0001D64F 8E                 */ IL_0273: ldlen
+							/* 0x0001D650 69                 */ IL_0274: conv.i4
+							/* 0x0001D651 3F40FFFFFF         */ IL_0275: blt IL_01ba
+
+							// 					this.<responseBuffer>5__7 = new byte[1024];
+							// sequence point: (line 4220, col 5) to (line 4220, col 37) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D656 02                 */ IL_027a: ldarg.0
+							/* 0x0001D657 2000040000         */ IL_027b: ldc.i4 1024
+							/* 0x0001D65C 8DC0000001         */ IL_0280: newarr [System.Runtime]System.Byte /* 010000C0 */
+							/* 0x0001D661 7DD4040004         */ IL_0285: stfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<responseBuffer>5__7' /* 040004D4 */
+							// 					awaiter = this.<port>5__2.BaseStream.ReadAsync(this.<responseBuffer>5__7, 0, this.<responseBuffer>5__7.Length).GetAwaiter();
+							// sequence point: (line 4222, col 5) to (line 4222, col 146) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D666 02                 */ IL_028a: ldarg.0
+							/* 0x0001D667 7BCF040004         */ IL_028b: ldfld class [System.IO.Ports]System.IO.Ports.SerialPort Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<port>5__2' /* 040004CF */
+							/* 0x0001D66C 6FD303000A         */ IL_0290: callvirt instance class [System.Runtime]System.IO.Stream [System.IO.Ports]System.IO.Ports.SerialPort::get_BaseStream() /* 0A0003D3 */
+							/* 0x0001D671 02                 */ IL_0295: ldarg.0
+							/* 0x0001D672 7BD4040004         */ IL_0296: ldfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<responseBuffer>5__7' /* 040004D4 */
+							/* 0x0001D677 16                 */ IL_029b: ldc.i4.0
+							/* 0x0001D678 02                 */ IL_029c: ldarg.0
+							/* 0x0001D679 7BD4040004         */ IL_029d: ldfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<responseBuffer>5__7' /* 040004D4 */
+							/* 0x0001D67E 8E                 */ IL_02a2: ldlen
+							/* 0x0001D67F 69                 */ IL_02a3: conv.i4
+							/* 0x0001D680 6FD603000A         */ IL_02a4: callvirt instance class [System.Runtime]System.Threading.Tasks.Task`1<int32> [System.Runtime]System.IO.Stream::ReadAsync(uint8[], int32, int32) /* 0A0003D6 */
+							/* 0x0001D685 6FD703000A         */ IL_02a9: callvirt instance valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<!0> class [System.Runtime]System.Threading.Tasks.Task`1<int32>::GetAwaiter() /* 0A0003D7 */
+							/* 0x0001D68A 1309               */ IL_02ae: stloc.s 9
+							// 					if (!awaiter.IsCompleted)
+							// sequence point: hidden
+							/* 0x0001D68C 1209               */ IL_02b0: ldloca.s 9
+							/* 0x0001D68E 28D803000A         */ IL_02b2: call instance bool valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32>::get_IsCompleted() /* 0A0003D8 */
+							/* 0x0001D693 2D41               */ IL_02b7: brtrue.s IL_02fa
+
+							// 						num = (this.<>1__state = 1);
+							/* 0x0001D695 02                 */ IL_02b9: ldarg.0
+							/* 0x0001D696 17                 */ IL_02ba: ldc.i4.1
+							/* 0x0001D697 25                 */ IL_02bb: dup
+							/* 0x0001D698 0A                 */ IL_02bc: stloc.0
+							/* 0x0001D699 7DC9040004         */ IL_02bd: stfld int32 Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>1__state' /* 040004C9 */
+							// 						this.<>u__2 = awaiter;
+							/* 0x0001D69E 02                 */ IL_02c2: ldarg.0
+							/* 0x0001D69F 1109               */ IL_02c3: ldloc.s 9
+							/* 0x0001D6A1 7DD7040004         */ IL_02c5: stfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>u__2' /* 040004D7 */
+							// 						this.<>t__builder.AwaitUnsafeOnCompleted(ref awaiter, ref this);
+							/* 0x0001D6A6 02                 */ IL_02ca: ldarg.0
+							/* 0x0001D6A7 7CCA040004         */ IL_02cb: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>t__builder' /* 040004CA */
+							/* 0x0001D6AC 1209               */ IL_02d0: ldloca.s 9
+							/* 0x0001D6AE 02                 */ IL_02d2: ldarg.0
+							/* 0x0001D6AF 28D700002B         */ IL_02d3: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::AwaitUnsafeOnCompleted<valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32>, valuetype Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'>(!!0&, !!1&) /* 2B0000D7 */
+							// 						return;
+							/* 0x0001D6B4 DD2B010000         */ IL_02d8: leave IL_0408
+
+							// 					awaiter = this.<>u__2;
+							/* 0x0001D6B9 02                 */ IL_02dd: ldarg.0
+							/* 0x0001D6BA 7BD7040004         */ IL_02de: ldfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>u__2' /* 040004D7 */
+							/* 0x0001D6BF 1309               */ IL_02e3: stloc.s 9
+							// 						this.<>u__2 = default(TaskAwaiter<int>);
+							/* 0x0001D6C1 02                 */ IL_02e5: ldarg.0
+							/* 0x0001D6C2 7CD7040004         */ IL_02e6: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>u__2' /* 040004D7 */
+							/* 0x0001D6C7 FE157700001B       */ IL_02eb: initobj valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32> /* 1B000077 */
+							// 						num = (this.<>1__state = -1);
+							/* 0x0001D6CD 02                 */ IL_02f1: ldarg.0
+							/* 0x0001D6CE 15                 */ IL_02f2: ldc.i4.m1
+							/* 0x0001D6CF 25                 */ IL_02f3: dup
+							/* 0x0001D6D0 0A                 */ IL_02f4: stloc.0
+							/* 0x0001D6D1 7DC9040004         */ IL_02f5: stfld int32 Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>1__state' /* 040004C9 */
+
+							// 					text = BitConverter.ToString(length: awaiter.GetResult(), value: this.<responseBuffer>5__7, startIndex: 0).Replace("-", " ");
+							/* 0x0001D6D6 1209               */ IL_02fa: ldloca.s 9
+							/* 0x0001D6D8 28D903000A         */ IL_02fc: call instance !0 valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<int32>::GetResult() /* 0A0003D9 */
+							/* 0x0001D6DD 1306               */ IL_0301: stloc.s 6
+							// sequence point: (line 4224, col 5) to (line 4224, col 64) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D6DF 02                 */ IL_0303: ldarg.0
+							/* 0x0001D6E0 7BD4040004         */ IL_0304: ldfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<responseBuffer>5__7' /* 040004D4 */
+							/* 0x0001D6E5 16                 */ IL_0309: ldc.i4.0
+							/* 0x0001D6E6 1106               */ IL_030a: ldloc.s 6
+							/* 0x0001D6E8 28E003000A         */ IL_030c: call string [System.Runtime]System.BitConverter::ToString(uint8[], int32, int32) /* 0A0003E0 */
+							/* 0x0001D6ED 72121D0070         */ IL_0311: ldstr "-" /* 70001D12 */
+							/* 0x0001D6F2 7272040070         */ IL_0316: ldstr " " /* 70000472 */
+							/* 0x0001D6F7 6F9800000A         */ IL_031b: callvirt instance string [System.Runtime]System.String::Replace(string, string) /* 0A000098 */
+							/* 0x0001D6FC 1307               */ IL_0320: stloc.s 7
+							// 					obj = form.DecodeDiagResponse(this.<responseBuffer>5__7, this.commandCode);
+							/* 0x0001D6FE 07                 */ IL_0322: ldloc.1
+							// sequence point: hidden
+							/* 0x0001D6FF 02                 */ IL_0323: ldarg.0
+							/* 0x0001D700 7BD4040004         */ IL_0324: ldfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<responseBuffer>5__7' /* 040004D4 */
+							/* 0x0001D705 02                 */ IL_0329: ldarg.0
+							/* 0x0001D706 7BCC040004         */ IL_032a: ldfld uint8 Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::commandCode /* 040004CC */
+							/* 0x0001D70B 2830010006         */ IL_032f: call instance string Mifi_8800L_Tool.Form1::DecodeDiagResponse(uint8[], uint8) /* 06000130 */
+							// 					DiagProtocol.Log("Received response: " + text, "SendDiagCommandAsync");
+							/* 0x0001D710 72962F0170         */ IL_0334: ldstr "Received response: " /* 70012F96 */
+							/* 0x0001D715 1107               */ IL_0339: ldloc.s 7
+							/* 0x0001D717 284A00000A         */ IL_033b: call string [System.Runtime]System.String::Concat(string, string) /* 0A00004A */
+							/* 0x0001D71C 72A8340170         */ IL_0340: ldstr "SendDiagCommandAsync" /* 700134A8 */
+							/* 0x0001D721 285B000006         */ IL_0345: call void QualcommDiag.DiagProtocol::Log(string, string) /* 0600005B */
+							// 					if (obj == null)
+							// sequence point: (line 4226, col 5) to (line 4226, col 21) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D726 25                 */ IL_034a: dup
+							/* 0x0001D727 2D06               */ IL_034b: brtrue.s IL_0353
+
+							// 						obj = "";
+							// sequence point: (line 4228, col 6) to (line 4228, col 15) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D729 26                 */ IL_034d: pop
+							/* 0x0001D72A 72820E0070         */ IL_034e: ldstr "" /* 70000E82 */
+
+							// 					DiagProtocol.Log((string)obj, "SendDiagCommandAsync");
+							// sequence point: (line 4230, col 5) to (line 4230, col 59) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D72F 72A8340170         */ IL_0353: ldstr "SendDiagCommandAsync" /* 700134A8 */
+							/* 0x0001D734 285B000006         */ IL_0358: call void QualcommDiag.DiagProtocol::Log(string, string) /* 0600005B */
+							// 					MessageBox.Show("Received response: " + text);
+							// sequence point: (line 4231, col 5) to (line 4231, col 51) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D739 72962F0170         */ IL_035d: ldstr "Received response: " /* 70012F96 */
+							/* 0x0001D73E 1107               */ IL_0362: ldloc.s 7
+							/* 0x0001D740 284A00000A         */ IL_0364: call string [System.Runtime]System.String::Concat(string, string) /* 0A00004A */
+							/* 0x0001D745 285700000A         */ IL_0369: call valuetype [System.Windows.Forms]System.Windows.Forms.DialogResult [System.Windows.Forms]System.Windows.Forms.MessageBox::Show(string) /* 0A000057 */
+							/* 0x0001D74A 26                 */ IL_036e: pop
+							// 					this.<messageBytes>5__4 = null;
+							// sequence point: hidden
+							/* 0x0001D74B 02                 */ IL_036f: ldarg.0
+							/* 0x0001D74C 14                 */ IL_0370: ldnull
+							/* 0x0001D74D 7DD1040004         */ IL_0371: stfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<messageBytes>5__4' /* 040004D1 */
+							// 					this.<responseBuffer>5__7 = null;
+							// sequence point: (line 4232, col 4) to (line 4232, col 5) in Mifi_8800L_Tool\Form1.cs
+							/* 0x0001D752 02                 */ IL_0376: ldarg.0
+							/* 0x0001D753 14                 */ IL_0377: ldnull
+							/* 0x0001D754 7DD4040004         */ IL_0378: stfld uint8[] Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<responseBuffer>5__7' /* 040004D4 */
+							// 					goto end_IL_0110;
+							/* 0x0001D759 DE18               */ IL_037d: leave.s IL_0397
+						} // end .try
+						finally
+						{
+							// 					if (num < 0 && this.<stream>5__3 != null)
+							// sequence point: hidden
+							/* 0x0001D75B 06                 */ IL_037f: ldloc.0
+							/* 0x0001D75C 16                 */ IL_0380: ldc.i4.0
+							/* 0x0001D75D 2F13               */ IL_0381: bge.s IL_0396
+
+							/* 0x0001D75F 02                 */ IL_0383: ldarg.0
+							/* 0x0001D760 7BD0040004         */ IL_0384: ldfld class [System.Runtime]System.IO.MemoryStream Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<stream>5__3' /* 040004D0 */
+							/* 0x0001D765 2C0B               */ IL_0389: brfalse.s IL_0396
+
+							// 						((IDisposable)this.<stream>5__3).Dispose();
+							/* 0x0001D767 02                 */ IL_038b: ldarg.0
+							/* 0x0001D768 7BD0040004         */ IL_038c: ldfld class [System.Runtime]System.IO.MemoryStream Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<stream>5__3' /* 040004D0 */
+							/* 0x0001D76D 6F4B00000A         */ IL_0391: callvirt instance void [System.Runtime]System.IDisposable::Dispose() /* 0A00004B */
+
+							// 				}
+							/* 0x0001D772 DC                 */ IL_0396: endfinally
+						} // end handler
+
+						// 				this.<stream>5__3 = null;
+						// sequence point: (line 4233, col 4) to (line 4233, col 16) in Mifi_8800L_Tool\Form1.cs
+						/* 0x0001D773 02                 */ IL_0397: ldarg.0
+						/* 0x0001D774 14                 */ IL_0398: ldnull
+						/* 0x0001D775 7DD0040004         */ IL_0399: stfld class [System.Runtime]System.IO.MemoryStream Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<stream>5__3' /* 040004D0 */
+						// 				result = true;
+						/* 0x0001D77A 17                 */ IL_039e: ldc.i4.1
+						/* 0x0001D77B 0C                 */ IL_039f: stloc.2
+						// 	}
+						/* 0x0001D77C DE52               */ IL_03a0: leave.s IL_03f4
+					} // end .try
+					finally
+					{
+						// 				if (num < 0 && this.<port>5__2 != null)
+						// sequence point: hidden
+						/* 0x0001D77E 06                 */ IL_03a2: ldloc.0
+						/* 0x0001D77F 16                 */ IL_03a3: ldc.i4.0
+						/* 0x0001D780 2F13               */ IL_03a4: bge.s IL_03b9
+
+						/* 0x0001D782 02                 */ IL_03a6: ldarg.0
+						/* 0x0001D783 7BCF040004         */ IL_03a7: ldfld class [System.IO.Ports]System.IO.Ports.SerialPort Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<port>5__2' /* 040004CF */
+						/* 0x0001D788 2C0B               */ IL_03ac: brfalse.s IL_03b9
+
+						// 					((IDisposable)this.<port>5__2).Dispose();
+						/* 0x0001D78A 02                 */ IL_03ae: ldarg.0
+						/* 0x0001D78B 7BCF040004         */ IL_03af: ldfld class [System.IO.Ports]System.IO.Ports.SerialPort Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<port>5__2' /* 040004CF */
+						/* 0x0001D790 6F4B00000A         */ IL_03b4: callvirt instance void [System.Runtime]System.IDisposable::Dispose() /* 0A00004B */
+
+						// 			}
+						// sequence point: (line 4237, col 4) to (line 4237, col 95) in Mifi_8800L_Tool\Form1.cs
+						/* 0x0001D795 DC                 */ IL_03b9: endfinally
+					} // end handler
+				} // end .try
+				catch [System.Runtime]System.Exception
+				{
+					// 			DiagProtocol.Log("Error sending/receiving command: " + ex.Message, "SendDiagCommandAsync");
+					/* 0x0001D796 130A               */ IL_03ba: stloc.s 10
+					/* 0x0001D798 72B1D20070         */ IL_03bc: ldstr "Error sending/receiving command: " /* 7000D2B1 */
+					/* 0x0001D79D 110A               */ IL_03c1: ldloc.s 10
+					/* 0x0001D79F 6F4900000A         */ IL_03c3: callvirt instance string [System.Runtime]System.Exception::get_Message() /* 0A000049 */
+					/* 0x0001D7A4 284A00000A         */ IL_03c8: call string [System.Runtime]System.String::Concat(string, string) /* 0A00004A */
+					/* 0x0001D7A9 72A8340170         */ IL_03cd: ldstr "SendDiagCommandAsync" /* 700134A8 */
+					// 			result = false;
+					// sequence point: (line 4238, col 4) to (line 4238, col 17) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D7AE 285B000006         */ IL_03d2: call void QualcommDiag.DiagProtocol::Log(string, string) /* 0600005B */
+					/* 0x0001D7B3 16                 */ IL_03d7: ldc.i4.0
+					/* 0x0001D7B4 0C                 */ IL_03d8: stloc.2
+					// 		}
+					/* 0x0001D7B5 DE19               */ IL_03d9: leave.s IL_03f4
+				} // end handler
+			} // end .try
+			catch [System.Runtime]System.Exception
+			{
+				// 	catch (Exception exception)
+				// sequence point: hidden
+				/* 0x0001D7B7 130B               */ IL_03db: stloc.s 11
+				// 		this.<>1__state = -2;
+				/* 0x0001D7B9 02                 */ IL_03dd: ldarg.0
+				/* 0x0001D7BA 1FFE               */ IL_03de: ldc.i4.s -2
+				/* 0x0001D7BC 7DC9040004         */ IL_03e0: stfld int32 Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>1__state' /* 040004C9 */
+				// 		this.<>t__builder.SetException(exception);
+				/* 0x0001D7C1 02                 */ IL_03e5: ldarg.0
+				/* 0x0001D7C2 7CCA040004         */ IL_03e6: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>t__builder' /* 040004CA */
+				/* 0x0001D7C7 110B               */ IL_03eb: ldloc.s 11
+				/* 0x0001D7C9 286E03000A         */ IL_03ed: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::SetException(class [System.Runtime]System.Exception) /* 0A00036E */
+				// 		return;
+				/* 0x0001D7CE DE14               */ IL_03f2: leave.s IL_0408
+			} // end handler
+
+			// 	this.<>1__state = -2;
+			/* 0x0001D7D0 02                 */ IL_03f4: ldarg.0
+			/* 0x0001D7D1 1FFE               */ IL_03f5: ldc.i4.s -2
+			/* 0x0001D7D3 7DC9040004         */ IL_03f7: stfld int32 Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>1__state' /* 040004C9 */
+			// 	this.<>t__builder.SetResult(result);
+			/* 0x0001D7D8 02                 */ IL_03fc: ldarg.0
+			/* 0x0001D7D9 7CCA040004         */ IL_03fd: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>t__builder' /* 040004CA */
+			/* 0x0001D7DE 08                 */ IL_0402: ldloc.2
+			/* 0x0001D7DF 286F03000A         */ IL_0403: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::SetResult(!0) /* 0A00036F */
+
+			// }
+			/* 0x0001D7E4 2A                 */ IL_0408: ret
+		} // end of method '<SendDiagCommandAsync>d__162'::MoveNext
+
+		.method /* 06000351 */ private final hidebysig newslot virtual 
+			instance void SetStateMachine (
+				class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine stateMachine
+			) cil managed 
+		{
+			.custom /* 0C0003BE */ instance void [System.Runtime]System.Diagnostics.DebuggerHiddenAttribute::.ctor() = (
+				01 00 00 00
+			)
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine)
+			// Method begins at RVA 0x1d84c
+			// Header size: 1
+			// Code size: 13 (0xd)
+			.maxstack 8
+
+			// 	this.<>t__builder.SetStateMachine(stateMachine);
+			/* 0x0001D84D 02                 */ IL_0000: ldarg.0
+			/* 0x0001D84E 7CCA040004         */ IL_0001: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<SendDiagCommandAsync>d__162'::'<>t__builder' /* 040004CA */
+			/* 0x0001D853 03                 */ IL_0006: ldarg.1
+			/* 0x0001D854 287003000A         */ IL_0007: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine) /* 0A000370 */
+			// }
+			/* 0x0001D859 2A                 */ IL_000c: ret
+		} // end of method '<SendDiagCommandAsync>d__162'::SetStateMachine
+
+	} // end of class <SendDiagCommandAsync>d__162
+
+	.class /* 0200008E */ nested private auto ansi sealed beforefieldinit '<WriteNVItem60002>d__145'
+		extends [System.Runtime]System.ValueType
+		implements [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+	{
+		.custom /* 0C0001BA */ instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
+			01 00 00 00
+		)
+		.interfaceimpl type [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+			.custom /* 0C0000C0 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+				01 00 00 00 00
+			)
+
+		// Fields
+		.field /* 040004D8 */ public int32 '<>1__state'
+		.field /* 040004D9 */ public valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> '<>t__builder'
+		.custom /* 0C000566 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004DA */ public string content
+		.custom /* 0C000567 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004DB */ public class Mifi_8800L_Tool.Form1 '<>4__this'
+		.custom /* 0C000568 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004DC */ private valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> '<>u__1'
+		.custom /* 0C000569 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8[]) = (
+			01 00 02 00 00 00 00 01 00 00
+		)
+
+		// Methods
+		.method /* 06000352 */ private final hidebysig newslot virtual 
+			instance void MoveNext () cil managed 
+		{
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::MoveNext()
+			// Method begins at RVA 0x1d85c
+			// Header size: 12
+			// Code size: 313 (0x139)
+			.maxstack 5
+			.locals /* 1100013A */ init (
+				[0] int32,
+				[1] class Mifi_8800L_Tool.Form1,
+				[2] bool,
+				[3] string[] V_3,
+				[4] valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>,
+				[5] class [System.Runtime]System.Exception V_5,
+				[6] class [System.Runtime]System.Exception
+			)
+
+			// 	num = this.<>1__state;
+			/* 0x0001D868 02                 */ IL_0000: ldarg.0
+			/* 0x0001D869 7BD8040004         */ IL_0001: ldfld int32 Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>1__state' /* 040004D8 */
+			/* 0x0001D86E 0A                 */ IL_0006: stloc.0
+			// 	form = this.<>4__this;
+			/* 0x0001D86F 02                 */ IL_0007: ldarg.0
+			/* 0x0001D870 7BDB040004         */ IL_0008: ldfld class Mifi_8800L_Tool.Form1 Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>4__this' /* 040004DB */
+			/* 0x0001D875 0B                 */ IL_000d: stloc.1
+			.try
+			{
+				// 	{
+				// sequence point: (line 3636, col 2) to (line 3636, col 3) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D876 06                 */ IL_000e: ldloc.0
+				// (no C# code)
+				// sequence point: hidden
+				/* 0x0001D877 26                 */ IL_000f: pop
+				// 			if (num != 0)
+				// sequence point: (line 3638, col 3) to (line 3638, col 4) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D878 00                 */ IL_0010: nop
+				.try
+				{
+					/* 0x0001D879 06                 */ IL_0011: ldloc.0
+					/* 0x0001D87A 2C76               */ IL_0012: brfalse.s IL_008a
+
+					// 				awaiter = form.NewExecuteAdbCmdAndRedirectOutputAsync(new string[5] { "cd /opt/nvtl/bin/", "modem2_cli efs_write nvm/num/60002", "nvm/num/60002", this.content, "0" }, useShell: true).GetAwaiter();
+					// sequence point: (line 3640, col 4) to (line 3640, col 249) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D87C 1B                 */ IL_0014: ldc.i4.5
+					/* 0x0001D87D 8DBE000001         */ IL_0015: newarr [System.Runtime]System.String /* 010000BE */
+					/* 0x0001D882 25                 */ IL_001a: dup
+					/* 0x0001D883 16                 */ IL_001b: ldc.i4.0
+					/* 0x0001D884 72AE300170         */ IL_001c: ldstr "cd /opt/nvtl/bin/" /* 700130AE */
+					/* 0x0001D889 A2                 */ IL_0021: stelem.ref
+					/* 0x0001D88A 25                 */ IL_0022: dup
+					/* 0x0001D88B 17                 */ IL_0023: ldc.i4.1
+					/* 0x0001D88C 72D2340170         */ IL_0024: ldstr "modem2_cli efs_write nvm/num/60002" /* 700134D2 */
+					/* 0x0001D891 A2                 */ IL_0029: stelem.ref
+					/* 0x0001D892 25                 */ IL_002a: dup
+					/* 0x0001D893 18                 */ IL_002b: ldc.i4.2
+					/* 0x0001D894 7218350170         */ IL_002c: ldstr "nvm/num/60002" /* 70013518 */
+					/* 0x0001D899 A2                 */ IL_0031: stelem.ref
+					/* 0x0001D89A 25                 */ IL_0032: dup
+					/* 0x0001D89B 19                 */ IL_0033: ldc.i4.3
+					/* 0x0001D89C 02                 */ IL_0034: ldarg.0
+					/* 0x0001D89D 7BDA040004         */ IL_0035: ldfld string Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::content /* 040004DA */
+					/* 0x0001D8A2 A2                 */ IL_003a: stelem.ref
+					/* 0x0001D8A3 25                 */ IL_003b: dup
+					/* 0x0001D8A4 1A                 */ IL_003c: ldc.i4.4
+					/* 0x0001D8A5 72DFB30070         */ IL_003d: ldstr "0" /* 7000B3DF */
+					/* 0x0001D8AA A2                 */ IL_0042: stelem.ref
+					/* 0x0001D8AB 0D                 */ IL_0043: stloc.3
+					// 				if (!awaiter.IsCompleted)
+					// sequence point: hidden
+					/* 0x0001D8AC 07                 */ IL_0044: ldloc.1
+					/* 0x0001D8AD 09                 */ IL_0045: ldloc.3
+					/* 0x0001D8AE 17                 */ IL_0046: ldc.i4.1
+					/* 0x0001D8AF 72820E0070         */ IL_0047: ldstr "" /* 70000E82 */
+					/* 0x0001D8B4 2088130000         */ IL_004c: ldc.i4 5000
+					/* 0x0001D8B9 2820010006         */ IL_0051: call instance class [System.Runtime]System.Threading.Tasks.Task`1<string> Mifi_8800L_Tool.Form1::NewExecuteAdbCmdAndRedirectOutputAsync(string[], bool, string, int32) /* 06000120 */
+					/* 0x0001D8BE 6F4303000A         */ IL_0056: callvirt instance valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<!0> class [System.Runtime]System.Threading.Tasks.Task`1<string>::GetAwaiter() /* 0A000343 */
+					/* 0x0001D8C3 1304               */ IL_005b: stloc.s 4
+					/* 0x0001D8C5 1204               */ IL_005d: ldloca.s 4
+					/* 0x0001D8C7 284403000A         */ IL_005f: call instance bool valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>::get_IsCompleted() /* 0A000344 */
+					/* 0x0001D8CC 2D41               */ IL_0064: brtrue.s IL_00a7
+
+					// 					num = (this.<>1__state = 0);
+					/* 0x0001D8CE 02                 */ IL_0066: ldarg.0
+					/* 0x0001D8CF 16                 */ IL_0067: ldc.i4.0
+					/* 0x0001D8D0 25                 */ IL_0068: dup
+					/* 0x0001D8D1 0A                 */ IL_0069: stloc.0
+					/* 0x0001D8D2 7DD8040004         */ IL_006a: stfld int32 Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>1__state' /* 040004D8 */
+					// 					this.<>u__1 = awaiter;
+					/* 0x0001D8D7 02                 */ IL_006f: ldarg.0
+					/* 0x0001D8D8 1104               */ IL_0070: ldloc.s 4
+					/* 0x0001D8DA 7DDC040004         */ IL_0072: stfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>u__1' /* 040004DC */
+					// 					this.<>t__builder.AwaitUnsafeOnCompleted(ref awaiter, ref this);
+					/* 0x0001D8DF 02                 */ IL_0077: ldarg.0
+					/* 0x0001D8E0 7CD9040004         */ IL_0078: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>t__builder' /* 040004D9 */
+					/* 0x0001D8E5 1204               */ IL_007d: ldloca.s 4
+					/* 0x0001D8E7 02                 */ IL_007f: ldarg.0
+					/* 0x0001D8E8 28D800002B         */ IL_0080: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::AwaitUnsafeOnCompleted<valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>, valuetype Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'>(!!0&, !!1&) /* 2B0000D8 */
+					// 					return;
+					/* 0x0001D8ED DDAE000000         */ IL_0085: leave IL_0138
+
+					// 				awaiter = this.<>u__1;
+					/* 0x0001D8F2 02                 */ IL_008a: ldarg.0
+					/* 0x0001D8F3 7BDC040004         */ IL_008b: ldfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>u__1' /* 040004DC */
+					/* 0x0001D8F8 1304               */ IL_0090: stloc.s 4
+					// 				this.<>u__1 = default(TaskAwaiter<string>);
+					/* 0x0001D8FA 02                 */ IL_0092: ldarg.0
+					/* 0x0001D8FB 7CDC040004         */ IL_0093: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>u__1' /* 040004DC */
+					/* 0x0001D900 FE156700001B       */ IL_0098: initobj valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> /* 1B000067 */
+					// 				num = (this.<>1__state = -1);
+					/* 0x0001D906 02                 */ IL_009e: ldarg.0
+					/* 0x0001D907 15                 */ IL_009f: ldc.i4.m1
+					/* 0x0001D908 25                 */ IL_00a0: dup
+					/* 0x0001D909 0A                 */ IL_00a1: stloc.0
+					/* 0x0001D90A 7DD8040004         */ IL_00a2: stfld int32 Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>1__state' /* 040004D8 */
+
+					// 			num2 = awaiter.GetResult().Contains("cmd_write_efs_file returned 0 (MDM_MAIN: success.)");
+					// sequence point: (line 3641, col 4) to (line 3641, col 12) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D90F 1204               */ IL_00a7: ldloca.s 4
+					/* 0x0001D911 284603000A         */ IL_00a9: call instance !0 valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>::GetResult() /* 0A000346 */
+					/* 0x0001D916 7234350170         */ IL_00ae: ldstr "cmd_write_efs_file returned 0 (MDM_MAIN: success.)" /* 70013534 */
+					/* 0x0001D91B 6F7700000A         */ IL_00b3: callvirt instance bool [System.Runtime]System.String::Contains(string) /* 0A000077 */
+					// 			if (num2)
+					/* 0x0001D920 25                 */ IL_00b8: dup
+					/* 0x0001D921 2C15               */ IL_00b9: brfalse.s IL_00d0
+
+					// 				MessageBox.Show("Operation successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+					// sequence point: (line 3643, col 5) to (line 3643, col 104) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D923 7278310170         */ IL_00bb: ldstr "Operation successful." /* 70013178 */
+					/* 0x0001D928 728E0E0070         */ IL_00c0: ldstr "Success" /* 70000E8E */
+					/* 0x0001D92D 16                 */ IL_00c5: ldc.i4.0
+					/* 0x0001D92E 1F40               */ IL_00c6: ldc.i4.s 64
+					/* 0x0001D930 28E701000A         */ IL_00c8: call valuetype [System.Windows.Forms]System.Windows.Forms.DialogResult [System.Windows.Forms]System.Windows.Forms.MessageBox::Show(string, string, valuetype [System.Windows.Forms]System.Windows.Forms.MessageBoxButtons, valuetype [System.Windows.Forms]System.Windows.Forms.MessageBoxIcon) /* 0A0001E7 */
+					/* 0x0001D935 26                 */ IL_00cd: pop
+					// (no C# code)
+					// sequence point: hidden
+					/* 0x0001D936 2B13               */ IL_00ce: br.s IL_00e3
+
+					// 				MessageBox.Show("Operation failed. Please check the log for details.", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+					// sequence point: (line 3647, col 5) to (line 3647, col 130) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D938 72A4310170         */ IL_00d0: ldstr "Operation failed. Please check the log for details." /* 700131A4 */
+					/* 0x0001D93D 720C320170         */ IL_00d5: ldstr "Failure" /* 7001320C */
+					/* 0x0001D942 16                 */ IL_00da: ldc.i4.0
+					/* 0x0001D943 1F10               */ IL_00db: ldc.i4.s 16
+					/* 0x0001D945 28E701000A         */ IL_00dd: call valuetype [System.Windows.Forms]System.Windows.Forms.DialogResult [System.Windows.Forms]System.Windows.Forms.MessageBox::Show(string, string, valuetype [System.Windows.Forms]System.Windows.Forms.MessageBoxButtons, valuetype [System.Windows.Forms]System.Windows.Forms.MessageBoxIcon) /* 0A0001E7 */
+					/* 0x0001D94A 26                 */ IL_00e2: pop
+
+					// 			result = num2;
+					// sequence point: (line 3649, col 4) to (line 3649, col 15) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D94B 0C                 */ IL_00e3: stloc.2
+					// 	}
+					/* 0x0001D94C DE3E               */ IL_00e4: leave.s IL_0124
+				} // end .try
+				catch [System.Runtime]System.Exception
+				{
+					// 			MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+					// sequence point: (line 3653, col 4) to (line 3653, col 108) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D94E 1305               */ IL_00e6: stloc.s 5
+					/* 0x0001D950 7284120070         */ IL_00e8: ldstr "An error occurred: " /* 70001284 */
+					/* 0x0001D955 1105               */ IL_00ed: ldloc.s 5
+					/* 0x0001D957 6F4900000A         */ IL_00ef: callvirt instance string [System.Runtime]System.Exception::get_Message() /* 0A000049 */
+					/* 0x0001D95C 284A00000A         */ IL_00f4: call string [System.Runtime]System.String::Concat(string, string) /* 0A00004A */
+					/* 0x0001D961 72CE0E0070         */ IL_00f9: ldstr "Error" /* 70000ECE */
+					/* 0x0001D966 16                 */ IL_00fe: ldc.i4.0
+					/* 0x0001D967 1F10               */ IL_00ff: ldc.i4.s 16
+					/* 0x0001D969 28E701000A         */ IL_0101: call valuetype [System.Windows.Forms]System.Windows.Forms.DialogResult [System.Windows.Forms]System.Windows.Forms.MessageBox::Show(string, string, valuetype [System.Windows.Forms]System.Windows.Forms.MessageBoxButtons, valuetype [System.Windows.Forms]System.Windows.Forms.MessageBoxIcon) /* 0A0001E7 */
+					// 			result = false;
+					// sequence point: (line 3654, col 4) to (line 3654, col 17) in Mifi_8800L_Tool\Form1.cs
+					/* 0x0001D96E 26                 */ IL_0106: pop
+					/* 0x0001D96F 16                 */ IL_0107: ldc.i4.0
+					/* 0x0001D970 0C                 */ IL_0108: stloc.2
+					// 		}
+					/* 0x0001D971 DE19               */ IL_0109: leave.s IL_0124
+				} // end handler
+			} // end .try
+			catch [System.Runtime]System.Exception
+			{
+				// 	catch (Exception exception)
+				// sequence point: hidden
+				/* 0x0001D973 1306               */ IL_010b: stloc.s 6
+				// 		this.<>1__state = -2;
+				/* 0x0001D975 02                 */ IL_010d: ldarg.0
+				/* 0x0001D976 1FFE               */ IL_010e: ldc.i4.s -2
+				/* 0x0001D978 7DD8040004         */ IL_0110: stfld int32 Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>1__state' /* 040004D8 */
+				// 		this.<>t__builder.SetException(exception);
+				/* 0x0001D97D 02                 */ IL_0115: ldarg.0
+				/* 0x0001D97E 7CD9040004         */ IL_0116: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>t__builder' /* 040004D9 */
+				/* 0x0001D983 1106               */ IL_011b: ldloc.s 6
+				/* 0x0001D985 286E03000A         */ IL_011d: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::SetException(class [System.Runtime]System.Exception) /* 0A00036E */
+				// 		return;
+				/* 0x0001D98A DE14               */ IL_0122: leave.s IL_0138
+			} // end handler
+
+			// 	this.<>1__state = -2;
+			/* 0x0001D98C 02                 */ IL_0124: ldarg.0
+			/* 0x0001D98D 1FFE               */ IL_0125: ldc.i4.s -2
+			/* 0x0001D98F 7DD8040004         */ IL_0127: stfld int32 Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>1__state' /* 040004D8 */
+			// 	this.<>t__builder.SetResult(result);
+			/* 0x0001D994 02                 */ IL_012c: ldarg.0
+			/* 0x0001D995 7CD9040004         */ IL_012d: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool> Mifi_8800L_Tool.Form1/'<WriteNVItem60002>d__145'::'<>t__builder' /* 040004D9 */
+			/* 0x0001D99A 08                 */ IL_0132: ldloc.2
+			/* 0x0001D99B 286F03000A         */ IL_0133: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<bool>::SetResult(!0) /* 0A00036F */
+
+			// }
+			/* 0x0001D9A0 2A                 */ IL_0138: ret
+		} // end of method '<WriteNVItem60002>d__145'::MoveNext
+
+		.method /* 06000353 */ private final hidebysig newslot virtual 
+			instance void SetStateMachine (
+				class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine stateMachine

@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Tämä näyttö sisältää monia vaihtoehtoja, joiden avulla voit asettaa <tmpl_var _("webui", "webui_product_name")>-laitteen toimimaan paremmin tarpeidesi mukaisesti.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Jos tämä vaihtoehto on valittuna, <tmpl_var _("webui", "webui_product_name")>-laitteen LED- ja ääniominaisuudet on kytketty pois päältä. <tmpl_var _("webui", "webui_product_name")>-laitteen näyttö kytkeytyy päälle vasta, kun käyttäjä kytkee sen päälle. Tämä asetus ei kuitenkaan vaikuta käynnistysprosessiin.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Jos tämä asetus on valittuna, LED pysyy pois päältä. Jos tätä asetusta ei ole valittu, LED vilkkuu hitaasti ”elonmerkkinä”. Tämä asetus on harmaa, jos piilotila on kytketty päälle.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>Jos tämä on valittuna, näyttö kytkeytyy päälle, kun hälytysviesti näytetään. Jos tästä ei ole apua, voit kytkeä sen pois päältä.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>Jos tämä on valittuna, <tmpl_var _("webui", "webui_product_name")> antaa signaaleja käynnistyksestä, virrankatkaisusta ja erilaisista tapahtumista äänihälytysten avulla. Jos tätä ei ole valittu, <tmpl_var _("webui", "webui_product_name")> toimii hiljaa. Tämä asetus on harmaa, jos piilotila on kytketty päälle.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Näillä asetuksilla voidaan määrittää, mitkä tapahtumat laukaisevat äänihälytyksen. Nämä asetukset ovat harmaita, jos ääni on kytketty pois päältä joko yllä olevalla Stealth (Piilo) -asetuksella tai ”Turn on audio” (Kytke ääni päälle) -asetuksella.</p>
+</div>

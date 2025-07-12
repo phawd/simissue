@@ -1,0 +1,69 @@
+<!-- Connected Devices -->
+<div id="connected_devices">
+	<h1><tmpl_var _("webui", "connected_devices_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Esta página proporciona detalles sobre cada dispositivo conectado a este dispositivo y le permite editar cómo aparecen los nombres de los dispositivos en la interfaz de usuario. También puede bloquear o desbloquear un dispositivo del acceso a Internet. 
+	</p>
+
+	<h2><tmpl_var _("webui", "connected_devices_sub_header_text")></h2>
+	<p>El número de dispositivos actualmente conectados a este dispositivo.</p>
+
+	<p>La tabla enumera todos los dispositivos conectados a este dispositivo:</p>
+
+	<h3>Conexión</h3>
+	<p>Un icono indica el tipo de conexión para cada dispositivo. (Puede pasar el cursor sobre el icono para leer el tipo de conexión).</p>
+
+	<h3>Dispositivo</h3>
+	<p>
+		El nombre del dispositivo conectado suele ser el nombre de host establecido en el dispositivo conectado. En casos excepcionales, el nombre de host puede no estar disponible.
+	</p>
+
+	<h3>Red</h3>
+	<p>Indica si el dispositivo está conectado a la red principal o invitada, o a través de Ethernet o USB.</p>
+
+	<h3>Bloquear</h3>
+	<p>
+		Seleccione esta casilla para desconectar un dispositivo y evitar que se vuelva a conectar. Seleccione <b>Guardar cambios</b>. El dispositivo se elimina de la lista <b>Conectados</b> y aparece en la lista <b>Bloqueados</b> a continuación.
+	</p>
+	<p>
+		<strong>NOTA:</strong> esta opción está disponible para cada dispositivo conectado a través de Wi-Fi, pero no está disponible para su propio dispositivo o dispositivos conectados a través de Ethernet o USB.
+	</p>
+	<p>
+		Para ver los detalles de un dispositivo o cambiar el nombre del dispositivo tal como aparece en esta interfaz de usuario web, haga clic en la <b>flecha hacia abajo</b> a la derecha para expandir la fila del dispositivo. Aparece la siguiente información:
+	</p>
+
+	<h3>Nombre</h3>
+	<p>Para cambiar cómo aparece el nombre del dispositivo en esta interfaz de usuario, ingrese un nombre diferente.</p>	
+	<p>
+		<strong>NOTA:</strong> Esto solo modifica el nombre del dispositivo en la interfaz de usuario en la que se cambia.
+	</p>
+
+	<h3>IPv4</h3>
+	<p>La dirección de IP del dispositivo conectado.</p>
+
+	<h3>
+		<tmpl_var truncate(_("webui", "connected_devices_mac_address_label"), (size(_("webui", "connected_devices_mac_address_label")) - size(":")))>
+	</h3>
+	<p>La dirección MAC es un identificador de red único para este dispositivo conectado.</p>
+
+	<tmpl_if isIPv6Supported>
+		<h3>
+			<tmpl_var truncate(_("webui", "connected_devices_link_local_label"), (size(_("webui", "connected_devices_link_local_label")) - size(":")))>
+		</h3>
+		<p>Si el dispositivo conectado admite IPv6, se muestra la dirección de IPv6 del enlace-local.</p>
+	</tmpl_if>
+
+	<p>Haga clic en la flecha <b>hacia arriba</b> para contraer la fila.</p>
+
+	<h2><tmpl_var _("webui", "connected_devices_block_devices_sub_header_text")></h2>
+	<p>Esta sección enumera todos los dispositivos bloqueados que no pueden conectarse al dispositivo.</p>
+	<p>
+		<strong>NOTA:</strong> Dado que los dispositivos bloqueados no están conectados actualmente, no tienen una dirección IP. En cambio, se identifican por el nombre y la dirección MAC.
+	</p>
+	<p>
+		Para desbloquear un dispositivo bloqueado, desmarque la casilla <b>Bloquear</b> y seleccione <b>Guardar cambios</b>. El dispositivo se retira de la lista de dispositivos <b>Bloqueados</b> y se incluye en la lista de dispositivos <b>Conectados</b> que aparece arriba.
+	</p>
+</div>
+<!-- id="connected_devices" -->
+

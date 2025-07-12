@@ -1,0 +1,131 @@
+<!-- LAN -->
+<div id="lan">
+	<h1><tmpl_var _("webui", "adv_lan_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Esta página proporciona ajustes e información acerca de la red de área local (LAN) del dispositivo. La LAN consta del dispositivo y todos los dispositivos conectados.
+	</p>
+
+	<tmpl_if showIPPTEnable>
+		<h2>Contraseña IP</h2>
+	    	<p>
+	    		La contraseña IP (IPPT) permite que el primer dispositivo detectado en el puerto LAN especificado obtenga la dirección IP asignada por la red móvil. La IPPT le permite habilitar una conexión uno a uno con un sistema de enrutamiento de host. <strong>NOTA:</strong> Cuando la contraseña IP está activada, los dispositivos de otras interfaces funcionan normalmente. Sin embargo, cuando la IPPT está activada, las siguientes capacidades se establecen a través del sistema de enrutamiento del host, y los ajustes de la interfaz de usuario web no están disponibles:
+		</p>
+		<ul>
+			<li>Enrutamiento de puertos </li>
+			<li>Filtrado de puertos </li>
+			<li>DMZ </li>
+		</ul>
+
+		<h3>
+                        <tmpl_var truncate(_("webui", "adv_lan_ip_passthrough_isActive_label"), (size(_("webui", "adv_lan_ip_passthrough_isActive_label")) - size(":")))>
+                </h3>
+	    	<p>Marque la casilla para habilitar la contraseña IP.</p>
+		<p>
+                        <strong>Note:</strong> When Ethernet WAN is connected, IP Passthrough cannot be configured. To configure IP Passthrough, got to Advanced &gt; WAN and change Ethernet WAN to LAN, or set Ethernet WAN to a lower priority than Priority 1.
+                </p>
+	    	<tmpl_if showIPPTInterface>
+			<tmpl_if showIPPTInterfaceOptions>
+				<h3>
+					<tmpl_var truncate(_("webui", "adv_lan_ip_passthrough_interface_label"), (size(_("webui", "adv_lan_ip_passthrough_interface_label")) - size(":")))>
+				</h3>
+				<p>
+					Seleccione una interfaz del menú desplegable (Ethernet1, Ethernet2 o USB).
+				</p>
+			</tmpl_if>
+			<h3>Seleccione el nombre del servidor de manera automática/Seleccione el MAC de manera automática</h3> 
+			<p>
+				Marque la casilla si desea que el subsistema del enrutador seleccione el nombre del servidor o la dirección MAC de manera automática. Si no marca esta casilla, debe ingresar el nombre del servidor o la dirección MAC a continuación.
+			</p>
+			<h3><tmpl_var truncate(_("webui", "adv_lan_ip_passthrough_hostname_label"), (size(_("webui", "adv_lan_ip_passthrough_hostname_label")) - size(":")))></h3>
+			<p>
+				Al activar la IPPT en la interfaz USB, introduzca el nombre de host del dispositivo conectado para la contraseña IP. Este es el único dispositivo conectado a través de USB que puede obtener la dirección IP asignada a la red móvil. Puede ver el nombre de host en las páginas Inicio o Dispositivos conectados.<br/><strong>NOTA:</strong> Si marcó la casilla Seleccionar el nombre del servidor de manera automática, este campo no será visible.
+			</p>                        
+
+			<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_mac_address_label"), (size(_("webui", "adv_lan_ip4_mac_address_label")) - size(":")))></h3>
+	    		<p>
+				Al activar la IPPT en una interfaz Ethernet, introduzca la dirección MAC del dispositivo conectado para la contraseña IP. Es el único dispositivo conectado al puerto Ethernet seleccionado que puede obtener la dirección IP asignada a la red móvil.<br/><strong>NOTA:</strong> Si marcó la casilla Seleccionar MAC de manera automática, este campo no será visible.
+			</p>
+		</tmpl_if>
+    	</tmpl_if>
+
+	<h2><tmpl_var _("webui", "adv_lan_ip4_sub_header_text")></h2>
+	<tmpl_if LANIPAddressShow>			
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_address_label"), (size(_("webui", "adv_lan_ip4_address_label")) - size(":")))></h3>
+		<p>La dirección de IP de este dispositivo, tal como se ve desde la red local. Normalmente, puede usar el valor predeterminado.</p>
+	</tmpl_if>
+
+	<tmpl_if LANSubnetMaskShow>	
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_subnet_mask_label"), (size(_("webui", "adv_lan_ip4_subnet_mask_label")) - size(":")))></h3>
+		<p>
+			El valor predeterminado 255.255.255.0 es el estándar para las redes pequeñas (clase "C"). Si cambia la dirección de IP de LAN, asegúrese de usar la máscara de subred correcta.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if LANMacAddressShow>		
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_mac_address_label"), (size(_("webui", "adv_lan_ip4_mac_address_label")) - size(":")))></h3>
+		<p>
+			(solo lectura). La dirección del controlador de acceso al medio (MAC) correspondiente a la interfaz Wi-Fi de este dispositivo. La dirección MAC es un identificador de red único que se asigna cuando se fabrica un dispositivo de red.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if LANDHCPEnableShow>
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_dhcp_enable_label"), (size(_("webui", "adv_lan_ip4_dhcp_enable_label")) - size(":")))></h3>
+		<p>
+			Esta casilla de verificación activa o desactiva la función del servidor DHCP. Esta opción debe dejarse marcada. El servidor DHCP asigna una dirección IP a cada dispositivo conectado. <strong>NOTA:</strong> Si el servidor DHCP está apagado, deberá asignarse una dirección IP fija a cada dispositivo conectado.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if LANDHCPLeaseTimeShow>
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_dhcp_lease_time_label"), (size(_("webui", "adv_lan_ip4_dhcp_lease_time_label")) - size(":")))></h3>
+		<p>
+			La cantidad de minutos en los que los dispositivos conectados deben renovar la dirección IP que les asignó el servidor DHCP. Normalmente, esto se puede dejar en el valor predeterminado, pero si tiene requisitos especiales, puede cambiarlo.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if LANDHCPStartAddressShow>
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_dhcp_range_begin_label"), (size(_("webui", "adv_lan_ip4_dhcp_range_begin_label")) - size(":")))></h3>
+		<p>
+			El inicio del rango de direcciones IP utilizado por el servidor DHCP. Si la IP está configurada en el dispositivo cliente, use una dirección IP fuera de este rango de DHCP; si la dirección IP se establece mediante una reserva de IP, normalmente estará dentro de este rango. <strong>NOTA:</strong> Solo los usuarios expertos deberían cambiar este ajuste.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if LANDHCPEndAddressShow>
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip4_current_dhcp_range_label"), (size(_("webui", "adv_lan_ip4_current_dhcp_range_label")) - size(":")))></h3>
+		<p>
+			El final del rango de direcciones IP utilizado por el servidor DHCP. Si la IP está configurada en el dispositivo cliente, use una dirección IP fuera de este rango de DHCP; si la dirección IP se establece mediante una reserva de IP, normalmente estará dentro de este rango. <strong>NOTA:</strong> Solo los usuarios expertos deberían cambiar este ajuste.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if LANReservedIPAddressShow>
+		<h3><tmpl_var truncate(_("webui", "adv_lan_reservedIp_help_label"), (size(_("webui", "adv_lan_reservedIp_help_label")) - size(":")))></h3>
+        	<p>
+			Utilice este botón para configurar las direcciones IP reservadas. Las direcciones IP reservadas garantizan que a un dispositivo conectado se le asigne siempre la misma dirección IP.
+		</p>
+	</tmpl_if>
+			
+	<tmpl_if ipv6Supported>	
+		<h2><tmpl_var _("webui", "adv_lan_ip6_sub_header_text")></h2>
+		<tmpl_if showIPv6EnableOption>
+			<h3><tmpl_var truncate(_("webui", "adv_lan_ip6_enable_label"), (size(_("webui", "adv_lan_ip6_enable_label")) - size(":")))></h3>
+			<p>
+				Marque la casilla si el dispositivo conectado es compatible con IPv6. Esto permite que los dispositivos conectados a IPv6 establezcan conexiones de IPv6 a Internet.
+			</p>	
+		</tmpl_if>
+
+		<h3><tmpl_var truncate(_("webui", "adv_lan_ip6_link_local_label"), (size(_("webui", "adv_lan_ip6_link_local_label")) - size(":")))></h3>
+		<p>La dirección IPv6 de enlace local si el dispositivo conectado admite IPv6.</p>
+	</tmpl_if>	
+			
+	<tmpl_if deviceNameShow>
+                <h2><tmpl_var _("webui", "adv_lan_web_management_header_text")></h2>
+                <h3><tmpl_var truncate(_("webui", "adv_lan_url_name_label"), (size(_("webui", "adv_lan_url_name_label")) - size(":")))></h3>
+        	<p>
+			El nombre de la URL utilizada para acceder a la interfaz de usuario web local dispositivo.
+		</p>
+	</tmpl_if>
+
+	<p>Haga clic en <b>Guardar cambios</b> para activar y guardar los nuevos ajustes.</p>
+</div>
+<!-- id="lan" -->
+

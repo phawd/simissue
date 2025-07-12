@@ -1,0 +1,498 @@
+/* 0x0001D075 110F               */ IL_0331: ldloc.s 15
+				/* 0x0001D077 28A203000A         */ IL_0333: call instance void [System.Runtime]System.Runtime.CompilerServices.AsyncVoidMethodBuilder::SetException(class [System.Runtime]System.Exception) /* 0A0003A2 */
+				// 		return;
+				/* 0x0001D07C DE1A               */ IL_0338: leave.s IL_0354
+			} // end handler
+
+			// 		this.<>1__state = -2;
+			/* 0x0001D07E 02                 */ IL_033a: ldarg.0
+			/* 0x0001D07F 1FFE               */ IL_033b: ldc.i4.s -2
+			/* 0x0001D081 7DB4040004         */ IL_033d: stfld int32 Mifi_8800L_Tool.Form1/'<Rewriteimei>d__182'::'<>1__state' /* 040004B4 */
+			// 		this.<correspondingATPort>5__2 = null;
+			/* 0x0001D086 02                 */ IL_0342: ldarg.0
+			/* 0x0001D087 14                 */ IL_0343: ldnull
+			/* 0x0001D088 7DB9040004         */ IL_0344: stfld string Mifi_8800L_Tool.Form1/'<Rewriteimei>d__182'::'<correspondingATPort>5__2' /* 040004B9 */
+			// 		this.<>t__builder.SetResult();
+			/* 0x0001D08D 02                 */ IL_0349: ldarg.0
+			/* 0x0001D08E 7CB5040004         */ IL_034a: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncVoidMethodBuilder Mifi_8800L_Tool.Form1/'<Rewriteimei>d__182'::'<>t__builder' /* 040004B5 */
+			/* 0x0001D093 28A303000A         */ IL_034f: call instance void [System.Runtime]System.Runtime.CompilerServices.AsyncVoidMethodBuilder::SetResult() /* 0A0003A3 */
+
+			// }
+			/* 0x0001D098 2A                 */ IL_0354: ret
+		} // end of method '<Rewriteimei>d__182'::MoveNext
+
+		.method /* 06000349 */ private final hidebysig newslot virtual 
+			instance void SetStateMachine (
+				class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine stateMachine
+			) cil managed 
+		{
+			.custom /* 0C0003BA */ instance void [System.Runtime]System.Diagnostics.DebuggerHiddenAttribute::.ctor() = (
+				01 00 00 00
+			)
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine)
+			// Method begins at RVA 0x1d0d0
+			// Header size: 1
+			// Code size: 13 (0xd)
+			.maxstack 8
+
+			// 		this.<>t__builder.SetStateMachine(stateMachine);
+			/* 0x0001D0D1 02                 */ IL_0000: ldarg.0
+			/* 0x0001D0D2 7CB5040004         */ IL_0001: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncVoidMethodBuilder Mifi_8800L_Tool.Form1/'<Rewriteimei>d__182'::'<>t__builder' /* 040004B5 */
+			/* 0x0001D0D7 03                 */ IL_0006: ldarg.1
+			/* 0x0001D0D8 28A403000A         */ IL_0007: call instance void [System.Runtime]System.Runtime.CompilerServices.AsyncVoidMethodBuilder::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine) /* 0A0003A4 */
+			// }
+			/* 0x0001D0DD 2A                 */ IL_000c: ret
+		} // end of method '<Rewriteimei>d__182'::SetStateMachine
+
+	} // end of class <Rewriteimei>d__182
+
+	.class /* 0200008A */ nested private auto ansi sealed beforefieldinit '<SendATCommandAsync>d__136'
+		extends [System.Runtime]System.ValueType
+		implements [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+	{
+		.custom /* 0C0001AF */ instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
+			01 00 00 00
+		)
+		.interfaceimpl type [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+			.custom /* 0C0000B5 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+				01 00 00 00 00
+			)
+
+		// Fields
+		.field /* 040004BB */ public int32 '<>1__state'
+		.field /* 040004BC */ public valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> '<>t__builder'
+		.custom /* 0C000552 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004BD */ public string atCommand
+		.custom /* 0C000553 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004BE */ public class Mifi_8800L_Tool.Form1 '<>4__this'
+		.custom /* 0C000554 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004BF */ private string '<adbCommands>5__2'
+		.custom /* 0C000555 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004C0 */ private valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> '<>u__1'
+		.custom /* 0C000556 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8[]) = (
+			01 00 02 00 00 00 00 01 00 00
+		)
+
+		// Methods
+		.method /* 0600034A */ private final hidebysig newslot virtual 
+			instance void MoveNext () cil managed 
+		{
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::MoveNext()
+			// Method begins at RVA 0x1d0e0
+			// Header size: 12
+			// Code size: 271 (0x10f)
+			.maxstack 4
+			.locals /* 11000125 */ init (
+				[0] int32,
+				[1] class Mifi_8800L_Tool.Form1,
+				[2] string,
+				[3] valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>,
+				[4] class [System.Runtime]System.Exception
+			)
+
+			// 		num = this.<>1__state;
+			/* 0x0001D0EC 02                 */ IL_0000: ldarg.0
+			/* 0x0001D0ED 7BBB040004         */ IL_0001: ldfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>1__state' /* 040004BB */
+			/* 0x0001D0F2 0A                 */ IL_0006: stloc.0
+			// 		form = this.<>4__this;
+			/* 0x0001D0F3 02                 */ IL_0007: ldarg.0
+			/* 0x0001D0F4 7BBE040004         */ IL_0008: ldfld class Mifi_8800L_Tool.Form1 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>4__this' /* 040004BE */
+			/* 0x0001D0F9 0B                 */ IL_000d: stloc.1
+			.try
+			{
+				// 			if (num != 0)
+				// sequence point: (line 3369, col 2) to (line 3369, col 3) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D0FA 06                 */ IL_000e: ldloc.0
+				/* 0x0001D0FB 2C59               */ IL_000f: brfalse.s IL_006a
+
+				// 				this.<adbCommands>5__2 = "timeout 0.2 cat /dev/smd7 ; echo -e '" + this.atCommand + "\r' > /dev/smd7";
+				// sequence point: (line 3371, col 3) to (line 3371, col 90) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D0FD 02                 */ IL_0011: ldarg.0
+				/* 0x0001D103 02                 */ IL_0017: ldarg.0
+				/* 0x0001D104 7BBD040004         */ IL_0018: ldfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::atCommand /* 040004BD */
+				/* 0x0001D10E 287A00000A         */ IL_0022: call string [System.Runtime]System.String::Concat(string, string, string) /* 0A00007A */
+				/* 0x0001D113 7DBF040004         */ IL_0027: stfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<adbCommands>5__2' /* 040004BF */
+				// 				awaiter = form.ExecuteAdbCommandAndCaptureOutputAsync(this.<adbCommands>5__2).GetAwaiter();
+				// sequence point: (line 3372, col 3) to (line 3374, col 37) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D118 07                 */ IL_002c: ldloc.1
+				// sequence point: hidden
+				/* 0x0001D119 02                 */ IL_002d: ldarg.0
+				/* 0x0001D11A 7BBF040004         */ IL_002e: ldfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<adbCommands>5__2' /* 040004BF */
+				/* 0x0001D11F 28EA000006         */ IL_0033: call instance class [System.Runtime]System.Threading.Tasks.Task`1<string> Mifi_8800L_Tool.Form1::ExecuteAdbCommandAndCaptureOutputAsync(string) /* 060000EA */
+				/* 0x0001D124 6F4303000A         */ IL_0038: callvirt instance valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<!0> class [System.Runtime]System.Threading.Tasks.Task`1<string>::GetAwaiter() /* 0A000343 */
+				/* 0x0001D129 0D                 */ IL_003d: stloc.3
+				// 				if (!awaiter.IsCompleted)
+				/* 0x0001D12A 1203               */ IL_003e: ldloca.s 3
+				/* 0x0001D12C 284403000A         */ IL_0040: call instance bool valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>::get_IsCompleted() /* 0A000344 */
+				/* 0x0001D131 2D3F               */ IL_0045: brtrue.s IL_0086
+
+				// 					num = (this.<>1__state = 0);
+				/* 0x0001D133 02                 */ IL_0047: ldarg.0
+				/* 0x0001D134 16                 */ IL_0048: ldc.i4.0
+				/* 0x0001D135 25                 */ IL_0049: dup
+				/* 0x0001D136 0A                 */ IL_004a: stloc.0
+				/* 0x0001D137 7DBB040004         */ IL_004b: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>1__state' /* 040004BB */
+				// 					this.<>u__1 = awaiter;
+				/* 0x0001D13C 02                 */ IL_0050: ldarg.0
+				/* 0x0001D13D 09                 */ IL_0051: ldloc.3
+				/* 0x0001D13E 7DC0040004         */ IL_0052: stfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>u__1' /* 040004C0 */
+				// 					this.<>t__builder.AwaitUnsafeOnCompleted(ref awaiter, ref this);
+				/* 0x0001D143 02                 */ IL_0057: ldarg.0
+				/* 0x0001D144 7CBC040004         */ IL_0058: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>t__builder' /* 040004BC */
+				/* 0x0001D149 1203               */ IL_005d: ldloca.s 3
+				/* 0x0001D14B 02                 */ IL_005f: ldarg.0
+				/* 0x0001D14C 28D300002B         */ IL_0060: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::AwaitUnsafeOnCompleted<valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>, valuetype Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'>(!!0&, !!1&) /* 2B0000D3 */
+				// 					return;
+				/* 0x0001D151 DDA4000000         */ IL_0065: leave IL_010e
+
+				// 			awaiter = this.<>u__1;
+				/* 0x0001D156 02                 */ IL_006a: ldarg.0
+				/* 0x0001D157 7BC0040004         */ IL_006b: ldfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>u__1' /* 040004C0 */
+				/* 0x0001D15C 0D                 */ IL_0070: stloc.3
+				// 			this.<>u__1 = default(TaskAwaiter<string>);
+				/* 0x0001D15D 02                 */ IL_0071: ldarg.0
+				/* 0x0001D15E 7CC0040004         */ IL_0072: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>u__1' /* 040004C0 */
+				/* 0x0001D163 FE156700001B       */ IL_0077: initobj valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> /* 1B000067 */
+				// 			num = (this.<>1__state = -1);
+				/* 0x0001D169 02                 */ IL_007d: ldarg.0
+				/* 0x0001D16A 15                 */ IL_007e: ldc.i4.m1
+				/* 0x0001D16B 25                 */ IL_007f: dup
+				/* 0x0001D16C 0A                 */ IL_0080: stloc.0
+				/* 0x0001D16D 7DBB040004         */ IL_0081: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>1__state' /* 040004BB */
+
+				// 		result = awaiter.GetResult().Replace("Terminated", "").Trim()
+				// 			.Replace(this.<adbCommands>5__2, "Response: ")
+				// 			.Replace("\n", " ")
+				// 			.Replace(this.atCommand, "Response:");
+				/* 0x0001D172 1203               */ IL_0086: ldloca.s 3
+				/* 0x0001D174 284603000A         */ IL_0088: call instance !0 valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>::GetResult() /* 0A000346 */
+				/* 0x0001D179 72D0330170         */ IL_008d: ldstr "Terminated" /* 700133D0 */
+				/* 0x0001D17E 72820E0070         */ IL_0092: ldstr "" /* 70000E82 */
+				/* 0x0001D183 6F9800000A         */ IL_0097: callvirt instance string [System.Runtime]System.String::Replace(string, string) /* 0A000098 */
+				/* 0x0001D188 6F6E00000A         */ IL_009c: callvirt instance string [System.Runtime]System.String::Trim() /* 0A00006E */
+				/* 0x0001D18D 02                 */ IL_00a1: ldarg.0
+				/* 0x0001D18E 7BBF040004         */ IL_00a2: ldfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<adbCommands>5__2' /* 040004BF */
+				/* 0x0001D193 72E6330170         */ IL_00a7: ldstr "Response: " /* 700133E6 */
+				/* 0x0001D198 6F9800000A         */ IL_00ac: callvirt instance string [System.Runtime]System.String::Replace(string, string) /* 0A000098 */
+				/* 0x0001D19D 72043A0070         */ IL_00b1: ldstr "\n" /* 70003A04 */
+				/* 0x0001D1A2 7272040070         */ IL_00b6: ldstr " " /* 70000472 */
+				/* 0x0001D1A7 6F9800000A         */ IL_00bb: callvirt instance string [System.Runtime]System.String::Replace(string, string) /* 0A000098 */
+				/* 0x0001D1AC 02                 */ IL_00c0: ldarg.0
+				/* 0x0001D1AD 7BBD040004         */ IL_00c1: ldfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::atCommand /* 040004BD */
+				/* 0x0001D1B2 72ED500070         */ IL_00c6: ldstr "Response:" /* 700050ED */
+				/* 0x0001D1B7 6F9800000A         */ IL_00cb: callvirt instance string [System.Runtime]System.String::Replace(string, string) /* 0A000098 */
+				/* 0x0001D1BC 0C                 */ IL_00d0: stloc.2
+				// 	}
+				/* 0x0001D1BD DE20               */ IL_00d1: leave.s IL_00f3
+			} // end .try
+			catch [System.Runtime]System.Exception
+			{
+				// 		catch (Exception exception)
+				/* 0x0001D1BF 1304               */ IL_00d3: stloc.s 4
+				// 			this.<>1__state = -2;
+				/* 0x0001D1C1 02                 */ IL_00d5: ldarg.0
+				/* 0x0001D1C2 1FFE               */ IL_00d6: ldc.i4.s -2
+				/* 0x0001D1C4 7DBB040004         */ IL_00d8: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>1__state' /* 040004BB */
+				// 			this.<adbCommands>5__2 = null;
+				/* 0x0001D1C9 02                 */ IL_00dd: ldarg.0
+				/* 0x0001D1CA 14                 */ IL_00de: ldnull
+				/* 0x0001D1CB 7DBF040004         */ IL_00df: stfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<adbCommands>5__2' /* 040004BF */
+				// 			this.<>t__builder.SetException(exception);
+				/* 0x0001D1D0 02                 */ IL_00e4: ldarg.0
+				/* 0x0001D1D1 7CBC040004         */ IL_00e5: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>t__builder' /* 040004BC */
+				/* 0x0001D1D6 1104               */ IL_00ea: ldloc.s 4
+				/* 0x0001D1D8 284703000A         */ IL_00ec: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::SetException(class [System.Runtime]System.Exception) /* 0A000347 */
+				// 			return;
+				/* 0x0001D1DD DE1B               */ IL_00f1: leave.s IL_010e
+			} // end handler
+
+			// 		this.<>1__state = -2;
+			/* 0x0001D1DF 02                 */ IL_00f3: ldarg.0
+			/* 0x0001D1E0 1FFE               */ IL_00f4: ldc.i4.s -2
+			/* 0x0001D1E2 7DBB040004         */ IL_00f6: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>1__state' /* 040004BB */
+			// 		this.<adbCommands>5__2 = null;
+			/* 0x0001D1E7 02                 */ IL_00fb: ldarg.0
+			/* 0x0001D1E8 14                 */ IL_00fc: ldnull
+			/* 0x0001D1E9 7DBF040004         */ IL_00fd: stfld string Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<adbCommands>5__2' /* 040004BF */
+			// 		this.<>t__builder.SetResult(result);
+			/* 0x0001D1EE 02                 */ IL_0102: ldarg.0
+			/* 0x0001D1EF 7CBC040004         */ IL_0103: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>t__builder' /* 040004BC */
+			/* 0x0001D1F4 08                 */ IL_0108: ldloc.2
+			/* 0x0001D1F5 284803000A         */ IL_0109: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::SetResult(!0) /* 0A000348 */
+
+			// }
+			/* 0x0001D1FA 2A                 */ IL_010e: ret
+		} // end of method '<SendATCommandAsync>d__136'::MoveNext
+
+		.method /* 0600034B */ private final hidebysig newslot virtual 
+			instance void SetStateMachine (
+				class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine stateMachine
+			) cil managed 
+		{
+			.custom /* 0C0003BB */ instance void [System.Runtime]System.Diagnostics.DebuggerHiddenAttribute::.ctor() = (
+				01 00 00 00
+			)
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine)
+			// Method begins at RVA 0x1d20c
+			// Header size: 1
+			// Code size: 13 (0xd)
+			.maxstack 8
+
+			// 		this.<>t__builder.SetStateMachine(stateMachine);
+			/* 0x0001D20D 02                 */ IL_0000: ldarg.0
+			/* 0x0001D20E 7CBC040004         */ IL_0001: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__136'::'<>t__builder' /* 040004BC */
+			/* 0x0001D213 03                 */ IL_0006: ldarg.1
+			/* 0x0001D214 284903000A         */ IL_0007: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine) /* 0A000349 */
+			// }
+			/* 0x0001D219 2A                 */ IL_000c: ret
+		} // end of method '<SendATCommandAsync>d__136'::SetStateMachine
+
+	} // end of class <SendATCommandAsync>d__136
+
+	.class /* 0200008B */ nested private auto ansi sealed beforefieldinit '<SendATCommandAsync>d__78'
+		extends [System.Runtime]System.ValueType
+		implements [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+	{
+		.custom /* 0C0001B1 */ instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
+			01 00 00 00
+		)
+		.interfaceimpl type [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+			.custom /* 0C0000B7 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+				01 00 00 00 00
+			)
+
+		// Fields
+		.field /* 040004C1 */ public int32 '<>1__state'
+		.field /* 040004C2 */ public valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> '<>t__builder'
+		.custom /* 0C000557 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004C3 */ public class Mifi_8800L_Tool.Form1 '<>4__this'
+		.custom /* 0C000558 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004C4 */ private valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> '<>u__1'
+		.custom /* 0C000559 */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8[]) = (
+			01 00 02 00 00 00 00 01 00 00
+		)
+
+		// Methods
+		.method /* 0600034C */ private final hidebysig newslot virtual 
+			instance void MoveNext () cil managed 
+		{
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::MoveNext()
+			// Method begins at RVA 0x1d21c
+			// Header size: 12
+			// Code size: 164 (0xa4)
+			.maxstack 3
+			.locals /* 11000124 */ init (
+				[0] int32,
+				[1] class Mifi_8800L_Tool.Form1,
+				[2] string,
+				[3] string V_3,
+				[4] valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>,
+				[5] class [System.Runtime]System.Exception
+			)
+
+			// 		num = this.<>1__state;
+			/* 0x0001D228 02                 */ IL_0000: ldarg.0
+			/* 0x0001D229 7BC1040004         */ IL_0001: ldfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>1__state' /* 040004C1 */
+			/* 0x0001D22E 0A                 */ IL_0006: stloc.0
+			// 		form = this.<>4__this;
+			/* 0x0001D22F 02                 */ IL_0007: ldarg.0
+			/* 0x0001D230 7BC3040004         */ IL_0008: ldfld class Mifi_8800L_Tool.Form1 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>4__this' /* 040004C3 */
+			/* 0x0001D235 0B                 */ IL_000d: stloc.1
+			.try
+			{
+				// 			if (num != 0)
+				// sequence point: (line 1713, col 2) to (line 1713, col 3) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D236 06                 */ IL_000e: ldloc.0
+				/* 0x0001D237 2C3E               */ IL_000f: brfalse.s IL_004f
+
+				// 				awaiter = form.ExecuteAdbCommandAsync("cat /dev/smd7 & echo -e \"at+cgmi\r\" > /dev/smd7\r").GetAwaiter();
+				// sequence point: (line 1714, col 3) to (line 1714, col 100) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D239 72FC330170         */ IL_0011: ldstr "cat /dev/smd7 & echo -e \"at+cgmi\r\" > /dev/smd7\r" /* 700133FC */
+				/* 0x0001D23E 0D                 */ IL_0016: stloc.3
+				/* 0x0001D23F 07                 */ IL_0017: ldloc.1
+				// sequence point: hidden
+				/* 0x0001D240 09                 */ IL_0018: ldloc.3
+				/* 0x0001D241 28E4000006         */ IL_0019: call instance class [System.Runtime]System.Threading.Tasks.Task`1<string> Mifi_8800L_Tool.Form1::ExecuteAdbCommandAsync(string) /* 060000E4 */
+				/* 0x0001D246 6F4303000A         */ IL_001e: callvirt instance valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<!0> class [System.Runtime]System.Threading.Tasks.Task`1<string>::GetAwaiter() /* 0A000343 */
+				/* 0x0001D24B 1304               */ IL_0023: stloc.s 4
+				// 				if (!awaiter.IsCompleted)
+				/* 0x0001D24D 1204               */ IL_0025: ldloca.s 4
+				/* 0x0001D24F 284403000A         */ IL_0027: call instance bool valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>::get_IsCompleted() /* 0A000344 */
+				/* 0x0001D254 2D3E               */ IL_002c: brtrue.s IL_006c
+
+				// 					num = (this.<>1__state = 0);
+				/* 0x0001D256 02                 */ IL_002e: ldarg.0
+				/* 0x0001D257 16                 */ IL_002f: ldc.i4.0
+				/* 0x0001D258 25                 */ IL_0030: dup
+				/* 0x0001D259 0A                 */ IL_0031: stloc.0
+				/* 0x0001D25A 7DC1040004         */ IL_0032: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>1__state' /* 040004C1 */
+				// 					this.<>u__1 = awaiter;
+				/* 0x0001D25F 02                 */ IL_0037: ldarg.0
+				/* 0x0001D260 1104               */ IL_0038: ldloc.s 4
+				/* 0x0001D262 7DC4040004         */ IL_003a: stfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>u__1' /* 040004C4 */
+				// 					this.<>t__builder.AwaitUnsafeOnCompleted(ref awaiter, ref this);
+				/* 0x0001D267 02                 */ IL_003f: ldarg.0
+				/* 0x0001D268 7CC2040004         */ IL_0040: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>t__builder' /* 040004C2 */
+				/* 0x0001D26D 1204               */ IL_0045: ldloca.s 4
+				/* 0x0001D26F 02                 */ IL_0047: ldarg.0
+				/* 0x0001D270 28D400002B         */ IL_0048: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::AwaitUnsafeOnCompleted<valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>, valuetype Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'>(!!0&, !!1&) /* 2B0000D4 */
+				// 					return;
+				/* 0x0001D275 DE54               */ IL_004d: leave.s IL_00a3
+
+				// 			awaiter = this.<>u__1;
+				/* 0x0001D277 02                 */ IL_004f: ldarg.0
+				/* 0x0001D278 7BC4040004         */ IL_0050: ldfld valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>u__1' /* 040004C4 */
+				/* 0x0001D27D 1304               */ IL_0055: stloc.s 4
+				// 			this.<>u__1 = default(TaskAwaiter<string>);
+				/* 0x0001D27F 02                 */ IL_0057: ldarg.0
+				/* 0x0001D280 7CC4040004         */ IL_0058: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>u__1' /* 040004C4 */
+				/* 0x0001D285 FE156700001B       */ IL_005d: initobj valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> /* 1B000067 */
+				// 			num = (this.<>1__state = -1);
+				/* 0x0001D28B 02                 */ IL_0063: ldarg.0
+				/* 0x0001D28C 15                 */ IL_0064: ldc.i4.m1
+				/* 0x0001D28D 25                 */ IL_0065: dup
+				/* 0x0001D28E 0A                 */ IL_0066: stloc.0
+				/* 0x0001D28F 7DC1040004         */ IL_0067: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>1__state' /* 040004C1 */
+
+				// 		result = awaiter.GetResult();
+				/* 0x0001D294 1204               */ IL_006c: ldloca.s 4
+				/* 0x0001D296 284603000A         */ IL_006e: call instance !0 valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>::GetResult() /* 0A000346 */
+				/* 0x0001D29B 0C                 */ IL_0073: stloc.2
+				// 	}
+				/* 0x0001D29C DE19               */ IL_0074: leave.s IL_008f
+			} // end .try
+			catch [System.Runtime]System.Exception
+			{
+				// 		catch (Exception exception)
+				/* 0x0001D29E 1305               */ IL_0076: stloc.s 5
+				// 			this.<>1__state = -2;
+				/* 0x0001D2A0 02                 */ IL_0078: ldarg.0
+				/* 0x0001D2A1 1FFE               */ IL_0079: ldc.i4.s -2
+				/* 0x0001D2A3 7DC1040004         */ IL_007b: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>1__state' /* 040004C1 */
+				// 			this.<>t__builder.SetException(exception);
+				/* 0x0001D2A8 02                 */ IL_0080: ldarg.0
+				/* 0x0001D2A9 7CC2040004         */ IL_0081: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>t__builder' /* 040004C2 */
+				/* 0x0001D2AE 1105               */ IL_0086: ldloc.s 5
+				/* 0x0001D2B0 284703000A         */ IL_0088: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::SetException(class [System.Runtime]System.Exception) /* 0A000347 */
+				// 			return;
+				/* 0x0001D2B5 DE14               */ IL_008d: leave.s IL_00a3
+			} // end handler
+
+			// 		this.<>1__state = -2;
+			/* 0x0001D2B7 02                 */ IL_008f: ldarg.0
+			/* 0x0001D2B8 1FFE               */ IL_0090: ldc.i4.s -2
+			/* 0x0001D2BA 7DC1040004         */ IL_0092: stfld int32 Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>1__state' /* 040004C1 */
+			// 		this.<>t__builder.SetResult(result);
+			/* 0x0001D2BF 02                 */ IL_0097: ldarg.0
+			/* 0x0001D2C0 7CC2040004         */ IL_0098: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>t__builder' /* 040004C2 */
+			/* 0x0001D2C5 08                 */ IL_009d: ldloc.2
+			/* 0x0001D2C6 284803000A         */ IL_009e: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::SetResult(!0) /* 0A000348 */
+
+			// }
+			/* 0x0001D2CB 2A                 */ IL_00a3: ret
+		} // end of method '<SendATCommandAsync>d__78'::MoveNext
+
+		.method /* 0600034D */ private final hidebysig newslot virtual 
+			instance void SetStateMachine (
+				class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine stateMachine
+			) cil managed 
+		{
+			.custom /* 0C0003BC */ instance void [System.Runtime]System.Diagnostics.DebuggerHiddenAttribute::.ctor() = (
+				01 00 00 00
+			)
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine)
+			// Method begins at RVA 0x1d2dc
+			// Header size: 1
+			// Code size: 13 (0xd)
+			.maxstack 8
+
+			// 		this.<>t__builder.SetStateMachine(stateMachine);
+			/* 0x0001D2DD 02                 */ IL_0000: ldarg.0
+			/* 0x0001D2DE 7CC2040004         */ IL_0001: ldflda valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> Mifi_8800L_Tool.Form1/'<SendATCommandAsync>d__78'::'<>t__builder' /* 040004C2 */
+			/* 0x0001D2E3 03                 */ IL_0006: ldarg.1
+			/* 0x0001D2E4 284903000A         */ IL_0007: call instance void valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string>::SetStateMachine(class [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine) /* 0A000349 */
+			// }
+			/* 0x0001D2E9 2A                 */ IL_000c: ret
+		} // end of method '<SendATCommandAsync>d__78'::SetStateMachine
+
+	} // end of class <SendATCommandAsync>d__78
+
+	.class /* 0200008C */ nested private auto ansi sealed beforefieldinit '<SendATICommandAsync>d__131'
+		extends [System.Runtime]System.ValueType
+		implements [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+	{
+		.custom /* 0C0001B4 */ instance void [System.Runtime]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = (
+			01 00 00 00
+		)
+		.interfaceimpl type [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine
+			.custom /* 0C0000BA */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+				01 00 00 00 00
+			)
+
+		// Fields
+		.field /* 040004C5 */ public int32 '<>1__state'
+		.field /* 040004C6 */ public valuetype [System.Runtime]System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<string> '<>t__builder'
+		.custom /* 0C00055A */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004C7 */ public class Mifi_8800L_Tool.Form1 '<>4__this'
+		.custom /* 0C00055B */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8) = (
+			01 00 00 00 00
+		)
+		.field /* 040004C8 */ private valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string> '<>u__1'
+		.custom /* 0C00055C */ instance void System.Runtime.CompilerServices.NullableAttribute::.ctor(uint8[]) = (
+			01 00 02 00 00 00 00 01 00 00
+		)
+
+		// Methods
+		.method /* 0600034E */ private final hidebysig newslot virtual 
+			instance void MoveNext () cil managed 
+		{
+			.override method instance void [System.Runtime]System.Runtime.CompilerServices.IAsyncStateMachine::MoveNext()
+			// Method begins at RVA 0x1d2ec
+			// Header size: 12
+			// Code size: 183 (0xb7)
+			.maxstack 3
+			.locals /* 1100013C */ init (
+				[0] int32,
+				[1] class Mifi_8800L_Tool.Form1,
+				[2] string,
+				[3] string V_3,
+				[4] string V_4,
+				[5] valuetype [System.Runtime]System.Runtime.CompilerServices.TaskAwaiter`1<string>,
+				[6] class [System.Runtime]System.Exception
+			)
+
+			// 		num = this.<>1__state;
+			/* 0x0001D2F8 02                 */ IL_0000: ldarg.0
+			/* 0x0001D2F9 7BC5040004         */ IL_0001: ldfld int32 Mifi_8800L_Tool.Form1/'<SendATICommandAsync>d__131'::'<>1__state' /* 040004C5 */
+			/* 0x0001D2FE 0A                 */ IL_0006: stloc.0
+			// 		form = this.<>4__this;
+			/* 0x0001D2FF 02                 */ IL_0007: ldarg.0
+			/* 0x0001D300 7BC7040004         */ IL_0008: ldfld class Mifi_8800L_Tool.Form1 Mifi_8800L_Tool.Form1/'<SendATICommandAsync>d__131'::'<>4__this' /* 040004C7 */
+			/* 0x0001D305 0B                 */ IL_000d: stloc.1
+			.try
+			{
+				// 			if (num != 0)
+				// sequence point: (line 3004, col 2) to (line 3004, col 3) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D306 06                 */ IL_000e: ldloc.0
+				/* 0x0001D307 2C51               */ IL_000f: brfalse.s IL_0062
+
+				// 				awaiter = form.ExecuteAdbCommandAsync("echo -e \"" + "ATI" + "\n\" > /dev/smd7").GetAwaiter();
+				// sequence point: (line 3005, col 3) to (line 3005, col 88) in Mifi_8800L_Tool\Form1.cs
+				/* 0x0001D309 725E340170         */ IL_0011: ldstr "ATI" /* 7001345E */
+				/* 0x0001D30E 0D                 */ IL_0016: stloc.3
+				/* 0x0001D30F 72C80C0070         */ IL_0017: ldstr "echo -e \"" /* 70000CC8 */
+				// sequence point: hidden

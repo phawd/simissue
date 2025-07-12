@@ -1,0 +1,65 @@
+<div id="device_preferences">
+	<h1><tmpl_var _("webui", "preferences_device_preference_sub_header_text")></h1>
+	<p>Cet écran contient de nombreuses options qui vous permettent de régler le comportement de <tmpl_var _("webui", "webui_product_name")> pour mieux répondre à vos besoins.</p>
+
+	<tmpl_if usbmodeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_mode_label"), (size(_("webui", "preferences_usb_mode_label")) - size(":")))></h3>
+		<p>Ce paramètre détermine le type de connexion lorsqu’un ordinateur est connecté au port USB C de <tmpl_var _("webui", "webui_product_name_with_suffix")>. Sélectionnez l’option souhaitée.</p>
+	</tmpl_if>
+
+	<tmpl_if usbPromptShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_usb_connection_prompt_label"), (size(_("webui", "preferences_usb_connection_prompt_label")) - size(":")))></h3>
+		<p>Si cette case est cochée, vous serez invité (à l’écran de <tmpl_var _("webui", "webui_product_name")>) à sélectionner le mode USB souhaité lorsqu’une connexion USB à un ordinateur est détectée. Toute sélection faite suite à cette invite ne modifie pas le paramètre ci-dessus, mais définit seulement le mode de la session USB en cours.</p>
+	</tmpl_if>
+	
+	<h3><tmpl_var truncate(_("webui", "preferences_turnoff_diplay_label"), (size(_("webui", "preferences_turnoff_diplay_label")) - size(":")))></h3>
+	<p>Ce paramètre détermine la vitesse à laquelle l’écran de <tmpl_var _("webui", "webui_product_name_with_suffix")> s’éteint après une période d’inactivité. Sélectionnez l’option souhaitée.</p>
+
+	<tmpl_if deepSleepModeShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_deep_sleep_label"), (size(_("webui", "preferences_deep_sleep_label")) - size(":")))></h3>
+		<p>Le <tmpl_var _("webui", "webui_product_name")> passe en mode veille après une période d’inactivité. Sélectionnez la durée souhaitée pour passer en mode veille.</p>
+	</tmpl_if>
+
+	<tmpl_if autoShutdownShow>
+		<h3><tmpl_var truncate(_("webui", "preferences_auto_shutdown_label"), (size(_("webui", "preferences_auto_shutdown_label")) - size(":")))></h3>
+		<p>Le <tmpl_var _("webui", "webui_product_name")> peut s’arrêter après une période d’inactivité. Sélectionnez la durée souhaitée pour déclencher un arrêt.</p>
+	</tmpl_if>	
+	
+	<tmpl_if universalChargingShow>
+		<h2><tmpl_var _("webui", "preferences_universal_charging_sub_header_text")></h2>
+		<p>Cette fonctionnalité vous permet de charger des appareils tels que votre téléphone ou votre casque Bluetooth à partir de la batterie <tmpl_var _("webui", "webui_product_name_with_suffix")>. Il suffit de brancher le câble USB de votre appareil au port de charge universelle <tmpl_var _("webui", "webui_product_name_with_suffix")>.</p>
+	
+		<h3><tmpl_var truncate(_("webui", "preferences_universal_charging_status_label"), (size(_("webui", "preferences_universal_charging_status_label")) - size(":")))></h3>
+		<p>Ce champ affiche l’état actuel de la fonctionnalité de charge universelle. Les valeurs d’état possibles sont :</p>
+
+		<blockquote>
+			<ul>
+				<li><tmpl_var _("preferences_universal_charging_status_charging_text")> - un appareil externe est en train de se charger à partir de la batterie <tmpl_var _("webui", "webui_product_name_with_suffix")>.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_available_text")> - si un appareil externe est connecté au port de charge universelle <tmpl_var _("webui", "webui_product_name_with_suffix")>, il sera chargé.</li>
+			   	<li><tmpl_var _("preferences_universal_charging_status_not_available_text")> - la batterie <tmpl_var _("webui", "webui_product_name_with_suffix")> est trop faible pour charger d’autres appareils.</li>
+				</ul>
+		</blockquote>
+	</tmpl_if>
+
+	<tmpl_if displaySettingsShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_display_settings_toggle_label", gProductName)></h2>
+		<p>Si elle est activée, les paramètres disponibles peuvent être modifiés à l’écran <tmpl_var _("webui", "webui_product_name_with_suffix")>. Ces paramètres comprennent l’opération de réinitialisation d’usine, qui réinitialise tous les paramètres aux valeurs d’usine par défaut.</p>
+		<p>Si elle est désactivée, il n’est pas possible de modifier les paramètres à l’écran <tmpl_var _("webui", "webui_product_name_with_suffix")>.</p>
+	</tmpl_if>
+	
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_hardware_reset_toggle_label", gProductName)></h2>	
+	<p>Si elle est activée, le bouton de réinitialisation situé à la base de <tmpl_var _("webui", "webui_product_name")> fonctionne normalement, ce qui restaure tous les paramètres aux valeurs d’usine par défaut.</p>
+	<p>Si elle est désactivée, le bouton de réinitialisation ne fonctionne pas. Cela empêche les utilisateurs de modifier les paramètres lorsqu’ils effectuent une réinitialisation.</p>	
+
+	<tmpl_if EthernetEnableShow>
+		<h2><tmpl_udf  GET_PO_TEXT("preferences_enable_ethernet_port_toggle_label", gProductName)></h2>
+		<p>Pour utiliser le réseau Ethernet, veuillez activer le port Ethernet dans le menu des réglages. Remarque : Lorsqu’il est activé, le port Ethernet augmente la consommation de la pile. Il est recommandé de brancher votre appareil au chargeur c. a. lorsque vous utilisez le port Ethernet. Pour réduire la consommation de la pile, désactivez le port Ethernet lorsque vous ne l’utilisez pas.</p>
+	</tmpl_if>
+
+	<tmpl_if batteryPreservationModeShow>
+	<h2><tmpl_udf  GET_PO_TEXT("preferences_battery_preservation_mode_toggle_label", gProductName)></h2>	
+	<p>
+		Le mode de préservation de la pile prolonge la durée utile de votre pile en maintenant le niveau de charge entre <tmpl_var batteryHealthMinThreshold>% et <tmpl_var batteryHealthMaxThreshold>%. Ce mode est recommandé si vous chargez fréquemment votre appareil pendant une longue période. Le mode de préservation de la pile s’active après une longue période de charge continue, lorsque ce mode est activé.
+	</p>
+	</tmpl_if>
+</div>

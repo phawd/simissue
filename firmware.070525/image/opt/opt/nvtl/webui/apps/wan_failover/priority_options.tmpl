@@ -1,0 +1,5 @@
+<option value="1"<tmpl_if IN_SET(item.priority, "1")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_numeric_one_text")></option>
+<option value="2"<tmpl_if IN_SET(item.priority, "2")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_numeric_two_text")></option>
+<tmpl_if IN_SET(item.interfaceType, "LAN")>
+<option value="3"<tmpl_if IN_SET(item.priority, "3")> selected="selected"</tmpl_if>><tmpl_var _("webui", "webui_numeric_three_text")></option>
+</tmpl_if>

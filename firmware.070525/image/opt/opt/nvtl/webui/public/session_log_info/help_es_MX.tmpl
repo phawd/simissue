@@ -1,0 +1,32 @@
+<!-- Internet  Sessions -->
+<div id="session_log_info">
+	<h1><tmpl_var _("webui", "session_log_info_menu_text")></h1>
+	<h2>Descripción</h2>
+	<p>Utilice la pestaña Sesiones de Internet para exportar y ver los datos de la sesión de Internet.</p>
+	
+	<h2><tmpl_var _("webui", "session_log_info_headding_text")></h2>
+	<p>Haga clic en el botón <b>Exportar</b> para exportar los datos de la sesión de Internet.</p>
+
+	<h2><tmpl_var _("webui", "session_log_info_menu_text")></h2>
+	<p>El registro de sesión contiene los siguientes datos:</p>
+	
+	<p><b>Fecha y hora:</b> la fecha y la hora en que comenzó la sesión de Internet.</p>
+	
+	<p><b>Duración:</b> el tiempo total de la sesión de Internet.</p>
+	
+	<p><b>Datos recibidos:</b> la cantidad de datos recibidos para la sesión de Internet. Este contador comienza de cero cuando se establece la conexión.</p>
+	
+	<p><b>Datos transmitidos:</b> la cantidad de datos transmitidos para la sesión de Internet. Este contador comienza de cero cuando se establece la conexión.</p>
+	
+	<p><b>Datos totales:</b> la cantidad total de datos para la sesión de Internet. Esta es la suma de los datos recibidos y los datos transmitidos.</p>
+	
+	<tmpl_if RoamingStatusShow>
+		<p>- Itinerancia (itinerancia/parcial/en blanco) En blanco = red doméstica</p>
+	</tmpl_if>
+	
+	<p><b>IPv4 dirección:</b> la dirección IP para la sesión.</p>
+	
+	<p>
+		<b>IPv6 dirección:</b> la dirección IPv6 global para la sesión (en blanco si IPv6 está desactivado o no es compatible con la conexión de red actual o el operador).
+	</p>
+</div>

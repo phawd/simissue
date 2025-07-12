@@ -1,0 +1,48 @@
+<div id="wwan_settings">
+	<h1><tmpl_var _("webui", "wwan_settings_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>Use this tab to set options for the cellular network.</p>
+	
+	<h2><tmpl_var _("webui", "wwan_settings_cellular_data_label")></h2>
+
+	<tmpl_if NetworksCellularDataEnableShow>
+		<h3><tmpl_var truncate(_("webui", "wwan_settings_cellular_data_text"), (size(_("webui", "wwan_settings_cellular_data_text")) - size(":")))></h3>
+		<p>
+			Use the ON/OFF slider when necessary to turn off cellular data and prevent access to the mobile network. This prevents connected devices from connecting to the internet and using your device's mobile data plan. For normal operation, this setting must be left on.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if showRoamSetting>
+		<h3><tmpl_var truncate(_("webui", "wwan_settings_international_data_roaming_text"), (size(_("webui", "wwan_settings_international_data_roaming_text")) - size(":")))></h3>
+		<p>
+			Use the ON/OFF slider to turn off cellular data and prevent access to the mobile network when roaming.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if showNetworkTechOptions>
+        	<h3><tmpl_var truncate(_("webui", "wwan_settings_preferred_technology_selection_label"), (size(_("webui", "wwan_settings_preferred_technology_selection_label")) - size(":")))></h3>
+		<p>
+			Your device is set to Auto (4G LTE/5G) by default, which prioritizes 5G but allows 4G and other non-5G technologies to be used. If you select 4G LTE or 5G from the drop-down, your device is restricted from connecting to networks not using that technology, for example: if you select 4G LTE, your device will be unable to connect to 5G networks.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if Show5GNetwork>
+		<h3><tmpl_var truncate(_("webui", "wwan_settings_5G_network_mode_label"), (size(_("webui", "wwan_settings_5G_network_mode_label")) - size(":")))></h3>
+		<p>
+			Your device is set to Auto (NSA/SA) by default, allowing it to use both standalone 5G and non-standalone 5G, which utilizes 4G anchor bands. You can use the drop-down to select non-standalone (NSA) or standalone (SA) 5G network modes.
+		</p>
+	</tmpl_if>
+
+	<tmpl_if NetworksPreferredTechnologyShow>
+		<h3><tmpl_var truncate(_("webui", "wwan_settings_preferred_technology_label"), (size(_("webui", "wwan_settings_preferred_technology_label")) - size(":")))></h3>
+		<p>
+			When the ON/OFF slider is <b>ON</b>, your device automatically selects the best 5G available network and you cannot use the <b>Select Network Manually</b> button below.
+		</p>
+	</tmpl_if>
+
+	<h3><tmpl_var _("webui", "wwan_settings_mns_button")></h3>
+	<p>
+		You may wish to use this option if multiple networks are available, and you have a preference. Click the button to scan for available networks, then choose the preferred network. <strong>NOTE:</strong> This option is available only if <b>Enable automatic network selection</b> is off.
+	</p>
+	<p>Click <b>Save Changes.</b></p>
+</div>

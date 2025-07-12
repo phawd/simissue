@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>تحتوي هذه الشاشة على العديد من الخيارات التي تسمح لك بضبط تشغيل <tmpl_var _("webui", "webui_product_name")> لتلبية احتياجاتك بشكل أفضل.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>إذا تم تحديد هذا الخيار، فسيوقَف تشغيل LED وإمكانيات الصوت لـ <tmpl_var _("webui", "webui_product_name")>. لن يتم تشغيل شاشة <tmpl_var _("webui", "webui_product_name")> إلا عندما يقوم المستخدم بتشغيلها. ومع ذلك، لا تتأثر عملية بدء التشغيل بهذا الإعداد.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>إذا تم تحديد هذا الإعداد، فسيظل مؤشر LED مضاءً. في حالة عدم تحديد هذا الإعداد، سيومض مؤشر LED ببطء باعتباره "علامة على التشغيل". لا يكون هذا الإعداد نشطًا في حالة تشغيل وضع التخفي.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>إذا تم تحديد هذا الخيار، فسيتم تشغيل الشاشة عند عرض رسالة تنبيه. إذا لم يكن ذلك مفيدًا، فيمكنك إيقاف تشغيلها.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>إذا وضع علامة اختيار على هذا الإعداد، فسيشير <tmpl_var _("webui", "webui_product_name")> إلى بدء التشغيل وإيقاف التشغيل والأحداث المختلفة باستخدام التنبيهات الصوتية. إذا لم توضع علامة اختيار على هذا الإعداد، فسيعمل <tmpl_var _("webui", "webui_product_name")> بصمت. لا يكون هذا الإعداد نشطًا في حالة تشغيل وضع التخفي.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>يمكن استخدام هذه الإعدادات لتحديد الأحداث التي تؤدي إلى تنبيه صوتي. لا تكون هذه الإعدادات نشطة إذا تم إيقاف تشغيل الصوت، إما عن طريق تعيين وضع التخفي أو عن طريق إعداد "تشغيل الصوت" أعلاه.</p>
+</div>

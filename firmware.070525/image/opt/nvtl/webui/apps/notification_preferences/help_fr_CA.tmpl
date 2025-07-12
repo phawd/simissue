@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Cet écran contient de nombreuses options qui vous permettent de régler le comportement de <tmpl_var _("webui", "webui_product_name")> pour mieux répondre à vos besoins.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Si cette option est cochée, le voyant et les capacités sonores de <tmpl_var _("webui", "webui_product_name")> sont désactivés. L’écran <tmpl_var _("webui", "webui_product_name")> ne s’allume que lorsque l’utilisateur l’allume. Cependant, le processus de démarrage n’est pas affecté par ce paramètre.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Si ce paramètre est coché, le voyant reste éteint. Si ce paramètre n’est pas coché, le voyant clignote lentement en guise de « signe de vie ». Ce paramètre est grisé si le mode furtif est activé.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>S’il est coché, l’écran s’allume lorsqu’un message d’alerte s’affiche. Si cela n’est pas utile, vous pouvez le désactiver.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>S’il est coché, il signalera le démarrage, l’arrêt et divers événements de <tmpl_var _("webui", "webui_product_name")> grâce à des alertes sonores. S’il n’est pas coché, le <tmpl_var _("webui", "webui_product_name")> fonctionne en silence. Ce paramètre est grisé si le mode furtif est activé.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Ces paramètres peuvent être utilisés pour spécifier les événements qui déclenchent une alerte sonore. Ces paramètres sont grisés si le son est désactivé, soit par le paramètre « Furtif », soit par le paramètre « Activer le son » ci-dessus.</p>
+</div>

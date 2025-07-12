@@ -1,0 +1,40 @@
+<div id="inseego_connect">
+	<h1><tmpl_var _("webui", "inseego_connect_help_title_text")></h1>
+	<h2>Descripción</h2>
+	<p>
+		Utilice esta página para habilitar la conexión con Inseego Connect. Inseego Connect es un producto de plataforma en la nube que proporciona visibilidad de 360 grados y accesibilidad segura a su implementación desde una única plataforma.
+	</p>
+
+	<h2><tmpl_var _("webui", "inseego_connect_cloud_services_text")></h2>
+	<p>
+		Por defecto, la conexión a los servicios basados en la nube de Inseego Connect está ACTIVADA. Deslice el control deslizante ENCENDIDO/APAGADO en APAGADO si desea desactivar la conexión.
+	</p>
+	
+	<h2><tmpl_var _("webui", "inseego_connect_status_text")></h2>
+	<h3><tmpl_var _("webui", "inseego_connect_connection_state_label")></h3>
+	<p>
+		El estado de la conexión con Inseego Connect. <br>
+		<strong>Arriba:</strong> el dispositivo se está comunicando con los servidores de Inseego Connect, <br>   
+		<strong>Abajo:</strong> el dispositivo no se comunica con los servidores de Inseego Connect.<br>
+	</p>
+
+	<h3><tmpl_var _("webui", "inseego_connect_last_reported_label")></h3>
+	<p>
+		La hora en la que el dispositivo envió por última vez un paquete a los servidores de Inseego Connect.
+	</p>
+
+	<h3><tmpl_var _("webui", "inseego_connect_interval_label")></h3>
+	<p>
+		Este es el intervalo en el que su dispositivo enviará paquetes al servidor de Inseego Connect.
+	</p>
+	<p> 
+		<strong>NOTA:</strong> Un intervalo más corto significa más consumo de datos.
+	</p>
+	<tmpl_if showMobileAppSection>
+		<h3><tmpl_var _("webui", "inseego_connect_mobile_app_text")></h3>
+		<p>
+			Utilice el enlace para descargar la aplicación móvil de Inseego Connect.
+		</p>
+	</tmpl_if>
+</div>
+

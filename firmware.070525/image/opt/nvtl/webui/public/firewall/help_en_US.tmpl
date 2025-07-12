@@ -1,0 +1,53 @@
+<!-- Firewall -->
+<div id="firewall">
+	<h1><tmpl_var _("webui", "adv_firewall_menu_text")></h1>
+	<h2>Overview</h2>
+	<p>
+		The firewall determines which internet traffic is allowed to pass between this device and connected devices and protects your connected devices from malicious incoming traffic from the internet. The firewall cannot be turned off. Use the Firewall tab to allow VPN Passthrough and/or designate a specific device to receive all traffic.
+	</p>
+			
+	<h2><tmpl_var _("webui", "adv_firewall_vpn_passthrough_enable_label")></h2>
+	<p>To allow connected devices to establish a VPN tunnel, ensure the ON/OFF slider is <b>ON</b>.</p>
+
+	<tmpl_if showTransparentMode>
+		<tmpl_if ipv6Supported>
+			<h3><tmpl_var _("webui", "adv_firewall_ipv6_transparent_label")></h3>
+			<p>Normally, the firewall will block incoming IPv6 connection requests intended for an IPv6 connected device.</p>
+			<p>
+				If you wish to allow these incoming connection requests to reach the intended connected device, turn on this setting.  Transparent Mode should only be turned on when necessary, as it reduces the protection provided by the device firewall.
+			</p>
+		</tmpl_if>
+	</tmpl_if>
+
+	<tmpl_if showICMPPing>
+		<h2><tmpl_var _("webui", "adv_firewall_wan_ping_enable_label")></h2>
+		<p>
+			By default, the device will ignore ping requests received on the WAN interface. To enable your device to respond to the ping requests received on the WAN interface, move the ON/OFF slider to ON.
+		</p>
+	</tmpl_if>
+	
+	<h2><tmpl_var _("webui", "adv_firewall_dmz_sub_header_text")></h2>
+	<p>
+		<strong>NOTE:</strong> When IP Passthrough is turned on, DMZ capabilities are set through the connected host routing system. Settings in this section are not available. Go to Advanced &gt; LAN to turn IP Passthrough off.
+	</p>
+	<p>
+		To allow DMZ, you need a static IP address assigned to your line of service. Contact your service provider to set up a line of service for static IP.
+	</p>
+	
+	<h3><tmpl_var _("webui", "adv_firewall_dmz_enable_label")></h3>
+	<p>
+		Check this box to allow DMZ. DMZ allows the connected device specified as the DMZ IP address (Destination IP address) to receive all traffic that would otherwise be blocked by the firewall.
+	</p>
+	<p>
+		Allowing DMZ may assist some troublesome network applications to function properly, but the DMZ device should have its own firewall to protect itself against malicious traffic.
+	</p>
+	
+	<h3><tmpl_var _("webui", "adv_firewall_dmz_ip_address_label")></h3>
+	<p>
+		Enter the IP address of the connected device you wish to become the DMZ device (the DMZ destination). <strong>NOTE:</strong> You can check the IP address of each connected device on the Connected Devices screen.
+	</p>
+	
+	<p>Click <b>Save Changes.</b></p>
+</div>
+<!-- id="firewall" -->
+

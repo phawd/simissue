@@ -1,0 +1,22 @@
+<Config>
+	<DataUsageAgent>
+		<AgentUrl></AgentUrl>
+		<RequestTemplate></RequestTemplate>
+		<!--agentServerSyncInterval - interval at which to check with server(seconds). Sync should not occur more frequently than this -->
+		<AgentServerSyncInterval>300</AgentServerSyncInterval>
+		<!--level1Threshold - percentage usage to be considered level 1 -->
+		<Level1Threshold>90</Level1Threshold>
+		<!--update WDCP config when there is a change of this -->
+		<!--RequestTimeout - timeout in seconds to keep the request up , 0 to mean no timeout -->
+		<RequestTimeout>0</RequestTimeout>
+		<!--update WDCP config when there is a change of this -->
+		<!--RequestRetries - number of times to retry the request after a mandatory first try fails -->
+		<RequestRetries>0</RequestRetries>
+		<!--Limit value should always be in following format, limit space unit ex : "200 KB" -->
+		<MinDataThresholdToGetUsageInfo>200 KB</MinDataThresholdToGetUsageInfo>			
+		<!-- DefaultUsageLimit - Default Data Usage Limit in GB -->
+		<DefaultCellularUsageLimit>0 GB</DefaultCellularUsageLimit>
+		<!-- DefaultUsageLimit - Default Data Usage Limit in GB -->
+		<DefaultEthernetUsageLimit>0 GB</DefaultEthernetUsageLimit>
+	</DataUsageAgent>
+</Config>

@@ -1,0 +1,6 @@
+<option val="WAN" <tmpl_if IN_SET(item.interfaceType, "WAN")>selected="selected"</tmpl_if>>
+	<tmpl_var _("webui", "wan_failover_wan_interface_text")>
+</option>
+<option val="LAN" <tmpl_if IN_SET(item.interfaceType, "LAN")>selected="selected"</tmpl_if>>
+        <tmpl_var _("webui", "wan_failover_lan_interface_text")>
+</option>

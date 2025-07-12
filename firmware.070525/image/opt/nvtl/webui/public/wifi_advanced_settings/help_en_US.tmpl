@@ -1,0 +1,56 @@
+<!-- WiFi Advanced -->
+<div id="wifi_advanced">
+	<h1>Wi-Fi</h1>
+	<h2>Overview</h2>
+	<p>You can use the default values as they appear on this tab or can adjust them for your environment.</p>
+	
+	<h2>Wi-Fi On/Off Control</h2>
+	<p>
+		Use the <strong>Allow Wi-Fi Devices to Connect</strong> slider to turn Wi-Fi on or off. This selection affects primary and guest networks. <strong>NOTE:</strong> If Wi-Fi is off, the only way to connect devices to this device is with an Ethernet cable or USB.
+	</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_max_connections_label")></h2>
+	<p>
+		Select Change connection limit to change the maximum number of devices allowed to connect to this device. Select a number and click Save Changes. The maximum number of connected devices is <tmpl_var maxConnectionValue>.
+	</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_profile_title")></h2>
+	<p>Each network can be accessed over two bands: 2.4 GHz and 5 GHz:</p>
+	<ul>
+		<li>
+			The 2.4 GHz band is supported by all devices with Wi-Fi and should be used by devices that are a few years old or older. This band passes through walls better and propagates over longer distances, so it may have a longer range.
+		</li>
+		<li>
+			The 5 GHz band is best for newer devices. It offers better throughput, reduced interference, and faster data speeds, but does not pass through walls as well as the 2.4 GHz band.
+		</li>
+	</ul>
+	
+	<p><strong>NOTE:</strong> The guest network must be assigned at least one band before it can be turned on.</p>	
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_two_point_four_g_band_options_title")></h2>
+	<p>
+		This section displays the 802.11 Mode in use when the 2.4 GHz band is active and allows you to select a Channel.
+	</p>
+	
+	<p><strong>NOTE:</strong> Leave the Channel set to <strong>Automatic</strong> unless you need to choose a particular channel for your environment.</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_five_g_options_title")></h2>
+	<p>
+		This section displays the 802.11 Mode in use when the 5 GHz band is active and allows you to select a Bandwidth and Channel.
+	</p>
+	
+	<h2><tmpl_var _("webui", "wifi_advanced_five_g_bandwidth_label")></h2>
+	<p>
+		Leave bandwidth at the default setting unless you experience interference with other Wi-Fi devices. If you experience interference, try lowering the setting to reduce the interference.
+	</p>
+	
+	<p>
+		<strong>NOTE:</strong> Leave the Channel set to <strong>Automatic</strong> unless you need to choose a particular channel for your environment.
+	</p>
+	
+	<p>Select <strong>Save Changes</strong> to store new settings.</p>
+</div>
+
+
+<!-- id="wifi_advanced" -->
+

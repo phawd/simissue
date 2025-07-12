@@ -1,0 +1,67 @@
+<!-- wifi_guest_settings -->
+<div id="wifi_guest_settings">	
+	<h1>Wi-Fi - Guest Network </h1>
+	<h2>Overview</h2>
+	<p>
+		The Wi-Fi guest network allows you to segregate traffic to a separate network rather than share access to your Wi-Fi primary network. Use settings on this tab to set up or change Wi-Fi guest network information. Connected devices must use the Wi-Fi settings shown on this screen to connect to the guest Wi-Fi network.
+	</p>
+	
+	<p>
+		<strong>NOTE:</strong>To turn the Wi-Fi guest network on, you must select at least one band for Guest Network under Band Selection on the Wi-Fi Settings tab and then select Save Changes.
+	</p>
+
+	<h2><tmpl_var _("webui", "wifi_settings_primary_sub_header_text")></h2>
+	<h3><tmpl_var _("webui", "wifi_guest_ssid_label")></h3>
+	<p>Enter a guest network name (SSID) to set up or change the guest network name. The name can be up to 32 characters long.</p>
+	
+	<h3><tmpl_var _("webui", "wifi_guest_security_label")></h3>
+        <p>Select an option for Wi-Fi security:</p>
+
+        <ul>
+                <li>
+                        <strong><tmpl_var _("webui", "wifi_security_none_text")></strong> allows other people to monitor your WI-FI traffic and use your data plan to access the internet.
+                        <strong>NOTE:</strong> Avoid using this option.
+                </li>
+                <li>
+                        <strong><tmpl_var _("webui", "wifi_security_wpa2_text")></strong> can be used for WPA2 devices.
+                </li>
+                <li>
+                        <strong><tmpl_var _("webui", "wifi_security_wpa2_mix_text")></strong> can be used if some of your older devices do not support WPA2.
+                </li>
+                <li>
+                        <strong><tmpl_var _("webui","wifi_security_wpa3_transition_text")></strong> is the most secure method of Wi-Fi Protected Access and should be used, if possible, for WPA2 and WPA3 compliant devices.
+                </li>
+        </ul>
+
+	<h3><tmpl_var _("webui", "wifi_guest_password_label")></h3>
+        <p>Enter a Wi-Fi password, or you can use the Generate New Password button.</p>
+        <p>
+                <strong>Important:</strong> It is critical that you change the password from the default and use a different password from your Admin password to keep the device and your network secure.
+        </p>
+        <h3><tmpl_var _("webui", "wifi_guest_generate_password_button")></h3>
+        <p>This button inserts a strong random password in the Password field.</p>
+	<p>You can click the eye icon to view the password.</p>
+
+	<h2><tmpl_var _("webui", "wifi_settings_other_sub_header_text")></h2>
+	<h3><tmpl_var _("webui", "wifi_guest_broadcast_ssid_label")></h3>
+	<p>
+		When checked, this allows the Wi-Fi guest network to be displayed in the list of available Wi-Fi networks on your connected devices. If unchecked, this network is not visible to connected devices.
+	</p>
+
+	<tmpl_if showWiFiGuestWPS>
+		<h3><tmpl_var _("webui", "wifi_guest_wps_label")></h3>
+		<p>
+			Wi-Fi Protected Setup (WPS) is a system to allow Wi-Fi devices to connect to a Wi-Fi network without having to manually enter the network key.
+			If you wish to use WPS, check this option.
+		</p>
+	</tmpl_if>
+
+	<h3><tmpl_var _("webui", "wifi_guest_privacy_label")></h3>
+	<p>
+		When checked, each connected device on this network is isolated from all other connected devices. This provides additional security if some connected devices are unknown or not completely trusted.
+	</p>
+	
+	<p>Select <b>Save Changes</b></p>.
+</div>
+
+<!-- id="wifi_guest_settings" -->

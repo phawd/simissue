@@ -1,0 +1,19 @@
+<div id="notification_preferences">
+	<h1><tmpl_var _("webui", "preferences_notifications_sub_header_text")></h1>
+	<p>Auf diesem Bildschirm werden viele Optionen angezeigt. Darüber können Sie das Verhalten von <tmpl_var _("webui", "webui_product_name")> bedarfsgerecht für Ihre Anforderungen einstellen.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_stealth_mode_label"), (size(_("webui", "preferences_stealth_mode_label")) - size(":")))></h3>
+	<p>Wenn diese Option aktiviert ist, werden die LED- und Audiofunktionen des <tmpl_var _("webui", "webui_product_name")> ausgeschaltet. Der <tmpl_var _("webui", "webui_product_name")>-Bildschirm geht nur dann an, wenn der Benutzer ihn einschaltet Der Startvorgang wird durch diese Einstellung jedoch nicht beeinflusst.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_led_enabled_label"), (size(_("webui", "preferences_led_enabled_label")) - size(":")))></h3>
+	<p>Ist diese Einstellung aktiviert, bleibt die LED aus. Wenn diese Einstellung nicht aktiviert ist, blinkt die LED als „Aktivitätszeichen" langsam. Ist die Einstellung ausgegraut, dann ist der geschützte Modus eingeschaltet.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_alert_screen_enabled_label"), (size(_("webui", "preferences_alert_screen_enabled_label")) - size(":")))></h3>
+	<p>Ist diese Option aktiviert, schaltet sich der Bildschirm ein, wenn eine Warnmeldung angezeigt wird. Wenn dies nicht hilfreich ist, können Sie die Funktion deaktivieren.</p>
+
+	<h3><tmpl_var truncate(_("webui", "preferences_audio_enabled_label"), (size(_("webui", "preferences_audio_enabled_label")) - size(":")))></h3>
+	<p>Ist dieses Kontrollkästchen aktiviert, signalisiert das <tmpl_var _("webui", "webui_product_name")> den Start, das Herunterfahren und verschiedene Ereignisse mit akustischen Warnsignalen. Ist die Funktion nicht aktiviert, arbeitet das <tmpl_var _("webui", "webui_product_name")> geräuschlos. Ist die Einstellung ausgegraut, dann ist der geschützte Modus eingeschaltet.</p>
+
+	<h3><tmpl_var _("webui", "preferences_audio_alerts_label")></h3>
+	<p>Über diese Einstellungen können Sie festlegen, welche Ereignisse einen Audioalarm auslösen. Die Einstellungen sind ausgegraut, wenn der Ton ausgeschaltet ist, entweder durch die Einstellung „Geschützter Modus“ oder durch die obige Einstellung „Audio einschalten“.</p>
+</div>

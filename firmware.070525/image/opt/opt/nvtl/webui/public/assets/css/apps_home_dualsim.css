@@ -1,0 +1,13 @@
+
+ .ig_col .col.label {
+         display:block;
+         float:left;
+         width: 30% !important;
+         }
+
+
+#dataUsage .ig_card_body {
+    min-height: 275px;
+	}
+~
+

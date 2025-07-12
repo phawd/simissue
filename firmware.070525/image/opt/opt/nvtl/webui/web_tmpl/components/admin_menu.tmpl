@@ -1,0 +1,266 @@
+<script type="text/javascript">
+	var smsTitle = '<tmpl_var _("webui", "sms_menu_text")>'; <tmpl_comment> This is used as header for SMS popup when clicked from sms notification</tmpl_comment>
+	var loginClicked = false;
+	var isloggedIn = "<tmpl_var gIsLoggedIn>";
+	var smsSimPinLocked = 0;
+	var smsSimPukLocked = 0;
+	var smsSimError = 0;
+	var isSmsLock = 0;
+	var msg = "";
+	var leftButton = "";
+	var rightButton = "";
+	var loginDialogShow = 0;
+	var loginTitle = '<tmpl_var _("webui", "vzw_header_login_link")>';
+	var mUrl = "";
+	$(function()
+	{
+		loginDialogShow = $("#showLogin").html();
+		$(document).ajaxSuccess(function(e, xhr, settings) {
+			if((xhr.responseText) && (settings.dataType == "json")){
+				try {
+					var obj = jQuery.parseJSON(xhr.responseText || "null");
+					if(typeof obj.statusData.statusBarSimStatus !== "undefined"){
+						if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_READY){
+							if(typeof obj.statusData.statusBarConnectionState !== "undefined") {
+								smsSimPinLocked = 0;
+								smsSimPukLocked = 0;
+								smsSimError = 0;
+							}							
+						}
+						else if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_PUK_LOCKED){
+							if ( typeof obj.statusData.statusBarConnectionState !== "undefined") {
+								smsSimPukLocked = 1;
+							}
+						}
+
+						else if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_PIN_LOCKED){
+							if ( typeof obj.statusData.statusBarConnectionState !== "undefined") {
+								smsSimPinLocked = 1;
+							}
+						}
+
+						else if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_NOT_FOUND){   
+								smsSimError = 1;                                          
+                        }
+
+						else if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_ERROR){
+								smsSimError = 1;                                             
+                        }
+
+                        else if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_RESTRICTED){ 
+                        		smsSimError = 1;           
+                        }
+
+                        else if(obj.statusData.statusBarSimStatus == $.uiEnums.SIMSTATUS_PAIR_LOCKED){
+                        		smsSimError = 1;           
+                    	}    
+                    } 
+				} catch(e) {}
+			}
+		});
+
+		// Menu Accordion.
+		$("#administrator").on("click", function() 
+		{
+			showHideAdminMenu();
+		});
+
+		$("#restart_jetpack, .restart_jetpack").on("click", function() 
+		{
+			showHideAdminMenu();
+			msg = '<p><tmpl_udf GET_PO_TEXT("restart_jetpack_confirmation_text", gProductName)></p>';
+			mUrl = '<tmpl_udf GET_URI("restarting")>';
+			var title = '<tmpl_var _("webui", "restart_jetpack_text")>';
+			rightButton = '<tmpl_var _("webui", "webui_modal_cancel_button")>';
+			leftButton = '<tmpl_var _("webui", "webui_modal_confirm_button")>';
+			showModal(msg, mUrl, title, leftButton, rightButton);
+		});
+
+		$("#logout, .logout").on("click", function() 
+		{
+			if ($(".sub_menu").hasClass("active_sub_menu")) {
+				showHideAdminMenu();
+			}
+			msg = '<p><tmpl_var _("webui", "admin_menu_login_confirmation_text")></p>';
+			mUrl = '<tmpl_udf GET_URI("logout")>';
+			var title = '<tmpl_var _("webui", "vzw_header_logout_link")>';
+			rightButton = '<tmpl_var _("webui", "webui_modal_cancel_button")>';
+			leftButton = '<tmpl_var _("webui", "webui_modal_confirm_button")>';
+			showModal(msg, mUrl, title, leftButton, rightButton);
+		});
+
+		$("#sms, #messages").on("click", function() 
+		{
+			var width = 900;
+			var height = "auto";
+			mUrl = '<tmpl_udf GET_URI("sms")>';
+			rightButton = '<tmpl_var _("webui", "webui_modal_cancel_button")>';
+			leftButton = '<tmpl_var _("webui", "webui_modal_confirm_button")>';
+				var title = '<tmpl_var _("webui", "sms_menu_text")>';
+			showHideAdminMenu();
+			<tmpl_if gIsSMSLOCKED>
+				isSmsLock = smsLockStatus(msg, smsTitle, leftButton, rightButton);
+				if (!isSmsLock) {
+			</tmpl_if>
+				loadHtmlPage(title, mUrl, width, height);	
+			<tmpl_if gIsSMSLOCKED> } </tmpl_if>
+		});
+
+		$("#admin_settings, .admin_settings").on("click", function() 
+		{
+			var width = 700;
+			var height = "auto";
+
+			showHideAdminMenu();
+			mUrl = '<tmpl_udf GET_URI("set_passcode")>';
+			
+			<tmpl_if IN_SET(gIsLoggedIn, "1", "true")>
+				var title = '<tmpl_var _("webui", "admin_settings_change_password_menu_text")>';
+			<tmpl_else>
+				var title = '<tmpl_var _("webui", "vzw_header_login_link")>';
+			</tmpl_if>
+			loadHtmlPage(title, mUrl, width, height);
+		});
+
+		$("#login, .login").on("click", function() 
+		{
+			if(!loginClicked && (loginDialogShow == 0)) {
+				loginClicked = true;
+				var width = 700;
+				var height = "auto";
+				if ($(".sub_menu").hasClass("active_sub_menu")) {
+					showHideAdminMenu();
+				}
+				mUrl = '<tmpl_udf GET_URI("login")>';
+				var title = '<tmpl_var _("webui", "vzw_header_login_link")>';
+				var open = null;
+				var close = function() {
+					loginClicked = false;
+				}
+				loadHtmlPage(title, mUrl, width, height, null, close);
+			}
+		});
+		
+		$(document).click(function (e) {
+			// Check if click was triggered on or within #status_login
+			if ($(e.target).closest("#status_login").length > 0) {
+				return false;
+			}
+
+			if ($(".sub_menu").hasClass("active_sub_menu")) {
+				$(".sub_menu").removeClass("active_sub_menu");
+				$("#administrator").addClass("closed").removeClass("opened");
+			}
+		});
+	});
+
+	function showHideAdminMenu()
+	{
+		if ($(".sub_menu").hasClass("active_sub_menu")||(loginDialogShow == 1)) {
+			$(".sub_menu").removeClass("active_sub_menu");
+			$("#administrator").addClass("closed").removeClass("opened");
+			$("#header").css("overflow", "hidden");
+			$("a.helpLink").css("position","unset");
+		} else {
+			$(".sub_menu").addClass("active_sub_menu");
+			$("#administrator").addClass("opened").removeClass("closed");
+			$("#header").css("overflow", "visible");
+		}
+	}
+
+	function smsLockStatus(msg, title, leftButton, rightButton) 
+	{
+		if (smsSimPinLocked )
+			msg = '<p><tmpl_var _("webui", "sms_sim_pin_locked_text")></p>';
+		else if (smsSimPukLocked)
+			msg = '<p><tmpl_var _("webui", "sms_sim_puk_locked_text")></p>';
+		else
+			msg = '<p><tmpl_var _("webui", "sms_sim_error_text")></p>';
+
+			if (smsSimPinLocked == 1 || smsSimPukLocked == 1  || smsSimError == 1) 
+			{
+				leftButton = '<tmpl_var _("webui", "webui_modal_cancel_button")>';
+			    rightButton = '<tmpl_var _("webui", "sms_sim_unlock_btn")>';
+				mUrl = '<tmpl_udf GET_URI("sim")>';
+				isSmsLock = 1;
+				if (smsSimError) 
+					showSmsPopup(title, msg)
+				else 
+			    	showModal(msg, mUrl, title, leftButton, rightButton);
+			} 
+		return isSmsLock;
+	}
+
+	function showModal(msg, url, title, leftButton, rightButton)
+	{
+		modalPopup.createWindow(
+			title,
+			msg,
+			430, 200,
+			[
+				{
+					text: leftButton,
+					className: "primary",
+					trigger: function(){
+                                                location.replace(url);
+                                        }
+				},
+				{
+					text: rightButton,
+					className: "cancel"
+				}
+			]
+		);
+	}
+
+	function showSmsPopup(title, msg)
+	{
+		modalPopup.createWindow(
+			title,
+			msg,
+			430, 200,
+			[
+				{
+					text: '<tmpl_var _("webui", "webui_modal_ok_button")>',
+					className: "primary"
+				}
+			]
+		);
+	}
+
+	function loadHtmlPage(title, url, popupWidth, poputHeight, open, close)
+	{
+		var width = popupWidth || 900;
+		var height = poputHeight || 700;
+		var open = open || function(){};
+		var close = close || function() {};
+
+		modalPopup.loadPage(
+			title,
+			url,
+			width, 
+			height,
+			null, 
+			open, 
+			function() {
+				close();
+				if(typeof gRedirectUrl != 'undefined'&& gRedirectUrl != ""){
+					location.replace('<tmpl_var gRedirectUrl>') 
+				}
+			},
+			true
+		);
+	}
+
+	/* ]]> */
+</script>
+<ul id="admin_navigation">
+	<span id="showLogin" style="display:none;">0</span>
+	<tmpl_if gIsSMSEnabled>
+		<li id="sms"><tmpl_var _("webui", "sms_menu_text")></li>
+	</tmpl_if>
+	<tmpl_if gIsAdminSettingsEnabled>
+		<li id="admin_settings" <tmpl_if IN_SET(gIsPromptChangePassword, "1", "true")> <tmpl_if gIsDefaultPassword> class="disable"</tmpl_if></tmpl_if>> <tmpl_var _("webui", "admin_settings_change_password_menu_text")></li>
+	</tmpl_if>
+	<li id="restart_jetpack"><tmpl_udf GET_PO_TEXT("restart_jetpack_text", gProductName)></li>
+</ul>

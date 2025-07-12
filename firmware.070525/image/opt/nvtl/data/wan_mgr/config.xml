@@ -1,0 +1,7 @@
+<Config>
+	<WanMgr>
+		<RecoveryFlag>0</RecoveryFlag>
+        <RecoveryCount>0</RecoveryCount>
+        <SuccessfulRecoveryCount>0</SuccessfulRecoveryCount>
+	</WanMgr>
+</Config>
