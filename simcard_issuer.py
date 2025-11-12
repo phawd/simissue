@@ -276,6 +276,33 @@ class SimCardIssuer:
         return ''.join(str(d) for d in imei_base) + str(check)
 
     @staticmethod
+    def generate_iccid(issuer_id="89", country_code="01", issuer_code="234"):
+        # Generate a random 19-digit ICCID with Luhn check digit
+        # Format: II CC IIII NNNNNNNNNN C
+        # II = Issuer Identifier (89 for telecom)
+        # CC = Country Code
+        # IIII = Issuer Code
+        # NNNNNNNNNN = Account Number (10 digits)
+        # C = Check digit (Luhn)
+        account_number = ''.join(str(random.randint(0, 9)) for _ in range(10))
+        iccid_base = issuer_id + country_code + issuer_code + account_number
+
+        # Calculate Luhn check digit
+        def luhn_checksum(number_str):
+            digits = [int(d) for d in number_str]
+            s = 0
+            for i, d in enumerate(digits[::-1]):
+                if i % 2 == 0:
+                    d2 = d * 2
+                    s += d2 if d2 < 10 else d2 - 9
+                else:
+                    s += d
+            return (10 - (s % 10)) % 10
+
+        check = luhn_checksum(iccid_base)
+        return iccid_base + str(check)
+
+    @staticmethod
     def generate_lpa_string(smdp_address, activation_code):
         # Generate GSMA SGP.22 compliant LPA activation string
         # Format: LPA:1$<SM-DP+ address>$<Activation Code>
@@ -283,22 +310,27 @@ class SimCardIssuer:
         return f"LPA:1${smdp_address}${activation_code}"
 
     @staticmethod
-    def generate_esim_qr_code(smdp_address, activation_code, output_file="esim_qr.png"):
+    def generate_esim_qr_code(smdp_address, activation_code, output_file="esim_qr.png",
+                             save_to_db=False, profile_id=None, iccid=None, db_path="esim_gsma.db"):
         # Generate a QR code for eSIM activation per GSMA SGP.22 standard
         # The QR code encodes the LPA string: LPA:1$<SM-DP+ address>$<Activation Code>
-        # 
+        #
         # Args:
         #   smdp_address: SM-DP+ server address (e.g., "sm-dp+.example.com")
         #   activation_code: Unique activation code for the eSIM profile
         #   output_file: Output filename for the QR code image (default: "esim_qr.png")
+        #   save_to_db: If True, save QR code to SQLite database (default: False)
+        #   profile_id: eSIM profile identifier (required if save_to_db is True)
+        #   iccid: Integrated Circuit Card Identifier (required if save_to_db is True)
+        #   db_path: Path to SQLite database (default: "esim_gsma.db")
         #
         # Returns:
         #   The LPA string that was encoded in the QR code
         if qrcode is None:
             raise ImportError("qrcode library is required. Install with: pip install qrcode[pil]")
-        
+
         lpa_string = SimCardIssuer.generate_lpa_string(smdp_address, activation_code)
-        
+
         # Generate QR code with good error correction for mobile scanning
         qr = qrcode.QRCode(
             version=1,  # Auto-adjust version based on data
@@ -308,11 +340,31 @@ class SimCardIssuer:
         )
         qr.add_data(lpa_string)
         qr.make(fit=True)
-        
+
         # Create and save the image
         img = qr.make_image(fill_color="black", back_color="white")
         img.save(output_file)
-        
+
+        # Save to database if requested
+        if save_to_db:
+            if not profile_id or not iccid:
+                raise ValueError("profile_id and iccid are required when save_to_db is True")
+
+            try:
+                from database import DatabaseConnection, GSMAComplianceDB
+
+                # Read QR code file as binary
+                with open(output_file, 'rb') as f:
+                    qr_code_data = f.read()
+
+                # Save to database
+                with DatabaseConnection(db_path) as db_conn:
+                    gsma_db = GSMAComplianceDB(db_conn)
+                    record_id = gsma_db.insert_esim_data(profile_id, iccid, qr_code_data)
+                    print(f"[Database] Saved eSIM data to database: Record ID {record_id}")
+            except Exception as e:
+                print(f"[Database] Warning: Failed to save to database: {e}")
+
         return lpa_string
 
     # Configuration and log filenames
@@ -683,6 +735,10 @@ def main():
     qr_parser.add_argument("smdp_address", type=str, help="SM-DP+ server address (e.g., sm-dp+.example.com)")
     qr_parser.add_argument("activation_code", type=str, help="Activation code for the eSIM profile")
     qr_parser.add_argument("--output", type=str, default="esim_qr.png", help="Output filename for QR code (default: esim_qr.png)")
+    qr_parser.add_argument("--save-to-db", action="store_true", help="Save QR code and profile data to SQLite database")
+    qr_parser.add_argument("--profile-id", type=str, help="eSIM profile identifier (required with --save-to-db)")
+    qr_parser.add_argument("--iccid", type=str, help="ICCID (required with --save-to-db, or auto-generate if omitted)")
+    qr_parser.add_argument("--db", type=str, default="esim_gsma.db", help="Database file path (default: esim_gsma.db)")
 
     args = parser.parse_args()
 
@@ -696,14 +752,40 @@ def main():
     if args.command == "generate-qr":
         # Generate eSIM QR code per GSMA SGP.22 standard
         try:
+            # Validate and prepare parameters for database storage
+            save_to_db = args.save_to_db
+            profile_id = None
+            iccid = None
+
+            if save_to_db:
+                if not args.profile_id:
+                    print("Error: --profile-id is required when using --save-to-db")
+                    sys.exit(1)
+
+                profile_id = args.profile_id
+
+                # Generate ICCID if not provided
+                if args.iccid:
+                    iccid = args.iccid
+                else:
+                    iccid = SimCardIssuer.generate_iccid()
+                    print(f"[Auto-generated] ICCID: {iccid}")
+
             lpa_string = SimCardIssuer.generate_esim_qr_code(
                 args.smdp_address,
                 args.activation_code,
-                args.output
+                args.output,
+                save_to_db=save_to_db,
+                profile_id=profile_id,
+                iccid=iccid,
+                db_path=args.db
             )
             print(f"\n[QR Code Generated]")
             print(f"File: {args.output}")
             print(f"LPA String: {lpa_string}")
+            if save_to_db:
+                print(f"Profile ID: {profile_id}")
+                print(f"ICCID: {iccid}")
             print(f"\nUsers can scan this QR code to activate the eSIM profile on their device.")
             print(f"Alternatively, they can manually enter: {lpa_string}")
         except ImportError as e:

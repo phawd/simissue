@@ -6,6 +6,11 @@ esim_qr*.png
 simcard_issuer_config.json
 simcard_issuer_log.txt
 
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+
 # Python
 __pycache__/
 *.py[cod]
