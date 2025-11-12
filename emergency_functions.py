@@ -20,7 +20,6 @@ Standards Compliance:
 """
 
 import json
-import os
 import sqlite3
 import datetime
 import logging
@@ -70,14 +69,14 @@ class RegionCode(Enum):
 class EmergencyConfig:
     """
     Emergency configuration data structure.
-    
+
     Holds all configurable parameters for emergency services including:
     - Regional emergency numbers and routing
     - PSAP (Public Safety Answering Point) configurations
     - Network priority settings
     - RSM server endpoints and credentials
     """
-    
+
     def __init__(self):
         self.region: str = RegionCode.US.value
         self.emergency_numbers: List[str] = ["911"]
@@ -89,7 +88,7 @@ class EmergencyConfig:
         self.local_cache_enabled: bool = True
         self.alert_channels: List[str] = ["SMS", "CMAS", "ETWS"]
         self.system_codes: Dict[str, str] = {}
-        
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert configuration to dictionary for storage/serialization"""
         return {
@@ -104,7 +103,7 @@ class EmergencyConfig:
             "alert_channels": self.alert_channels,
             "system_codes": self.system_codes
         }
-    
+
     @staticmethod
     def from_dict(data: Dict[str, Any]) -> 'EmergencyConfig':
         """Create configuration from dictionary"""
@@ -117,7 +116,8 @@ class EmergencyConfig:
         config.rsm_server_port = data.get("rsm_server_port", 443)
         config.rsm_fallback_enabled = data.get("rsm_fallback_enabled", True)
         config.local_cache_enabled = data.get("local_cache_enabled", True)
-        config.alert_channels = data.get("alert_channels", ["SMS", "CMAS", "ETWS"])
+        config.alert_channels = data.get(
+            "alert_channels", ["SMS", "CMAS", "ETWS"])
         config.system_codes = data.get("system_codes", {})
         return config
 
@@ -125,16 +125,16 @@ class EmergencyConfig:
 class DatabaseManager:
     """
     Database abstraction layer for emergency configuration management.
-    
+
     Supports both SQLite (for local testing) and PostgreSQL (for production).
     Provides fallback mechanisms when primary database is unavailable.
     """
-    
-    def __init__(self, db_type: DatabaseType = DatabaseType.SQLITE, 
+
+    def __init__(self, db_type: DatabaseType = DatabaseType.SQLITE,
                  connection_string: str = "emergency_config.db"):
         """
         Initialize database manager.
-        
+
         Args:
             db_type: Type of database (SQLite or PostgreSQL)
             connection_string: Connection string/path for the database
@@ -143,47 +143,50 @@ class DatabaseManager:
         self.connection_string = connection_string
         self.connection = None
         logger.info(f"Initializing DatabaseManager with type: {db_type.value}")
-        
+
     def connect(self) -> bool:
         """
         Establish database connection.
-        
+
         Returns:
             True if connection successful, False otherwise
         """
         try:
             if self.db_type == DatabaseType.SQLITE:
                 self.connection = sqlite3.connect(self.connection_string)
-                logger.info(f"Connected to SQLite database: {self.connection_string}")
+                logger.info(
+                    f"Connected to SQLite database: {
+                        self.connection_string}")
                 return True
             elif self.db_type == DatabaseType.POSTGRESQL:
                 # PostgreSQL support (requires psycopg2)
                 try:
                     import psycopg2
                     self.connection = psycopg2.connect(self.connection_string)
-                    logger.info(f"Connected to PostgreSQL database")
+                    logger.info("Connected to PostgreSQL database")
                     return True
                 except ImportError:
-                    logger.error("PostgreSQL support requires psycopg2. Install with: pip install psycopg2-binary")
+                    logger.error(
+                        "PostgreSQL support requires psycopg2. Install with: pip install psycopg2-binary")
                     return False
         except Exception as e:
             logger.error(f"Database connection failed: {e}")
             return False
-    
+
     def initialize_schema(self) -> bool:
         """
         Create database schema for emergency configuration storage.
-        
+
         Returns:
             True if schema created successfully, False otherwise
         """
         if not self.connection:
             logger.error("No database connection available")
             return False
-            
+
         try:
             cursor = self.connection.cursor()
-            
+
             # Emergency profiles table
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS emergency_profiles (
@@ -197,7 +200,7 @@ class DatabaseManager:
                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             """)
-            
+
             # RSM server configurations table
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS rsm_servers (
@@ -211,7 +214,7 @@ class DatabaseManager:
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             """)
-            
+
             # Emergency configuration cache table
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS emergency_cache (
@@ -222,36 +225,39 @@ class DatabaseManager:
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             """)
-            
+
             self.connection.commit()
             logger.info("Database schema initialized successfully")
             return True
-            
+
         except Exception as e:
             logger.error(f"Schema initialization failed: {e}")
             return False
-    
-    def save_emergency_config(self, profile_name: str, config: EmergencyConfig) -> bool:
+
+    def save_emergency_config(
+            self,
+            profile_name: str,
+            config: EmergencyConfig) -> bool:
         """
         Save emergency configuration to database.
-        
+
         Args:
             profile_name: Name of the emergency profile
             config: EmergencyConfig object to save
-            
+
         Returns:
             True if saved successfully, False otherwise
         """
         if not self.connection:
             logger.error("No database connection available")
             return False
-            
+
         try:
             cursor = self.connection.cursor()
             emergency_numbers_json = json.dumps(config.emergency_numbers)
-            
+
             cursor.execute("""
-                INSERT OR REPLACE INTO emergency_profiles 
+                INSERT OR REPLACE INTO emergency_profiles
                 (profile_name, region, emergency_numbers, psap_routing_code, network_priority, updated_at)
                 VALUES (?, ?, ?, ?, ?, ?)
             """, (
@@ -262,29 +268,31 @@ class DatabaseManager:
                 config.network_priority,
                 datetime.datetime.now()
             ))
-            
+
             self.connection.commit()
             logger.info(f"Saved emergency configuration: {profile_name}")
             return True
-            
+
         except Exception as e:
             logger.error(f"Failed to save emergency config: {e}")
             return False
-    
-    def load_emergency_config(self, profile_name: str) -> Optional[EmergencyConfig]:
+
+    def load_emergency_config(
+            self,
+            profile_name: str) -> Optional[EmergencyConfig]:
         """
         Load emergency configuration from database.
-        
+
         Args:
             profile_name: Name of the emergency profile to load
-            
+
         Returns:
             EmergencyConfig object if found, None otherwise
         """
         if not self.connection:
             logger.error("No database connection available")
             return None
-            
+
         try:
             cursor = self.connection.cursor()
             cursor.execute("""
@@ -292,7 +300,7 @@ class DatabaseManager:
                 FROM emergency_profiles
                 WHERE profile_name = ?
             """, (profile_name,))
-            
+
             row = cursor.fetchone()
             if row:
                 config = EmergencyConfig()
@@ -305,11 +313,11 @@ class DatabaseManager:
             else:
                 logger.warning(f"Emergency profile not found: {profile_name}")
                 return None
-                
+
         except Exception as e:
             logger.error(f"Failed to load emergency config: {e}")
             return None
-    
+
     def close(self):
         """Close database connection"""
         if self.connection:
@@ -320,21 +328,22 @@ class DatabaseManager:
 class RSMServerManager:
     """
     RSM (Remote SIM Management) Server Manager.
-    
+
     Handles communication with RSM servers for remote profile management,
     including fallback mechanisms when servers are unavailable.
-    
+
     The RSM server is essential for:
     - Remote profile provisioning
     - Profile lifecycle management
     - Emergency profile updates
     - Compliance reporting
     """
-    
-    def __init__(self, primary_server: str = "", fallback_servers: List[str] = None):
+
+    def __init__(self, primary_server: str = "",
+                 fallback_servers: List[str] = None):
         """
         Initialize RSM Server Manager.
-        
+
         Args:
             primary_server: Primary RSM server URL
             fallback_servers: List of fallback RSM server URLs
@@ -343,21 +352,22 @@ class RSMServerManager:
         self.fallback_servers = fallback_servers or []
         self.current_server = primary_server
         self.connection_timeout = 30  # seconds
-        logger.info(f"RSM Server Manager initialized with primary: {primary_server}")
-        
+        logger.info(
+            f"RSM Server Manager initialized with primary: {primary_server}")
+
     def check_server_availability(self, server_url: str) -> Tuple[bool, str]:
         """
         Check if RSM server is available.
-        
+
         Args:
             server_url: URL of the RSM server to check
-            
+
         Returns:
             Tuple of (is_available, status_message)
         """
         if not server_url:
             return False, "No server URL provided"
-            
+
         try:
             # In production, this would make an actual HTTP/HTTPS request
             # For now, we simulate the check
@@ -367,63 +377,76 @@ class RSMServerManager:
         except Exception as e:
             logger.error(f"RSM server check failed for {server_url}: {e}")
             return False, str(e)
-    
+
     def connect_with_fallback(self) -> bool:
         """
         Attempt to connect to RSM server with automatic fallback.
-        
+
         Tries primary server first, then iterates through fallback servers
         if primary is unavailable.
-        
+
         Returns:
             True if connection established, False if all servers unavailable
         """
         # Try primary server first
-        logger.info(f"Attempting connection to primary RSM server: {self.primary_server}")
-        is_available, message = self.check_server_availability(self.primary_server)
-        
+        logger.info(
+            f"Attempting connection to primary RSM server: {
+                self.primary_server}")
+        is_available, message = self.check_server_availability(
+            self.primary_server)
+
         if is_available:
             self.current_server = self.primary_server
             logger.info("Connected to primary RSM server")
             return True
-        
+
         logger.warning(f"Primary RSM server unavailable: {message}")
-        
+
         # Try fallback servers
         for fallback_server in self.fallback_servers:
             logger.info(f"Attempting fallback RSM server: {fallback_server}")
-            is_available, message = self.check_server_availability(fallback_server)
-            
+            is_available, message = self.check_server_availability(
+                fallback_server)
+
             if is_available:
                 self.current_server = fallback_server
-                logger.info(f"Connected to fallback RSM server: {fallback_server}")
+                logger.info(
+                    f"Connected to fallback RSM server: {fallback_server}")
                 return True
-            
+
             logger.warning(f"Fallback RSM server unavailable: {message}")
-        
-        logger.error("All RSM servers unavailable - falling back to local mode")
+
+        logger.error(
+            "All RSM servers unavailable - falling back to local mode")
         return False
-    
-    def provision_emergency_profile(self, profile_data: Dict[str, Any]) -> Tuple[bool, str]:
+
+    def provision_emergency_profile(
+            self, profile_data: Dict[str, Any]) -> Tuple[bool, str]:
         """
         Provision emergency profile via RSM server.
-        
+
         Args:
             profile_data: Dictionary containing emergency profile data
-            
+
         Returns:
             Tuple of (success, message)
         """
         if not self.current_server:
             return False, "No RSM server available"
-            
+
         try:
-            logger.info(f"Provisioning emergency profile via RSM server: {self.current_server}")
+            logger.info(
+                f"Provisioning emergency profile via RSM server: {
+                    self.current_server}")
             # In production, this would make actual API calls to the RSM server
             # For now, we simulate successful provisioning
-            logger.info(f"Emergency profile provisioned: {profile_data.get('profile_name', 'unknown')}")
+            logger.info(
+                f"Emergency profile provisioned: {
+                    profile_data.get(
+                        'profile_name',
+                        'unknown')}")
             return True, "Profile provisioned successfully"
-            
+
         except Exception as e:
             logger.error(f"Failed to provision emergency profile: {e}")
             return False, str(e)
@@ -432,7 +455,7 @@ class RSMServerManager:
 class EmergencyFunctionManager:
     """
     Main manager for emergency functions.
-    
+
     Provides high-level API for emergency profile management, including:
     - Regional configuration management
     - Emergency number validation
@@ -440,13 +463,13 @@ class EmergencyFunctionManager:
     - Alert channel management
     - Integration with RSM servers and databases
     """
-    
+
     def __init__(self, db_type: DatabaseType = DatabaseType.SQLITE,
                  db_connection_string: str = "emergency_config.db",
                  rsm_server: str = ""):
         """
         Initialize Emergency Function Manager.
-        
+
         Args:
             db_type: Type of database to use
             db_connection_string: Database connection string
@@ -455,12 +478,12 @@ class EmergencyFunctionManager:
         self.db_manager = DatabaseManager(db_type, db_connection_string)
         self.rsm_manager = RSMServerManager(rsm_server)
         self.regional_configs: Dict[str, EmergencyConfig] = {}
-        
+
         # Initialize with default regional configurations
         self._initialize_default_configs()
-        
+
         logger.info("Emergency Function Manager initialized")
-    
+
     def _initialize_default_configs(self):
         """Initialize default emergency configurations for major regions"""
         # United States (911)
@@ -470,7 +493,7 @@ class EmergencyFunctionManager:
         us_config.alert_channels = ["SMS", "CMAS", "WEA"]
         us_config.system_codes = {"MCC": "310", "MNC": "260"}
         self.regional_configs[RegionCode.US.value] = us_config
-        
+
         # European Union (112)
         eu_config = EmergencyConfig()
         eu_config.region = RegionCode.EU.value
@@ -478,7 +501,7 @@ class EmergencyFunctionManager:
         eu_config.alert_channels = ["SMS", "ETWS", "EU-Alert"]
         eu_config.system_codes = {"MCC": "262", "MNC": "01"}
         self.regional_configs[RegionCode.EU.value] = eu_config
-        
+
         # United Kingdom (999, 112)
         uk_config = EmergencyConfig()
         uk_config.region = RegionCode.UK.value
@@ -486,35 +509,36 @@ class EmergencyFunctionManager:
         uk_config.alert_channels = ["SMS", "UK-Alert"]
         uk_config.system_codes = {"MCC": "234", "MNC": "15"}
         self.regional_configs[RegionCode.UK.value] = uk_config
-        
-        logger.info(f"Initialized {len(self.regional_configs)} default regional configurations")
-    
+
+        logger.info(
+            f"Initialized {len(self.regional_configs)} default regional configurations")
+
     def initialize_database(self) -> bool:
         """
         Initialize database connection and schema.
-        
+
         Returns:
             True if initialization successful, False otherwise
         """
         if not self.db_manager.connect():
             logger.error("Failed to connect to database")
             return False
-            
+
         if not self.db_manager.initialize_schema():
             logger.error("Failed to initialize database schema")
             return False
-            
+
         logger.info("Database initialized successfully")
         return True
-    
+
     def configure_emergency_profile(self, profile_name: str, region: str,
-                                   emergency_numbers: List[str] = None,
-                                   psap_routing_code: str = "",
-                                   network_priority: int = 1,
-                                   alert_channels: List[str] = None) -> bool:
+                                    emergency_numbers: List[str] = None,
+                                    psap_routing_code: str = "",
+                                    network_priority: int = 1,
+                                    alert_channels: List[str] = None) -> bool:
         """
         Configure a new emergency profile with local area specific settings.
-        
+
         Args:
             profile_name: Name of the emergency profile
             region: Regional code (e.g., US, EU, UK)
@@ -522,14 +546,14 @@ class EmergencyFunctionManager:
             psap_routing_code: PSAP routing code for emergency call routing
             network_priority: Network priority (1=highest, 5=lowest)
             alert_channels: List of alert channels (e.g., ["SMS", "CMAS"])
-            
+
         Returns:
             True if configuration successful, False otherwise
         """
         try:
             config = EmergencyConfig()
             config.region = region
-            
+
             if emergency_numbers:
                 config.emergency_numbers = emergency_numbers
             else:
@@ -538,10 +562,10 @@ class EmergencyFunctionManager:
                     config.emergency_numbers = self.regional_configs[region].emergency_numbers
                 else:
                     config.emergency_numbers = ["911"]  # Default fallback
-            
+
             config.psap_routing_code = psap_routing_code
             config.network_priority = network_priority
-            
+
             if alert_channels:
                 config.alert_channels = alert_channels
             else:
@@ -550,89 +574,98 @@ class EmergencyFunctionManager:
                     config.alert_channels = self.regional_configs[region].alert_channels
                 else:
                     config.alert_channels = ["SMS"]
-            
+
             # Save to database
             if not self.db_manager.save_emergency_config(profile_name, config):
-                logger.error(f"Failed to save emergency profile to database: {profile_name}")
+                logger.error(
+                    f"Failed to save emergency profile to database: {profile_name}")
                 return False
-            
-            logger.info(f"Emergency profile configured: {profile_name} (Region: {region})")
+
+            logger.info(
+                f"Emergency profile configured: {profile_name} (Region: {region})")
             return True
-            
+
         except Exception as e:
             logger.error(f"Failed to configure emergency profile: {e}")
             return False
-    
-    def validate_emergency_number(self, number: str, region: str = RegionCode.US.value) -> bool:
+
+    def validate_emergency_number(
+            self,
+            number: str,
+            region: str = RegionCode.US.value) -> bool:
         """
         Validate if a number is a recognized emergency number for the region.
-        
+
         Args:
             number: Phone number to validate
             region: Regional code to check against
-            
+
         Returns:
             True if number is a valid emergency number, False otherwise
         """
         if region in self.regional_configs:
             valid_numbers = self.regional_configs[region].emergency_numbers
             is_valid = number in valid_numbers
-            logger.info(f"Emergency number validation - Number: {number}, Region: {region}, Valid: {is_valid}")
+            logger.info(
+                f"Emergency number validation - Number: {number}, Region: {region}, Valid: {is_valid}")
             return is_valid
-        
-        logger.warning(f"Unknown region for emergency number validation: {region}")
+
+        logger.warning(
+            f"Unknown region for emergency number validation: {region}")
         return False
-    
-    def provision_with_rsm_fallback(self, profile_name: str, 
-                                   config: EmergencyConfig) -> Tuple[bool, str]:
+
+    def provision_with_rsm_fallback(
+            self, profile_name: str, config: EmergencyConfig) -> Tuple[bool, str]:
         """
         Provision emergency profile with RSM server, fallback to local on failure.
-        
+
         This function demonstrates the essential integration with RSM servers
         while providing robust fallback mechanisms for reliability.
-        
+
         Args:
             profile_name: Name of the emergency profile
             config: EmergencyConfig object to provision
-            
+
         Returns:
             Tuple of (success, message)
         """
         # First, try to provision via RSM server
-        logger.info(f"Attempting RSM server provisioning for profile: {profile_name}")
-        
+        logger.info(
+            f"Attempting RSM server provisioning for profile: {profile_name}")
+
         if self.rsm_manager.connect_with_fallback():
             # RSM server available - provision remotely
             profile_data = config.to_dict()
             profile_data['profile_name'] = profile_name
-            
-            success, message = self.rsm_manager.provision_emergency_profile(profile_data)
-            
+
+            success, message = self.rsm_manager.provision_emergency_profile(
+                profile_data)
+
             if success:
                 # Also save to local database as cache
                 if config.local_cache_enabled:
                     self.db_manager.save_emergency_config(profile_name, config)
                     logger.info(f"Profile cached locally: {profile_name}")
-                
+
                 return True, f"Provisioned via RSM server: {message}"
             else:
                 logger.warning(f"RSM provisioning failed: {message}")
-        
+
         # RSM server unavailable or provisioning failed - use local fallback
         logger.info("Using local database fallback for provisioning")
-        
+
         if self.db_manager.save_emergency_config(profile_name, config):
             return True, "Provisioned locally (RSM server unavailable - will sync when available)"
         else:
             return False, "Failed to provision: Both RSM server and local database unavailable"
-    
+
     def get_regional_config(self, region: str) -> Optional[EmergencyConfig]:
         """
         Get emergency configuration for a specific region.
-        
+
         Args:
             region: Regional code (e.g., US, EU, UK)
-            
+
         Returns:
             EmergencyConfig object for the region, or None if not found
         """
@@ -642,15 +675,18 @@ class EmergencyFunctionManager:
         else:
             logger.warning(f"No regional config found for: {region}")
         return config
-    
-    def export_configuration(self, profile_name: str, output_file: str) -> bool:
+
+    def export_configuration(
+            self,
+            profile_name: str,
+            output_file: str) -> bool:
         """
         Export emergency configuration to JSON file.
-        
+
         Args:
             profile_name: Name of the emergency profile to export
             output_file: Path to output JSON file
-            
+
         Returns:
             True if export successful, False otherwise
         """
@@ -659,49 +695,49 @@ class EmergencyFunctionManager:
             if not config:
                 logger.error(f"Profile not found for export: {profile_name}")
                 return False
-            
+
             config_dict = config.to_dict()
             config_dict['profile_name'] = profile_name
             config_dict['exported_at'] = datetime.datetime.now().isoformat()
-            
+
             with open(output_file, 'w') as f:
                 json.dump(config_dict, f, indent=2)
-            
+
             logger.info(f"Configuration exported to: {output_file}")
             return True
-            
+
         except Exception as e:
             logger.error(f"Failed to export configuration: {e}")
             return False
-    
+
     def import_configuration(self, input_file: str) -> bool:
         """
         Import emergency configuration from JSON file.
-        
+
         Args:
             input_file: Path to input JSON file
-            
+
         Returns:
             True if import successful, False otherwise
         """
         try:
             with open(input_file, 'r') as f:
                 config_dict = json.load(f)
-            
+
             profile_name = config_dict.get('profile_name', 'imported_profile')
             config = EmergencyConfig.from_dict(config_dict)
-            
+
             if self.db_manager.save_emergency_config(profile_name, config):
                 logger.info(f"Configuration imported from: {input_file}")
                 return True
             else:
                 logger.error("Failed to save imported configuration")
                 return False
-                
+
         except Exception as e:
             logger.error(f"Failed to import configuration: {e}")
             return False
-    
+
     def cleanup(self):
         """Cleanup resources and close connections"""
         self.db_manager.close()
@@ -712,16 +748,16 @@ class EmergencyFunctionManager:
 def create_example_configs():
     """
     Create example emergency configurations for demonstration.
-    
+
     This function shows how to configure emergency profiles for different
     regions with appropriate parameters.
     """
     manager = EmergencyFunctionManager()
-    
+
     if not manager.initialize_database():
         logger.error("Failed to initialize database")
         return
-    
+
     # Configure US emergency profile
     manager.configure_emergency_profile(
         profile_name="US_Emergency_Standard",
@@ -731,7 +767,7 @@ def create_example_configs():
         network_priority=1,
         alert_channels=["SMS", "CMAS", "WEA"]
     )
-    
+
     # Configure EU emergency profile
     manager.configure_emergency_profile(
         profile_name="EU_Emergency_Standard",
@@ -741,7 +777,7 @@ def create_example_configs():
         network_priority=1,
         alert_channels=["SMS", "ETWS", "EU-Alert"]
     )
-    
+
     # Configure UK emergency profile
     manager.configure_emergency_profile(
         profile_name="UK_Emergency_Dual",
@@ -751,7 +787,7 @@ def create_example_configs():
         network_priority=1,
         alert_channels=["SMS", "UK-Alert"]
     )
-    
+
     logger.info("Example emergency configurations created")
     manager.cleanup()
 
