@@ -5,6 +5,7 @@ esim_qr*.png
 # SIM issuer generated files
 simcard_issuer_config.json
 simcard_issuer_log.txt
+emergency_config.db
 
 # Python
 __pycache__/
