@@ -1,0 +1,53 @@
+{
+  "profile_name": "US_Emergency_Standard",
+  "region": "US",
+  "emergency_numbers": ["911"],
+  "psap_routing_code": "US-PSAP-001",
+  "network_priority": 1,
+  "rsm_server_url": "https://rsm.example.com",
+  "rsm_server_port": 443,
+  "rsm_fallback_enabled": true,
+  "local_cache_enabled": true,
+  "alert_channels": ["SMS", "CMAS", "WEA"],
+  "system_codes": {
+    "MCC": "310",
+    "MNC": "260"
+  },
+  "description": "Standard US emergency profile with 911 support, CMAS alerts, and PSAP routing",
+  "examples": {
+    "EU_Profile": {
+      "profile_name": "EU_Emergency_Standard",
+      "region": "EU",
+      "emergency_numbers": ["112"],
+      "psap_routing_code": "EU-PSAP-112",
+      "alert_channels": ["SMS", "ETWS", "EU-Alert"],
+      "system_codes": {
+        "MCC": "262",
+        "MNC": "01"
+      }
+    },
+    "UK_Profile": {
+      "profile_name": "UK_Emergency_Dual",
+      "region": "UK",
+      "emergency_numbers": ["999", "112"],
+      "psap_routing_code": "UK-PSAP-999",
+      "alert_channels": ["SMS", "UK-Alert"],
+      "system_codes": {
+        "MCC": "234",
+        "MNC": "15"
+      }
+    },
+    "Multi_Region_Profile": {
+      "profile_name": "Global_Emergency",
+      "region": "GLOBAL",
+      "emergency_numbers": ["112", "911", "999", "110", "119"],
+      "psap_routing_code": "GLOBAL-PSAP-001",
+      "alert_channels": ["SMS", "CMAS", "ETWS", "EU-Alert", "WEA"],
+      "system_codes": {
+        "MCC": "001",
+        "MNC": "01"
+      },
+      "description": "Global emergency profile supporting multiple regions"
+    }
+  }
+}

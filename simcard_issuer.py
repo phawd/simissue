@@ -19,6 +19,20 @@ try:
 except ImportError:
     qrcode = None
 
+# Emergency functions module
+try:
+    from emergency_functions import (
+        EmergencyFunctionManager,
+        EmergencyConfig,
+        DatabaseType,
+        RegionCode
+    )
+except ImportError:
+    EmergencyFunctionManager = None
+    EmergencyConfig = None
+    DatabaseType = None
+    RegionCode = None
+
 # Set these according to the SIM profile, carrier, and device requirements.
 #
 # Signal Power Control:
@@ -323,6 +337,14 @@ class SimCardIssuer:
         self.reader = None
         self.connection = None
         self.config = self.load_config()
+        self.emergency_manager = None
+        # Initialize emergency manager if available
+        if EmergencyFunctionManager:
+            try:
+                self.emergency_manager = EmergencyFunctionManager()
+                self.emergency_manager.initialize_database()
+            except Exception as e:
+                self.log(f"[Warning] Emergency manager initialization failed: {e}")
 
     def load_config(self):
         # Load the configuration from disk (JSON file). Used for personalization values.
@@ -377,7 +399,10 @@ class SimCardIssuer:
     def send_apdu(self, apdu, description=None, emulator=False):
         # Send an APDU command to the card (or emulator), with operator-facing description.
         # All APDUs are commented in plain English in the code.
-        apdu_str = toHexString(apdu)
+        if toHexString:
+            apdu_str = toHexString(apdu)
+        else:
+            apdu_str = ' '.join(f'{b:02X}' for b in apdu)
         if description:
             self.log(f"Sending APDU ({description}): {apdu_str}")
         else:
@@ -386,14 +411,21 @@ class SimCardIssuer:
             # Simulate a generic successful response (SW=0x9000)
             data = [0x90, 0x00]
             sw1, sw2 = 0x90, 0x00
-            self.log(f"[EMULATOR] Simulated Response: {toHexString(data)}, SW: {sw1:02X} {sw2:02X}")
+            if toHexString:
+                resp_str = toHexString(data)
+            else:
+                resp_str = ' '.join(f'{b:02X}' for b in data)
+            self.log(f"[EMULATOR] Simulated Response: {resp_str}, SW: {sw1:02X} {sw2:02X}")
             return data, sw1, sw2
         if not self.connection:
             self.log("Not connected to a card.")
             return None
         try:
             data, sw1, sw2 = self.connection.transmit(apdu)
-            resp_str = toHexString(data)
+            if toHexString:
+                resp_str = toHexString(data)
+            else:
+                resp_str = ' '.join(f'{b:02X}' for b in data)
             self.log(f"Received Response: {resp_str}, SW: {sw1:02X} {sw2:02X}")
             return data, sw1, sw2
         except Exception as e:
@@ -621,6 +653,71 @@ class SimCardIssuer:
         self.config[key] = value
         self.save_config()
         print(f"Set config: {key} = {value}")
+    
+    def configure_emergency_profile_full(self, profile_name: str, region: str,
+                                        emergency_numbers: list = None,
+                                        psap_routing_code: str = "",
+                                        rsm_server: str = "",
+                                        use_fallback: bool = True):
+        """
+        Configure comprehensive emergency profile with RSM server integration.
+        
+        This function provides full emergency profile configuration including:
+        - Regional emergency number setup
+        - PSAP (Public Safety Answering Point) routing configuration
+        - RSM server integration with automatic fallback
+        - Local database caching for offline operation
+        
+        Args:
+            profile_name: Unique name for the emergency profile
+            region: Regional code (US, EU, UK, etc.)
+            emergency_numbers: List of emergency numbers (e.g., ["911", "112"])
+            psap_routing_code: PSAP routing code for emergency services
+            rsm_server: RSM server URL for remote management
+            use_fallback: Enable fallback to local storage if RSM unavailable
+            
+        Returns:
+            True if configuration successful, False otherwise
+        """
+        if not self.emergency_manager:
+            self.log("[Emergency] Emergency manager not available. Install emergency_functions module.")
+            return False
+        
+        try:
+            # Configure the emergency profile
+            success = self.emergency_manager.configure_emergency_profile(
+                profile_name=profile_name,
+                region=region,
+                emergency_numbers=emergency_numbers,
+                psap_routing_code=psap_routing_code,
+                network_priority=1  # Highest priority for emergency
+            )
+            
+            if not success:
+                self.log(f"[Emergency] Failed to configure profile: {profile_name}")
+                return False
+            
+            # Update RSM server if provided
+            if rsm_server:
+                self.emergency_manager.rsm_manager.primary_server = rsm_server
+                self.log(f"[Emergency] RSM server configured: {rsm_server}")
+            
+            # Store emergency profile info in main config
+            self.config[f"EMERGENCY_PROFILE_{profile_name}"] = {
+                "region": region,
+                "numbers": emergency_numbers or [],
+                "psap_code": psap_routing_code,
+                "rsm_server": rsm_server,
+                "fallback_enabled": use_fallback
+            }
+            self.save_config()
+            
+            self.log(f"[Emergency] Profile configured successfully: {profile_name}")
+            return True
+            
+        except Exception as e:
+            self.log(f"[Emergency] Configuration failed: {e}")
+            return False
 
 import argparse
 
