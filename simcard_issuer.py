@@ -14,6 +14,11 @@ except ImportError:
     toHexString = None
     readers = None
 
+try:
+    import qrcode
+except ImportError:
+    qrcode = None
+
 # Set these according to the SIM profile, carrier, and device requirements.
 #
 # Signal Power Control:
@@ -269,6 +274,47 @@ class SimCardIssuer:
             return (10 - (s % 10)) % 10
         check = luhn_checksum(imei_base)
         return ''.join(str(d) for d in imei_base) + str(check)
+
+    @staticmethod
+    def generate_lpa_string(smdp_address, activation_code):
+        # Generate GSMA SGP.22 compliant LPA activation string
+        # Format: LPA:1$<SM-DP+ address>$<Activation Code>
+        # This string can be used for manual entry or QR code generation
+        return f"LPA:1${smdp_address}${activation_code}"
+
+    @staticmethod
+    def generate_esim_qr_code(smdp_address, activation_code, output_file="esim_qr.png"):
+        # Generate a QR code for eSIM activation per GSMA SGP.22 standard
+        # The QR code encodes the LPA string: LPA:1$<SM-DP+ address>$<Activation Code>
+        # 
+        # Args:
+        #   smdp_address: SM-DP+ server address (e.g., "sm-dp+.example.com")
+        #   activation_code: Unique activation code for the eSIM profile
+        #   output_file: Output filename for the QR code image (default: "esim_qr.png")
+        #
+        # Returns:
+        #   The LPA string that was encoded in the QR code
+        if qrcode is None:
+            raise ImportError("qrcode library is required. Install with: pip install qrcode[pil]")
+        
+        lpa_string = SimCardIssuer.generate_lpa_string(smdp_address, activation_code)
+        
+        # Generate QR code with good error correction for mobile scanning
+        qr = qrcode.QRCode(
+            version=1,  # Auto-adjust version based on data
+            error_correction=qrcode.constants.ERROR_CORRECT_H,  # High error correction
+            box_size=10,
+            border=4,
+        )
+        qr.add_data(lpa_string)
+        qr.make(fit=True)
+        
+        # Create and save the image
+        img = qr.make_image(fill_color="black", back_color="white")
+        img.save(output_file)
+        
+        return lpa_string
+
     # Configuration and log filenames
     CONFIG_FILE = "simcard_issuer_config.json"
     LOG_FILE = "simcard_issuer_log.txt"
@@ -607,6 +653,7 @@ def main():
     issue_parser.add_argument("--mode", type=str, help="Set operational mode (e.g., GSM, UMTS, LTE, 5G, TEST, PRODUCTION)")
     issue_parser.add_argument("--signal-power", type=str, help="Set signal power in dBm (e.g., 23, 20, 10)")
     issue_parser.add_argument("--emergency-profile", action="store_true", help="Enable emergency services profile (e.g., 911/112/PSAP-only)")
+    issue_parser.add_argument("--generate-qr", nargs=2, metavar=("SMDP_ADDRESS", "ACTIVATION_CODE"), help="Generate eSIM QR code with SM-DP+ address and activation code")
 
     # Classic SIM/3GPP TS 51.011/ETSI TS 102 221
     sim_parser = subparsers.add_parser("sim-issue", help="Issue a classic SIM using 3GPP TS 51.011/ETSI TS 102 221")
@@ -631,6 +678,12 @@ def main():
     config_parser.add_argument("key", type=str, help="Configuration key")
     config_parser.add_argument("value", type=str, help="Configuration value")
 
+    # generate-qr command
+    qr_parser = subparsers.add_parser("generate-qr", help="Generate eSIM QR code per GSMA SGP.22")
+    qr_parser.add_argument("smdp_address", type=str, help="SM-DP+ server address (e.g., sm-dp+.example.com)")
+    qr_parser.add_argument("activation_code", type=str, help="Activation code for the eSIM profile")
+    qr_parser.add_argument("--output", type=str, default="esim_qr.png", help="Output filename for QR code (default: esim_qr.png)")
+
     args = parser.parse_args()
 
     issuer = SimCardIssuer()
@@ -638,6 +691,27 @@ def main():
     if args.command == "set-config":
         # Set a personalization/config value (IMSI, Ki, OPc, SPN, etc.)
         issuer.set_config(args.key, args.value)
+        return
+
+    if args.command == "generate-qr":
+        # Generate eSIM QR code per GSMA SGP.22 standard
+        try:
+            lpa_string = SimCardIssuer.generate_esim_qr_code(
+                args.smdp_address,
+                args.activation_code,
+                args.output
+            )
+            print(f"\n[QR Code Generated]")
+            print(f"File: {args.output}")
+            print(f"LPA String: {lpa_string}")
+            print(f"\nUsers can scan this QR code to activate the eSIM profile on their device.")
+            print(f"Alternatively, they can manually enter: {lpa_string}")
+        except ImportError as e:
+            print(f"Error: {e}")
+            sys.exit(1)
+        except Exception as e:
+            print(f"Failed to generate QR code: {e}")
+            sys.exit(1)
         return
 
     # eSIM/GSMA SGP.02/3GPP TS 31.102
@@ -663,6 +737,17 @@ def main():
         if hasattr(args, "emergency_profile") and args.emergency_profile:
             issuer.set_config("EMERGENCY_PROFILE", True)
             print("[Automation] Emergency services profile enabled. This SIM/eSIM will be marked for emergency use only (911/112/PSAP).")
+        # Generate QR code if requested
+        if hasattr(args, "generate_qr") and args.generate_qr:
+            try:
+                smdp_address, activation_code = args.generate_qr
+                qr_filename = f"esim_qr_{activation_code[:8]}.png"
+                lpa_string = SimCardIssuer.generate_esim_qr_code(smdp_address, activation_code, qr_filename)
+                print(f"\n[eSIM QR Code Generated]")
+                print(f"File: {qr_filename}")
+                print(f"LPA String: {lpa_string}")
+            except Exception as e:
+                print(f"Warning: Failed to generate QR code: {e}")
         if args.emulator:
             issuer.issuer_mode(emulator=True, export_android=args.export_android)
             lint_code()
