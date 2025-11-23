@@ -105,16 +105,16 @@ class GSMAComplianceDB:
         );
         """
 
-        # Create index for faster lookups
-        create_index_sql = """
+        # Create index for faster lookups on profile_id
+        # Note: ICCID already has an implicit index due to UNIQUE constraint
+        create_index_profile_id_sql = """
         CREATE INDEX IF NOT EXISTS idx_profile_id ON gsma_compliance(profile_id);
-        CREATE INDEX IF NOT EXISTS idx_iccid ON gsma_compliance(iccid);
         """
 
         try:
             cursor = self.db_conn.connection.cursor()
             cursor.execute(create_table_sql)
-            cursor.executescript(create_index_sql)
+            cursor.execute(create_index_profile_id_sql)
             self.db_conn.connection.commit()
             logger.info("Database schema created successfully")
         except sqlite3.Error as e:

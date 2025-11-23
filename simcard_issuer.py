@@ -259,20 +259,26 @@ class SimCardIssuer:
         return mcc + mnc + msin
 
     @staticmethod
+    def _luhn_checksum(digits):
+        # Calculate Luhn checksum for a list of digits or digit string
+        # Used for IMEI and ICCID validation
+        if isinstance(digits, str):
+            digits = [int(d) for d in digits]
+        s = 0
+        for i, d in enumerate(digits[::-1]):
+            if i % 2 == 0:
+                d2 = d * 2
+                s += d2 if d2 < 10 else d2 - 9
+            else:
+                s += d
+        return (10 - (s % 10)) % 10
+
+    @staticmethod
     def generate_imei():
         # Generate a random 15-digit IMEI (Luhn check digit). Used for test/dev.
         # Generate a random 15-digit IMEI (Luhn check digit)
         imei_base = [random.randint(0, 9) for _ in range(14)]
-        def luhn_checksum(digits):
-            s = 0
-            for i, d in enumerate(digits[::-1]):
-                if i % 2 == 0:
-                    d2 = d * 2
-                    s += d2 if d2 < 10 else d2 - 9
-                else:
-                    s += d
-            return (10 - (s % 10)) % 10
-        check = luhn_checksum(imei_base)
+        check = SimCardIssuer._luhn_checksum(imei_base)
         return ''.join(str(d) for d in imei_base) + str(check)
 
     @staticmethod
@@ -288,18 +294,7 @@ class SimCardIssuer:
         iccid_base = issuer_id + country_code + issuer_code + account_number
 
         # Calculate Luhn check digit
-        def luhn_checksum(number_str):
-            digits = [int(d) for d in number_str]
-            s = 0
-            for i, d in enumerate(digits[::-1]):
-                if i % 2 == 0:
-                    d2 = d * 2
-                    s += d2 if d2 < 10 else d2 - 9
-                else:
-                    s += d
-            return (10 - (s % 10)) % 10
-
-        check = luhn_checksum(iccid_base)
+        check = SimCardIssuer._luhn_checksum(iccid_base)
         return iccid_base + str(check)
 
     @staticmethod
@@ -321,7 +316,7 @@ class SimCardIssuer:
         #   output_file: Output filename for the QR code image (default: "esim_qr.png")
         #   save_to_db: If True, save QR code to SQLite database (default: False)
         #   profile_id: eSIM profile identifier (required if save_to_db is True)
-        #   iccid: Integrated Circuit Card Identifier (required if save_to_db is True)
+        #   iccid: Integrated Circuit Card Identifier (optional - auto-generated if not provided when save_to_db is True)
         #   db_path: Path to SQLite database (default: "esim_gsma.db")
         #
         # Returns:
@@ -360,6 +355,8 @@ class SimCardIssuer:
                 # Save to database
                 with DatabaseConnection(db_path) as db_conn:
                     gsma_db = GSMAComplianceDB(db_conn)
+                    # Ensure schema exists before inserting
+                    gsma_db.create_schema()
                     record_id = gsma_db.insert_esim_data(profile_id, iccid, qr_code_data)
                     print(f"[Database] Saved eSIM data to database: Record ID {record_id}")
             except Exception as e:
@@ -737,7 +734,7 @@ def main():
     qr_parser.add_argument("--output", type=str, default="esim_qr.png", help="Output filename for QR code (default: esim_qr.png)")
     qr_parser.add_argument("--save-to-db", action="store_true", help="Save QR code and profile data to SQLite database")
     qr_parser.add_argument("--profile-id", type=str, help="eSIM profile identifier (required with --save-to-db)")
-    qr_parser.add_argument("--iccid", type=str, help="ICCID (required with --save-to-db, or auto-generate if omitted)")
+    qr_parser.add_argument("--iccid", type=str, help="ICCID (optional with --save-to-db; auto-generated if omitted)")
     qr_parser.add_argument("--db", type=str, default="esim_gsma.db", help="Database file path (default: esim_gsma.db)")
 
     args = parser.parse_args()
