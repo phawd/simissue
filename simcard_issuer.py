@@ -320,6 +320,21 @@ class SimCardIssuer:
         return mcc + mnc + msin
 
     @staticmethod
+    def _luhn_checksum(digits):
+        # Calculate Luhn checksum for a list of digits or digit string
+        # Used for IMEI and ICCID validation
+        if isinstance(digits, str):
+            digits = [int(d) for d in digits]
+        s = 0
+        for i, d in enumerate(digits[::-1]):
+            if i % 2 == 0:
+                d2 = d * 2
+                s += d2 if d2 < 10 else d2 - 9
+            else:
+                s += d
+        return (10 - (s % 10)) % 10
+
+    @staticmethod
     def generate_imei():
         # Generate a random 15-digit IMEI (Luhn check digit). Used for test/dev.
         # Generate a random 15-digit IMEI (Luhn check digit)
@@ -338,6 +353,22 @@ class SimCardIssuer:
         return ''.join(str(d) for d in imei_base) + str(check)
 
     @staticmethod
+    def generate_iccid(issuer_id="89", country_code="01", issuer_code="234"):
+        # Generate a random 19-digit ICCID with Luhn check digit
+        # Format: II CC IIII NNNNNNNNNN C
+        # II = Issuer Identifier (89 for telecom)
+        # CC = Country Code
+        # IIII = Issuer Code
+        # NNNNNNNNNN = Account Number (10 digits)
+        # C = Check digit (Luhn)
+        account_number = ''.join(str(random.randint(0, 9)) for _ in range(10))
+        iccid_base = issuer_id + country_code + issuer_code + account_number
+
+        # Calculate Luhn check digit
+        check = SimCardIssuer._luhn_checksum(iccid_base)
+        return iccid_base + str(check)
+
+    @staticmethod
     def generate_lpa_string(smdp_address, activation_code):
         # Generate GSMA SGP.22 compliant LPA activation string
         # Format: LPA:1$<SM-DP+ address>$<Activation Code>
@@ -345,10 +376,8 @@ class SimCardIssuer:
         return f"LPA:1${smdp_address}${activation_code}"
 
     @staticmethod
-    def generate_esim_qr_code(
-            smdp_address,
-            activation_code,
-            output_file="esim_qr.png"):
+    def generate_esim_qr_code(smdp_address, activation_code, output_file="esim_qr.png",
+                             save_to_db=False, profile_id=None, iccid=None, db_path="esim_gsma.db"):
         # Generate a QR code for eSIM activation per GSMA SGP.22 standard
         # The QR code encodes the LPA string: LPA:1$<SM-DP+ address>$<Activation Code>
         #
@@ -356,15 +385,17 @@ class SimCardIssuer:
         #   smdp_address: SM-DP+ server address (e.g., "sm-dp+.example.com")
         #   activation_code: Unique activation code for the eSIM profile
         #   output_file: Output filename for the QR code image (default: "esim_qr.png")
+        #   save_to_db: If True, save QR code to SQLite database (default: False)
+        #   profile_id: eSIM profile identifier (required if save_to_db is True)
+        #   iccid: Integrated Circuit Card Identifier (optional - auto-generated if not provided when save_to_db is True)
+        #   db_path: Path to SQLite database (default: "esim_gsma.db")
         #
         # Returns:
         #   The LPA string that was encoded in the QR code
         if qrcode is None:
-            raise ImportError(
-                "qrcode library is required. Install with: pip install qrcode[pil]")
+            raise ImportError("qrcode library is required. Install with: pip install qrcode[pil]")
 
-        lpa_string = SimCardIssuer.generate_lpa_string(
-            smdp_address, activation_code)
+        lpa_string = SimCardIssuer.generate_lpa_string(smdp_address, activation_code)
 
         # Generate QR code with good error correction for mobile scanning
         qr = qrcode.QRCode(
@@ -1003,14 +1034,41 @@ def main():
     if args.command == "generate-qr":
         # Generate eSIM QR code per GSMA SGP.22 standard
         try:
+            # Validate and prepare parameters for database storage
+            save_to_db = args.save_to_db
+            profile_id = None
+            iccid = None
+
+            if save_to_db:
+                if not args.profile_id:
+                    print("Error: --profile-id is required when using --save-to-db")
+                    sys.exit(1)
+
+                profile_id = args.profile_id
+
+                # Generate ICCID if not provided
+                if args.iccid:
+                    iccid = args.iccid
+                else:
+                    iccid = SimCardIssuer.generate_iccid()
+                    print(f"[Auto-generated] ICCID: {iccid}")
+
             lpa_string = SimCardIssuer.generate_esim_qr_code(
                 args.smdp_address,
                 args.activation_code,
-                args.output
+                args.output,
+                save_to_db=save_to_db,
+                profile_id=profile_id,
+                iccid=iccid,
+                db_path=args.db
             )
             print("\n[QR Code Generated]")
             print(f"File: {args.output}")
             print(f"LPA String: {lpa_string}")
+            if save_to_db:
+                print(f"Profile ID: {profile_id}")
+                print(f"ICCID: {iccid}")
+            print(f"\nUsers can scan this QR code to activate the eSIM profile on their device.")
             print(
                 "\nUsers can scan this QR code to activate the eSIM profile on their device.")
             print(f"Alternatively, they can manually enter: {lpa_string}")

@@ -1,6 +1,6 @@
 # SIM Card Issuer with eSIM QR Code Generation
 
-This tool provides SIM/eSIM/USIM issuance and personalization capabilities, including GSMA SGP.22 compliant eSIM QR code generation.
+This tool provides SIM/eSIM/USIM issuance and personalization capabilities, including GSMA SGP.22 compliant eSIM QR code generation and SQLite database management for eSIM profiles.
 
 ## Features
 
@@ -8,6 +8,7 @@ This tool provides SIM/eSIM/USIM issuance and personalization capabilities, incl
 - **USIM Issuance**: Issue USIM/3G cards (3GPP TS 31.102)
 - **eSIM Issuance**: Issue eSIM profiles (GSMA SGP.02/3GPP TS 31.102)
 - **eSIM QR Code Generation**: Generate GSMA SGP.22 compliant QR codes for eSIM activation
+- **SQLite Database Integration**: Store and manage eSIM profiles locally with GSMA compliance support
 
 ## Installation
 
@@ -40,6 +41,16 @@ This will:
 ```bash
 python simcard_issuer.py generate-qr "sm-dp+.tmobile.com" "TMOUS12345" --output my_esim.png
 ```
+
+**With SQLite database storage:**
+```bash
+python simcard_issuer.py generate-qr "sm-dp+.nexatel.com" "NEXATEL123" \
+    --save-to-db \
+    --profile-id "PROF-NXT-001" \
+    --output nexatel_qr.png
+```
+
+This will generate the QR code and store it in the SQLite database along with the profile ID and auto-generated ICCID.
 
 ### QR Code Generation During eSIM Issuance
 
@@ -98,12 +109,40 @@ python simcard_issuer.py umts-issue [--reader N] [--emulator]
 python simcard_issuer.py set-config KEY VALUE
 ```
 
+## SQLite Database Management
+
+### Initialize Database
+
+```bash
+python esim_db_manager.py init
+```
+
+### Manage eSIM Profiles
+
+```bash
+# Insert eSIM data
+python esim_db_manager.py insert "PROF-001" "8901234567890123456" --qr-file qrcode.png
+
+# Retrieve profile by ICCID
+python esim_db_manager.py retrieve "8901234567890123456"
+
+# List all profiles
+python esim_db_manager.py list
+
+# Export QR code from database
+python esim_db_manager.py export-qr 1 output_qr.png
+```
+
+For detailed database documentation, see [DATABASE_GUIDE.md](DATABASE_GUIDE.md).
+
 ## Technical Details
 
 - **QR Code Library**: Uses the `qrcode` library with PIL support
 - **Error Correction**: High error correction level (ERROR_CORRECT_H) for reliable mobile scanning
 - **Image Format**: PNG with 450x450 pixels (default)
 - **Standards Compliance**: GSMA SGP.22 for eSIM activation codes
+- **Database**: SQLite for local eSIM profile storage with GSMA compliance support
+- **Low Coupling Design**: Database layer abstraction enables easy migration to other RDBMS
 
 ## Emergency Functions and Configuration
 

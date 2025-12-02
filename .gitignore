@@ -7,6 +7,11 @@ simcard_issuer_config.json
 simcard_issuer_log.txt
 emergency_config.db
 
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+
 # Python
 __pycache__/
 *.py[cod]
